@@ -357,6 +357,247 @@ textarea{min-height:90px;resize:vertical}
 })();
 </script>
 
+
+<style id="db-pagination-style">
+.db-pagination{display:flex;gap:6px;align-items:center;justify-content:center;flex-wrap:wrap;margin:12px 0}
+.db-pagination button,.db-pagination select{padding:7px 10px;border-radius:8px;border:1px solid #bbb;background:#fff}
+.db-pagination button.active{font-weight:700;outline:2px solid #555}
+.db-page-info{text-align:center;font-size:13px;margin:6px 0 12px;opacity:.8}
+.db-page-size{display:flex;gap:8px;align-items:center;justify-content:center;margin:8px 0}
+.db-row-actions{display:flex;gap:6px;flex-wrap:wrap}
+.db-row-actions button{padding:6px 8px}
+</style>
+
+<script id="db-pagination-final">
+(function(){
+  const state={page:1,size:50,items:[],filtered:[]};
+
+  function getDB(){
+    return Array.isArray(window.TRIVIAL_DATABASE) ? window.TRIVIAL_DATABASE : [];
+  }
+  function text(q){
+    return [q.q,q.cat,q.explanation,...(q.a||[])].join(" ").toLowerCase();
+  }
+  function apply(){
+    const term=(document.getElementById("searchQ")?.value||"").trim().toLowerCase();
+    state.items=getDB();
+    state.filtered=term ? state.items.filter(q=>text(q).includes(term)) : state.items.slice();
+    const pages=Math.max(1,Math.ceil(state.filtered.length/state.size));
+    if(state.page>pages) state.page=pages;
+    render();
+  }
+  function render(){
+    let host=document.getElementById("dbPaginatedHost");
+    if(!host){
+      const editor=document.getElementById("editorModal") || document.body;
+      host=document.createElement("div");
+      host.id="dbPaginatedHost";
+      host.style.cssText="margin:12px 0";
+      editor.prepend(host);
+    }
+    const total=state.filtered.length;
+    const pages=Math.max(1,Math.ceil(total/state.size));
+    const start=(state.page-1)*state.size;
+    const pageItems=state.filtered.slice(start,start+state.size);
+
+    host.innerHTML="";
+    const size=document.createElement("div");
+    size.className="db-page-size";
+    size.innerHTML="<label>Preguntas por página:</label>";
+    const sel=document.createElement("select");
+    [25,50,100,250].forEach(n=>{
+      const o=document.createElement("option");o.value=n;o.textContent=n;
+      if(n===state.size)o.selected=true;sel.appendChild(o);
+    });
+    sel.onchange=()=>{state.size=+sel.value;state.page=1;render();};
+    size.appendChild(sel);host.appendChild(size);
+
+    const info=document.createElement("div");
+    info.className="db-page-info";
+    info.textContent=total ? `Mostrando ${start+1}–${Math.min(start+pageItems.length,total)} de ${total} preguntas` : "No hay preguntas que coincidan";
+    host.appendChild(info);
+
+    const nav=document.createElement("div");nav.className="db-pagination";
+    function btn(label,disabled,fn){
+      const b=document.createElement("button");b.textContent=label;b.disabled=disabled;b.onclick=fn;nav.appendChild(b);
+    }
+    btn("«",state.page===1,()=>{state.page=1;render()});
+    btn("‹",state.page===1,()=>{state.page--;render()});
+    let a=Math.max(1,state.page-2), b=Math.min(pages,a+4); a=Math.max(1,b-4);
+    for(let n=a;n<=b;n++){const x=document.createElement("button");x.textContent=n;x.className=n===state.page?"active":"";x.onclick=()=>{state.page=n;render()};nav.appendChild(x)}
+    btn("›",state.page===pages,()=>{state.page++;render()});
+    btn("»",state.page===pages,()=>{state.page=pages;render()});
+    host.appendChild(nav);
+
+    const list=document.createElement("div");
+    list.style.cssText="display:grid;gap:8px";
+    pageItems.forEach((q,idx)=>{
+      const card=document.createElement("div");
+      card.style.cssText="border:1px solid #ddd;border-radius:10px;padding:10px;background:#fafafa";
+      const id=start+idx+1;
+      const correct=(q.a||[])[q.c]||"";
+      card.innerHTML=`<div><b>#${id}</b> <span>${escapeHtml(q.cat||"")}</span></div>
+      <div style="margin:5px 0"><b>${escapeHtml(q.q||"")}</b></div>
+      <div style="font-size:13px">Correcta: <b>${escapeHtml(correct)}</b></div>
+      <div class="db-row-actions" style="margin-top:7px">
+        <button type="button" data-export="${idx}">Ver/editar</button>
+      </div>`;
+      card.querySelector("[data-export]").onclick=()=>editFromDB(start+idx);
+      list.appendChild(card);
+    });
+    host.appendChild(list);
+  }
+  function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));}
+  function editFromDB(index){
+    const q=getDB()[index];
+    if(!q) return;
+    // Usa el editor existente cuando está disponible.
+    if(window.DBOpenEditor){ window.DBOpenEditor(index); return; }
+    const search=document.getElementById("searchQ");
+    if(search){search.value=(q.q||"").slice(0,120); if(typeof window.renderEditor==="function") window.renderEditor();}
+  }
+  window.DBPagination={apply,render};
+  document.addEventListener("DOMContentLoaded",()=>{
+    setTimeout(()=>{
+      const search=document.getElementById("searchQ");
+      if(search){
+        search.addEventListener("input",()=>{state.page=1;apply()});
+      }
+      apply();
+    },900);
+  });
+})();
+</script>
+
+
+<style id="full-db-editor-style">
+.full-db-editor{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:10000;display:none;align-items:center;justify-content:center;padding:10px}
+.full-db-panel{background:#fff;color:#222;width:min(900px,100%);max-height:95vh;overflow:auto;border-radius:14px;padding:16px;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+.full-db-panel h3{margin:0 0 12px}
+.full-db-grid{display:grid;gap:10px}
+.full-db-grid label{font-weight:700;font-size:13px}
+.full-db-grid input,.full-db-grid textarea,.full-db-grid select{width:100%;box-sizing:border-box;padding:9px;border:1px solid #bbb;border-radius:8px;font:inherit}
+.full-db-grid textarea{min-height:80px;resize:vertical}
+.full-db-actions{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:14px}
+.full-db-actions button{padding:9px 14px;border-radius:8px;border:0;cursor:pointer}
+.full-db-save{font-weight:700}
+.full-db-msg{font-size:13px;margin-top:8px}
+</style>
+
+<script id="full-db-editor">
+(function(){
+  let editingIndex=-1;
+
+  function db(){ return Array.isArray(window.TRIVIAL_DATABASE)?window.TRIVIAL_DATABASE:[]; }
+  function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));}
+
+  function ensureModal(){
+    if(document.getElementById("fullDbEditor")) return;
+    const m=document.createElement("div");
+    m.id="fullDbEditor";m.className="full-db-editor";
+    m.innerHTML=`
+      <div class="full-db-panel">
+        <h3>✏️ Editar pregunta</h3>
+        <div class="full-db-grid">
+          <div><label>Pregunta</label><textarea id="fdbQ"></textarea></div>
+          <div><label>Respuesta A</label><input id="fdbA"></div>
+          <div><label>Respuesta B</label><input id="fdbB"></div>
+          <div><label>Respuesta C</label><input id="fdbC"></div>
+          <div><label>Respuesta D</label><input id="fdbD"></div>
+          <div><label>Respuesta correcta</label>
+            <select id="fdbCorrect">
+              <option value="0">A</option><option value="1">B</option>
+              <option value="2">C</option><option value="3">D</option>
+            </select>
+          </div>
+          <div><label>Categoría</label><input id="fdbCat"></div>
+          <div><label>Dificultad</label><input id="fdbDiff"></div>
+          <div><label>Imagen</label><input id="fdbImage"></div>
+          <div><label>Explicación</label><textarea id="fdbExp"></textarea></div>
+          <div id="fdbMsg" class="full-db-msg"></div>
+        </div>
+        <div class="full-db-actions">
+          <button type="button" id="fdbCancel">Cancelar</button>
+          <button type="button" id="fdbSave" class="full-db-save">💾 Guardar cambios</button>
+        </div>
+      </div>`;
+    document.body.appendChild(m);
+    m.querySelector("#fdbCancel").onclick=()=>m.style.display="none";
+    m.querySelector("#fdbSave").onclick=save;
+  }
+
+  function openEditor(index){
+    ensureModal();
+    const q=db()[index];
+    if(!q) return;
+    editingIndex=index;
+    const a=(q.a||["","","",""]);
+    document.getElementById("fdbQ").value=q.q||"";
+    document.getElementById("fdbA").value=a[0]||"";
+    document.getElementById("fdbB").value=a[1]||"";
+    document.getElementById("fdbC").value=a[2]||"";
+    document.getElementById("fdbD").value=a[3]||"";
+    document.getElementById("fdbCorrect").value=String(q.c??0);
+    document.getElementById("fdbCat").value=q.cat||"";
+    document.getElementById("fdbDiff").value=q.difficulty||"";
+    document.getElementById("fdbImage").value=q.image||"";
+    document.getElementById("fdbExp").value=q.explanation||"";
+    document.getElementById("fdbMsg").textContent="";
+    document.getElementById("fullDbEditor").style.display="flex";
+  }
+
+  async function save(){
+    const data=db();
+    if(editingIndex<0 || !data[editingIndex]) return;
+    const q=data[editingIndex];
+    q.q=document.getElementById("fdbQ").value.trim();
+    q.a=[
+      document.getElementById("fdbA").value.trim(),
+      document.getElementById("fdbB").value.trim(),
+      document.getElementById("fdbC").value.trim(),
+      document.getElementById("fdbD").value.trim()
+    ];
+    q.c=parseInt(document.getElementById("fdbCorrect").value,10);
+    q.cat=document.getElementById("fdbCat").value.trim();
+    q.difficulty=document.getElementById("fdbDiff").value.trim();
+    q.image=document.getElementById("fdbImage").value.trim();
+    q.explanation=document.getElementById("fdbExp").value.trim();
+
+    // Mantener también la colección integrada/IndexedDB cuando las funciones existentes lo permiten.
+    window.TRIVIAL_DATABASE=data;
+    try{
+      localStorage.setItem("trivial_questions_database",JSON.stringify(data));
+    }catch(e){}
+    if(typeof window.saveQuestions==="function"){
+      try{ await window.saveQuestions(data); }catch(e){}
+    }
+    if(typeof window.persistQuestions==="function"){
+      try{ await window.persistQuestions(data); }catch(e){}
+    }
+
+    document.getElementById("fdbMsg").textContent="✅ Cambios guardados en la base local.";
+    if(window.DBPagination && typeof window.DBPagination.apply==="function"){
+      window.DBPagination.apply();
+    }
+    setTimeout(()=>document.getElementById("fullDbEditor").style.display="none",500);
+  }
+
+  window.openFullDatabaseEditor=openEditor;
+
+  // Sustituir/enganchar botones "Ver/editar" creados por la paginación.
+  document.addEventListener("click",function(e){
+    const b=e.target.closest("[data-export]");
+    if(!b) return;
+    e.preventDefault();
+    const card=b.closest("div");
+    // El índice global se guarda en el botón por el parche siguiente.
+  },true);
+
+  // Exponer una función para la paginación actual.
+  window.DBOpenEditor=function(index){openEditor(index);};
+})();
+</script>
+
 </head>
 <body>
 <div class="app">
