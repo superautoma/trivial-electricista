@@ -3,7 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Trivial Electricista - 72 casillas</title>
+<meta name="theme-color" content="#17120d">
+<meta name="description" content="Trivial Electricista — preguntas, respuestas y explicaciones técnicas.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png" type="image/png">
+<title>Trivial Electricista</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#17120d;color:#fff;font-family:Arial,sans-serif}
@@ -24846,5 +24850,11 @@ fillCategorySelects();buildBoard();renderPlayers();aplicarSimbolosSinMover();mar
 
 
 <script>window.askQuestion=askQuestion;</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+}
+</script>
 </body>
 </html>
