@@ -1,0 +1,20 @@
+TRIVIAL ELECTRICISTA - BASE DE DATOS
+
+preguntas.json
+  Fuente editable de las preguntas de la PWA.
+
+preguntas.sqlite
+  Copia SQLite de la misma colección para gestión externa.
+
+index.html
+  Carga preguntas.json al iniciar y mantiene la colección integrada como respaldo.
+
+La edición desde la aplicación seguirá guardándose localmente en IndexedDB.
+La base JSON permite cambiar la colección sin modificar el código principal.
+
+NUEVO EDITOR DE BASE DE DATOS
+- La ventana "Ver base de datos" permite editar directamente cada registro.
+- Buscar por texto y categoría.
+- Exportar la colección a JSON.
+- Importar una colección JSON completa.
+- Los cambios se guardan en IndexedDB y son usados por el juego.

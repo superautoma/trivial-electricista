@@ -301,6 +301,62 @@ textarea{min-height:90px;resize:vertical}
 })();
 </script>
 
+
+<script id="database-loader">
+(function(){
+  const DB_VERSION = "2026-09-30-db1";
+  async function cargarPreguntasDesdeBD(){
+    try{
+      const r = await fetch("./preguntas.json?version="+encodeURIComponent(DB_VERSION), {cache:"no-store"});
+      if(!r.ok) throw new Error("HTTP "+r.status);
+      const data = await r.json();
+      if(!Array.isArray(data) || data.length===0) throw new Error("Base vacía");
+      window.TRIVIAL_DATABASE = data;
+      window.TRIVIAL_DATABASE_VERSION = DB_VERSION;
+      return data;
+    }catch(e){
+      console.warn("No se pudo cargar preguntas.json; se usa la colección integrada.", e);
+      window.TRIVIAL_DATABASE = null;
+      return null;
+    }
+  }
+  window.cargarPreguntasDesdeBD = cargarPreguntasDesdeBD;
+  window.addEventListener("DOMContentLoaded", cargarPreguntasDesdeBD);
+})();
+</script>
+
+
+<script id="database-editor-api">
+(function(){
+  window.TrivialDB = {
+    async exportar(){
+      const data = window.TRIVIAL_DATABASE || [];
+      const blob = new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement("a");
+      a.href=url; a.download="preguntas.json"; a.click();
+      setTimeout(()=>URL.revokeObjectURL(url),1000);
+    },
+    importarArchivo(file){
+      return new Promise((resolve,reject)=>{
+        const fr=new FileReader();
+        fr.onload=()=>{
+          try{
+            const d=JSON.parse(fr.result);
+            if(!Array.isArray(d)) throw new Error("El archivo no contiene una colección de preguntas.");
+            window.TRIVIAL_DATABASE=d;
+            window.TRIVIAL_DATABASE_VERSION="imported-"+Date.now();
+            resolve(d.length);
+          }catch(e){reject(e);}
+        };
+        fr.onerror=reject;
+        fr.readAsText(file);
+      });
+    }
+  };
+})();
+</script>
+
 </head>
 <body>
 <div class="app">
@@ -371,15 +427,18 @@ textarea{min-height:90px;resize:vertical}
 <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
 <h2>🗄️ Base de datos de preguntas</h2><button class="secondary" onclick="closeModal('databaseModal')">← Volver</button>
 </div>
-<p style="color:#cdbb9d">Datos reales almacenados en IndexedDB del navegador. Puedes buscar y revisar los registros sin modificar la partida.</p>
+<p style="color:#cdbb9d">Datos reales almacenados en IndexedDB del navegador. Puedes buscar, editar y eliminar preguntas directamente desde esta base de datos.</p>
 <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:10px 0">
 <input id="dbSearch" placeholder="Buscar por pregunta o categoría…" oninput="renderDatabaseViewer()" style="flex:1;min-width:240px">
 <select id="dbCategory" onchange="renderDatabaseViewer()" style="min-width:190px"><option value="">Todas las categorías</option></select>
 <span id="dbCount" style="background:#ffd54a;color:#20170b;padding:7px 10px;border-radius:8px;font-weight:800">0 registros</span>
+<button class="secondary" onclick="exportQuestionsDatabase()">⬇️ Exportar JSON</button>
+<label class="secondary" style="cursor:pointer">⬆️ Importar JSON<input id="dbImportFile" type="file" accept=".json,application/json" style="display:none" onchange="importQuestionsDatabase(this)"></label>
+
 </div>
 <div style="overflow:auto;max-height:65vh;border:1px solid #5b4025;border-radius:10px">
 <table style="width:100%;border-collapse:collapse;min-width:900px">
-<thead><tr style="background:#2b1b10;position:sticky;top:0"><th style="padding:9px">ID</th><th style="padding:9px;text-align:left">Pregunta</th><th style="padding:9px;text-align:left">Categoría</th><th style="padding:9px;text-align:left">A</th><th style="padding:9px;text-align:left">B</th><th style="padding:9px;text-align:left">C</th><th style="padding:9px;text-align:left">D</th><th style="padding:9px">Correcta</th></tr></thead>
+<thead><tr style="background:#2b1b10;position:sticky;top:0"><th style="padding:9px">ID</th><th style="padding:9px;text-align:left">Pregunta</th><th style="padding:9px;text-align:left">Categoría</th><th style="padding:9px;text-align:left">A</th><th style="padding:9px;text-align:left">B</th><th style="padding:9px;text-align:left">C</th><th style="padding:9px;text-align:left">D</th><th style="padding:9px">Correcta</th><th style="padding:9px">Acción</th></tr></thead>
 <tbody id="dbTableBody"></tbody>
 </table></div></div></div>
 
@@ -23927,10 +23986,18 @@ function questionDbGetAll(){
 function initQuestionDatabase(){
   return questionDbGetAll().then(rows=>{
     if(!rows.length){
-      // Primera ejecución: migramos la colección actual a IndexedDB.
-      return questionDbReplaceAll(questions).then(()=>{
-        document.getElementById("totalQuestionsBadge").textContent=questions.length;
-      });
+      // Primera ejecución: intentamos usar la base externa preguntas.json.
+      return fetch("./preguntas.json?db="+Date.now(),{cache:"no-store"})
+        .then(r=>r.ok?r.json():null)
+        .catch(()=>null)
+        .then(external=>{
+          if(Array.isArray(external) && external.length){
+            questions=external.map((q,i)=>({...q,id:i+1}));
+          }
+          return questionDbReplaceAll(questions).then(()=>{
+            document.getElementById("totalQuestionsBadge").textContent=questions.length;
+          });
+        });
     }
     // Desde ahora IndexedDB es la fuente persistente de preguntas.
     // Actualizamos las explicaciones con la versión incorporada en el archivo,
@@ -24268,7 +24335,7 @@ function openDatabaseViewer(){
     renderDatabaseViewer();
   }).catch(err=>{
     databaseViewerRows=[];
-    document.getElementById('dbTableBody').innerHTML=`<tr><td colspan="8" style="padding:15px;color:#ff8a80">No se pudo abrir IndexedDB: ${escapeHtml(err.message||String(err))}</td></tr>`;
+    document.getElementById('dbTableBody').innerHTML=`<tr><td colspan="9" style="padding:15px;color:#ff8a80">No se pudo abrir IndexedDB: ${escapeHtml(err.message||String(err))}</td></tr>`;
     document.getElementById('dbCount').textContent='0 registros';
   });
 }
@@ -24284,8 +24351,54 @@ function renderDatabaseViewer(){
   document.getElementById('dbTableBody').innerHTML=rows.slice(0,500).map(r=>{
     const answers=Array.isArray(r.a)?r.a:[];
     const correct=Number(r.c);
-    return `<tr style="border-top:1px solid #4b331f"><td style="padding:8px;text-align:center">${r.id??''}</td><td style="padding:8px">${escapeHtml(r.q||'')}</td><td style="padding:8px">${escapeHtml(categoryName(r.cat))}</td>${[0,1,2,3].map(i=>`<td style="padding:8px;${i===correct?'color:#78e08f;font-weight:800':''}">${escapeHtml(answers[i]||'')}</td>`).join('')}<td style="padding:8px;text-align:center;font-weight:800">${['A','B','C','D'][correct]||''}</td></tr>`;
-  }).join('') || '<tr><td colspan="8" style="padding:20px;text-align:center">No hay registros que coincidan.</td></tr>';
+    return `<tr style="border-top:1px solid #4b331f"><td style="padding:8px;text-align:center">${r.id??''}</td><td style="padding:8px">${escapeHtml(r.q||'')}</td><td style="padding:8px">${escapeHtml(categoryName(r.cat))}</td>${[0,1,2,3].map(i=>`<td style="padding:8px;${i===correct?'color:#78e08f;font-weight:800':''}">${escapeHtml(answers[i]||'')}</td>`).join('')}<td style="padding:8px;text-align:center;font-weight:800">${['A','B','C','D'][correct]||''}</td><td style="padding:8px;text-align:center"><button class="primary" style="padding:6px 10px" onclick="editDatabaseQuestion(${Number(r.id)||0})">✏️ Editar</button></td></tr>`;
+  }).join('') || '<tr><td colspan="9" style="padding:20px;text-align:center">No hay registros que coincidan.</td></tr>';
+}
+
+function editDatabaseQuestion(id){
+  const idx=questions.findIndex(q=>Number(q.id)===Number(id));
+  if(idx<0){
+    alert("No se encontró la pregunta en la base de datos.");
+    return;
+  }
+  closeModal("databaseModal");
+  editQuestion(idx);
+}
+
+function exportQuestionsDatabase(){
+  const data=questions.map((q,i)=>({...q,id:i+1}));
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json;charset=utf-8"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url; a.download="preguntas_trivial_electricista.json";
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+
+async function importQuestionsDatabase(input){
+  const file=input && input.files && input.files[0];
+  if(!file) return;
+  try{
+    const text=await file.text();
+    const data=JSON.parse(text);
+    if(!Array.isArray(data) || !data.length) throw new Error("El JSON no contiene preguntas.");
+    if(!data.every(q=>q && typeof q.q==="string" && Array.isArray(q.a) && q.a.length>=4)){
+      throw new Error("El formato no corresponde a una colección válida de preguntas.");
+    }
+    if(!confirm("Se reemplazarán las preguntas actuales por "+data.length+" registros. ¿Continuar?")) return;
+    questions=data.map((q,i)=>({...q,id:i+1,a:q.a.slice(0,4)}));
+    repairAndDeduplicateQuestions();
+    ensureQuestionImages(questions);
+    await questionDbReplaceAll(questions);
+    localStorage.setItem("trivial_questions",JSON.stringify(questions));
+    renderEditor();
+    openDatabaseViewer();
+    document.getElementById("status").textContent="✅ Base de datos importada: "+questions.length+" preguntas.";
+  }catch(e){
+    alert("No se pudo importar la base de datos: "+(e.message||e));
+  }finally{
+    if(input) input.value="";
+  }
 }
 
 function exitQuestionEditor(){
@@ -24563,6 +24676,7 @@ function saveQuestion(){
 
  closeModal("editModal");
  renderEditor();
+ if(document.getElementById("databaseModal")?.style.display!=="none") openDatabaseViewer();
 
  document.getElementById("status").textContent =
  wasNew? "✅ Pregunta añadida correctamente."
@@ -24881,5 +24995,18 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 }
 </script>
+
+<script id="database-status">
+window.addEventListener("DOMContentLoaded",function(){
+  setTimeout(function(){
+    if(!window.TRIVIAL_DATABASE) return;
+    const el=document.createElement("div");
+    el.textContent="Base de preguntas: "+window.TRIVIAL_DATABASE.length+" registros";
+    el.style.cssText="position:fixed;left:8px;bottom:8px;z-index:9999;background:#1f1a14;color:#fff;padding:5px 9px;border-radius:8px;font:12px sans-serif;opacity:.72";
+    document.body.appendChild(el);
+  },800);
+});
+</script>
+
 </body>
 </html>
