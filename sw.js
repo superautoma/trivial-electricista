@@ -1,4 +1,4 @@
-const CACHE_NAME = "trivial-electricista-db10";
+const CACHE_NAME = "trivial-electricista-db11";
 const CORE = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png"];
 
 const DB_LAYOUT_FIX = `<style id="db-layout-fix">
@@ -40,16 +40,17 @@ const DB_LAYOUT_FIX = `<style id="db-layout-fix">
   },true);
  }
  function removeDuplicateCorrection(){
-  const nodes=document.querySelectorAll('button,a,[role="button"],.menu-item,.option,.card,div');
-  nodes.forEach(el=>{
-   if(el.dataset.duplicateCorrectionRemoved==='1') return;
+  const all=Array.from(document.querySelectorAll('button,a,[role="button"],.menu-item,.option,.card,div,span'));
+  const matches=all.filter(el=>{
+   if(el.dataset.duplicateCorrectionRemoved==='1') return false;
    const text=(el.textContent||'').replace(/\s+/g,' ').trim().toLowerCase();
-   if(text==='✏️ corrección de preguntas' || text==='corrección de preguntas' || text==='✏️corrección de preguntas'){
-    const parent=el.closest('button,a,[role="button"],.menu-item,.option,.card') || el;
-    parent.dataset.duplicateCorrectionRemoved='1';
-    parent.style.setProperty('display','none','important');
-   }
-  });
+   return text.includes('corrección de preguntas') && text.length<160;
+  }).sort((a,b)=>((a.textContent||'').length)-((b.textContent||'').length));
+  const el=matches[0];
+  if(!el) return;
+  const parent=el.closest('button,a,[role="button"],.menu-item,.option,.card') || el;
+  parent.dataset.duplicateCorrectionRemoved='1';
+  parent.style.setProperty('display','none','important');
  }
  const observer=new MutationObserver(()=>{fixDbHost();fixBackButton();removeDuplicateCorrection();});
  function start(){fixDbHost();fixBackButton();removeDuplicateCorrection();observer.observe(document.body,{childList:true,subtree:true});}
