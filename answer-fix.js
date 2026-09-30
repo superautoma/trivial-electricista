@@ -130,6 +130,32 @@
     setTimeout(()=>{lastKey=''},1000);
   }
 
+
+  // Hard visibility guard: while a new question is waiting for an answer,
+  // no explanation is allowed to remain visible.
+  function installExplanationVisibilityGuard(){
+    const enforce=()=>{
+      const modal=document.getElementById('questionModal');
+      const box=document.getElementById('answerExplanation');
+      const fix=document.getElementById('te-answer-explanation-fix');
+      if(!modal)return;
+      const open=modal.classList.contains('show') || getComputedStyle(modal).display!=='none';
+      const answered=window.questionLocked===true;
+      if(open && !answered){
+        [box,fix].forEach(el=>{
+          if(el){
+            el.classList.remove('visible');
+            el.style.setProperty('display','none','important');
+            if(el.id==='te-answer-explanation-fix') el.innerHTML='';
+          }
+        });
+      }
+    };
+    enforce();
+    new MutationObserver(enforce).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:['class','style']});
+    setInterval(enforce,250);
+  }
+
   function boot(){
     const install=()=>{
       const modal=document.getElementById('questionModal');
