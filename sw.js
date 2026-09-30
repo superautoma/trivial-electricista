@@ -1,72 +1,63 @@
-const CACHE_NAME = "trivial-electricista-db6";
+const CACHE_NAME = "trivial-electricista-db7";
 const CORE = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png"];
 
-// FIX AISLADO: solo corrige la presentación de las tarjetas del visor de BD.
-const DB_CARD_FIX = `<style id="db-cards-contrast-fix">
-#dbPaginatedHost [style*="background:#fafafa"]{
-  background:#21170f !important;
-  color:#ffffff !important;
-  border-color:#8d652d !important;
+const DB_LAYOUT_FIX = `<style id="db-layout-fix">
+#databaseModal .panel{width:100%;max-width:1100px;overflow-x:hidden}
+#databaseModal #dbPaginatedHost{width:100%;max-width:100%;margin:12px 0;min-width:0;overflow-x:hidden}
+#databaseModal #dbPaginatedHost > div{width:100%;max-width:100%;min-width:0}
+#databaseModal .db-row-card,#databaseModal #dbPaginatedHost > div > div{max-width:100%;min-width:0;overflow-wrap:anywhere}
+@media(max-width:700px){
+ #databaseModal{padding:8px}
+ #databaseModal .panel{width:100%;max-width:100%;padding:12px;border-radius:12px}
+ #databaseModal input#dbSearch{min-width:0!important;width:100%!important}
+ #databaseModal select#dbCategory{min-width:0!important;width:100%!important}
+ #databaseModal #dbPaginatedHost{width:100%;overflow-x:hidden}
+ #databaseModal #dbPaginatedHost > div{grid-template-columns:1fr!important}
 }
-#dbPaginatedHost [style*="background:#fafafa"] *{
-  color:#ffffff !important;
-}
-#dbPaginatedHost .db-row-actions button,
-#dbPaginatedHost button[data-export]{
-  background:#555 !important;
-  color:#fff !important;
-  border-color:#777 !important;
-}
-</style>`;
-
-function transformHTML(html){
-  // Además de CSS, corregimos el estilo inline que crea las tarjetas.
-  html = html.replace(/background:#fafafa/g, 'background:#21170f;color:#fff');
-  return html.includes('id="db-cards-contrast-fix"')
-    ? html
-    : html.replace(/<\\/head>/i, DB_CARD_FIX + "</head>");
-}
+#dbPaginatedHost .db-row-card,#dbPaginatedHost > div > div{background:#21170f!important;color:#fff!important;border-color:#8d652d!important}
+#dbPaginatedHost .db-row-card *,#dbPaginatedHost > div > div *{color:#fff!important}
+#dbPaginatedHost button{background:#555!important;color:#fff!important;border-color:#777!important}
+</style>
+<script id="db-layout-fix-script">
+(function(){
+ function fixDbHost(){
+  const host=document.getElementById('dbPaginatedHost');
+  const modal=document.getElementById('databaseModal');
+  const panel=modal&&modal.querySelector('.panel');
+  if(host&&panel&&(!modal.contains(host)||host.closest('#editorModal'))){panel.prepend(host);}
+ }
+ document.addEventListener('DOMContentLoaded',fixDbHost);
+ window.addEventListener('load',fixDbHost);
+})();
+</script>`;
 
 self.addEventListener("install", event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(CORE))
-      .then(() => self.skipWaiting())
-  );
+ event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(CORE)).then(() => self.skipWaiting()));
 });
 
 self.addEventListener("activate", event => {
-  event.waitUntil(
-    caches.keys()
-      .then(keys => Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))))
-      .then(() => self.clients.claim())
-  );
+ event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))).then(() => self.clients.claim()));
 });
 
 self.addEventListener("fetch", event => {
-  if (event.request.method !== "GET") return;
-  event.respondWith((async () => {
-    try {
-      const response = await fetch(event.request);
-      const type = response.headers.get("content-type") || "";
-      if (event.request.mode === "navigate" && response.ok && type.includes("text/html")) {
-        const html = await response.text();
-        const fixed = transformHTML(html);
-        const headers = new Headers(response.headers);
-        headers.delete("content-length");
-        return new Response(fixed, {
-          status: response.status,
-          statusText: response.statusText,
-          headers
-        });
-      }
-      const copy = response.clone();
-      caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy)).catch(()=>{});
-      return response;
-    } catch (err) {
-      const cached = await caches.match(event.request);
-      if(cached) return cached;
-      return caches.match("./index.html");
-    }
-  })());
+ if (event.request.method !== "GET") return;
+ event.respondWith((async () => {
+  try {
+   const response = await fetch(event.request);
+   const type = response.headers.get("content-type") || "";
+   if (event.request.mode === "navigate" && response.ok && type.includes("text/html")) {
+    let html = await response.text();
+    html = html.replace('const editor=document.getElementById("editorModal") || document.body;', 'const editor=document.getElementById("databaseModal")?.querySelector(".panel") || document.body;');
+    if (!html.includes('id="db-layout-fix"')) html = html.replace(/<\/head>/i, DB_LAYOUT_FIX + "</head>");
+    const headers = new Headers(response.headers);
+    headers.delete("content-length");
+    return new Response(html,{status:response.status,statusText:response.statusText,headers});
+   }
+   const copy=response.clone();
+   caches.open(CACHE_NAME).then(cache=>cache.put(event.request,copy)).catch(()=>{});
+   return response;
+  } catch(err) {
+   return caches.match(event.request).then(r=>r||caches.match("./index.html"));
+  }
+ })());
 });
