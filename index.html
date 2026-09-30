@@ -24572,12 +24572,11 @@ function askQuestion(pos){
      questionLocked=true;
      stopQuestionTimer();
      if(i!==q.c){
-       b.style.setProperty('background','#d32f2f','important');
-       b.style.setProperty('background-color','#d32f2f','important');
-       b.style.setProperty('color','#fff','important');
-       b.style.setProperty('border-color','#ff8a80','important');
-       b.style.setProperty('box-shadow','0 0 0 3px rgba(211,47,47,.35)','important');
-     }
+       b.style.setProperty('background',i===q.c?'#43a047':'#d32f2f','important');
+     b.style.setProperty('background-color',i===q.c?'#43a047':'#d32f2f','important');
+     b.style.setProperty('color','#fff','important');
+     b.style.setProperty('border-color',i===q.c?'#81c784':'#ff8a80','important');
+     b.style.setProperty('box-shadow',i===q.c?'0 0 0 3px rgba(67,160,71,.35)':'0 0 0 3px rgba(211,47,47,.35)','important');
      answer(i===q.c,q.cat);
    };
    ans.appendChild(b);
@@ -24644,7 +24643,7 @@ function answer(correct,cat){
      renderPlayers();
      aplicarSimbolosSinMover();
      marcarQuesitosRosco();
-   },900);
+   },2000);
  }
 }
 function openModal(id){document.getElementById(id).classList.add("show")}
