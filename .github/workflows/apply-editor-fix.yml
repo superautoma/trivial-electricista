@@ -7,6 +7,7 @@ on:
       - 'tools/install_review_flags.py'
       - 'tools/install_answer_fix.py'
       - 'tools/remove_correction_menu.py'
+      - 'tools/fix_explanation_visibility.py'
       - 'review-flags.js'
       - 'answer-fix.js'
       - '.github/workflows/apply-editor-fix.yml'
@@ -27,11 +28,13 @@ jobs:
         run: python3 tools/install_answer_fix.py
       - name: Remove duplicate correction option from menu
         run: python3 tools/remove_correction_menu.py
+      - name: Fix explanation visibility timing
+        run: python3 tools/fix_explanation_visibility.py
       - name: Commit patched index
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add index.html
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Remove duplicate correction option from menu'
+          git commit -m 'Fix explanation visibility timing'
           git push
