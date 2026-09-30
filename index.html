@@ -273,7 +273,7 @@ textarea{min-height:90px;resize:vertical}
 @media(max-width:600px){.remote-grid{grid-template-columns:1fr}}
 </style>
 <style id="question-explanation">
-.answer-explanation{margin:14px 0 4px;padding:12px 14px;border-left:4px solid #d9a52b;border-radius:10px;background:#fff8df;color:#2a2117;text-align:left};display:none!important}.answer-explanation.visible{display:block!important}
+.answer-explanation{margin:14px 0 4px;padding:12px 14px;border-left:4px solid #d9a52b;border-radius:10px;background:#fff8df;color:#2a2117;text-align:left}
 .answer-explanation .explanation-title{font-weight:900;margin-bottom:5px}
 .answer-explanation .explanation-text{line-height:1.45}
 </style>
@@ -371,23 +371,12 @@ textarea{min-height:90px;resize:vertical}
 <script id="db-pagination-final">
 (function(){
   const state={page:1,size:50,items:[],filtered:[]};
-  function getDB(){ return Array.isArray(window.questions) ? window.questions : (typeof questions!=="undefined" && Array.isArray(questions) ? questions : []); }
-  function text(q){ return [q.q,q.cat,q.explanation,...(q.a||[])].join(" ").toLowerCase(); }
-  function ensureHost(){
-    const panel=document.querySelector("#editorModal > .panel");
-    if(!panel) return null;
-    // Siempre reubicar el host dentro del panel. La versión anterior podía
-    // dejarlo como hermano del panel, creando exactamente la columna izquierda
-    // que aparece en Android.
-    let host=document.getElementById("dbPaginatedHost");
-    if(!host){ host=document.createElement("div"); host.id="dbPaginatedHost"; }
-    if(host.parentElement !== panel){
-      const list=document.getElementById("editorList");
-      if(list && list.parentElement===panel) panel.insertBefore(host,list);
-      else panel.appendChild(host);
-    }
-    host.style.cssText="display:block;width:100%;max-width:none;box-sizing:border-box;margin:12px 0;";
-    return host;
+
+  function getDB(){
+    return Array.isArray(window.TRIVIAL_DATABASE) ? window.TRIVIAL_DATABASE : [];
+  }
+  function text(q){
+    return [q.q,q.cat,q.explanation,...(q.a||[])].join(" ").toLowerCase();
   }
   function apply(){
     const term=(document.getElementById("searchQ")?.value||"").trim().toLowerCase();
@@ -398,33 +387,85 @@ textarea{min-height:90px;resize:vertical}
     render();
   }
   function render(){
-    const host=ensureHost(); if(!host) return;
-    const total=state.filtered.length, pages=Math.max(1,Math.ceil(total/state.size));
-    const start=(state.page-1)*state.size, pageItems=state.filtered.slice(start,start+state.size);
+    let host=document.getElementById("dbPaginatedHost");
+    if(!host){
+      const editor=document.getElementById("editorModal") || document.body;
+      host=document.createElement("div");
+      host.id="dbPaginatedHost";
+      host.style.cssText="margin:12px 0";
+      editor.prepend(host);
+    }
+    const total=state.filtered.length;
+    const pages=Math.max(1,Math.ceil(total/state.size));
+    const start=(state.page-1)*state.size;
+    const pageItems=state.filtered.slice(start,start+state.size);
+
     host.innerHTML="";
-    const size=document.createElement("div"); size.className="db-page-size"; size.innerHTML="<label>Preguntas por página:</label>";
-    const sel=document.createElement("select"); [25,50,100,250].forEach(n=>{const o=document.createElement("option");o.value=n;o.textContent=n;if(n===state.size)o.selected=true;sel.appendChild(o);});
-    sel.onchange=()=>{state.size=+sel.value;state.page=1;render();}; size.appendChild(sel); host.appendChild(size);
-    const info=document.createElement("div"); info.className="db-page-info"; info.textContent=total?`Mostrando ${start+1}–${Math.min(start+pageItems.length,total)} de ${total} preguntas`:"No hay preguntas que coincidan"; host.appendChild(info);
-    const nav=document.createElement("div"); nav.className="db-pagination";
-    function btn(label,disabled,fn){const b=document.createElement("button");b.textContent=label;b.disabled=disabled;b.onclick=fn;nav.appendChild(b);}
-    btn("«",state.page===1,()=>{state.page=1;render()}); btn("‹",state.page===1,()=>{state.page--;render()});
+    const size=document.createElement("div");
+    size.className="db-page-size";
+    size.innerHTML="<label>Preguntas por página:</label>";
+    const sel=document.createElement("select");
+    [25,50,100,250].forEach(n=>{
+      const o=document.createElement("option");o.value=n;o.textContent=n;
+      if(n===state.size)o.selected=true;sel.appendChild(o);
+    });
+    sel.onchange=()=>{state.size=+sel.value;state.page=1;render();};
+    size.appendChild(sel);host.appendChild(size);
+
+    const info=document.createElement("div");
+    info.className="db-page-info";
+    info.textContent=total ? `Mostrando ${start+1}–${Math.min(start+pageItems.length,total)} de ${total} preguntas` : "No hay preguntas que coincidan";
+    host.appendChild(info);
+
+    const nav=document.createElement("div");nav.className="db-pagination";
+    function btn(label,disabled,fn){
+      const b=document.createElement("button");b.textContent=label;b.disabled=disabled;b.onclick=fn;nav.appendChild(b);
+    }
+    btn("«",state.page===1,()=>{state.page=1;render()});
+    btn("‹",state.page===1,()=>{state.page--;render()});
     let a=Math.max(1,state.page-2), b=Math.min(pages,a+4); a=Math.max(1,b-4);
-    for(let n=a;n<=b;n++){const x=document.createElement("button");x.textContent=n;x.className=n===state.page?"active":"";x.onclick=()=>{state.page=n;render()};nav.appendChild(x);}
-    btn("›",state.page===pages,()=>{state.page++;render()}); btn("»",state.page===pages,()=>{state.page=pages;render()}); host.appendChild(nav);
-    const list=document.createElement("div"); list.style.cssText="display:grid;gap:8px;width:100%;";
+    for(let n=a;n<=b;n++){const x=document.createElement("button");x.textContent=n;x.className=n===state.page?"active":"";x.onclick=()=>{state.page=n;render()};nav.appendChild(x)}
+    btn("›",state.page===pages,()=>{state.page++;render()});
+    btn("»",state.page===pages,()=>{state.page=pages;render()});
+    host.appendChild(nav);
+
+    const list=document.createElement("div");
+    list.style.cssText="display:grid;gap:8px";
     pageItems.forEach((q,idx)=>{
-      const card=document.createElement("div"); card.className="db-question-card";
-      const id=start+idx+1, correct=(q.a||[])[q.c]||"";
-      card.innerHTML=`<div class="qnumber"><b>#${id}</b> · ${escapeHtml(q.cat??"")}</div><div class="qtext-full"><b>${escapeHtml(q.q||"")}</b></div><div class="qanswer-line">Correcta: <b>${escapeHtml(correct)}</b></div><div class="db-row-actions"><button type="button">Ver/editar</button></div>`;
-      card.querySelector("button").onclick=()=>editFromDB(start+idx); list.appendChild(card);
+      const card=document.createElement("div");
+      card.style.cssText="border:1px solid #ddd;border-radius:10px;padding:10px;background:#fafafa";
+      const id=start+idx+1;
+      const correct=(q.a||[])[q.c]||"";
+      card.innerHTML=`<div><b>#${id}</b> <span>${escapeHtml(q.cat||"")}</span></div>
+      <div style="margin:5px 0"><b>${escapeHtml(q.q||"")}</b></div>
+      <div style="font-size:13px">Correcta: <b>${escapeHtml(correct)}</b></div>
+      <div class="db-row-actions" style="margin-top:7px">
+        <button type="button" data-export="${idx}">Ver/editar</button>
+      </div>`;
+      card.querySelector("[data-export]").onclick=()=>editFromDB(start+idx);
+      list.appendChild(card);
     });
     host.appendChild(list);
   }
-  function escapeHtml(s){return String(s).replace(/[&<>\"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'\"':"&quot;","'":"&#39;"}[m]));}
-  function editFromDB(index){const q=getDB()[index];if(!q)return;if(window.DBOpenEditor){window.DBOpenEditor(index);return;}const search=document.getElementById("searchQ");if(search){search.value=(q.q||"").slice(0,120);if(typeof window.renderEditor==="function")window.renderEditor();}}
+  function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));}
+  function editFromDB(index){
+    const q=getDB()[index];
+    if(!q) return;
+    // Usa el editor existente cuando está disponible.
+    if(window.DBOpenEditor){ window.DBOpenEditor(index); return; }
+    const search=document.getElementById("searchQ");
+    if(search){search.value=(q.q||"").slice(0,120); if(typeof window.renderEditor==="function") window.renderEditor();}
+  }
   window.DBPagination={apply,render};
-  document.addEventListener("DOMContentLoaded",()=>setTimeout(()=>{const search=document.getElementById("searchQ");if(search&&!search.dataset.paginationBound){search.dataset.paginationBound="1";search.addEventListener("input",()=>{state.page=1;apply();});}apply();},900));
+  document.addEventListener("DOMContentLoaded",()=>{
+    setTimeout(()=>{
+      const search=document.getElementById("searchQ");
+      if(search){
+        search.addEventListener("input",()=>{state.page=1;apply()});
+      }
+      apply();
+    },900);
+  });
 })();
 </script>
 
@@ -642,25 +683,6 @@ textarea{min-height:90px;resize:vertical}
   color:#17100a !important;
 }
 </style>
-<style id="editor-layout-hard-fix">
-#editorModal{box-sizing:border-box!important}
-#editorModal>.panel{width:calc(100vw - 16px)!important;max-width:1000px!important;min-width:0!important}
-#editorModal>#dbPaginatedHost{display:none!important}
-#editorModal>.panel>#dbPaginatedHost{display:block!important;width:100%!important;max-width:none!important;min-width:0!important}
-@media(max-width:600px){#editorModal>.panel{width:calc(100vw - 16px)!important;max-width:none!important;padding:14px!important}}
-</style>
-<style id="fix-editor-duplicate-list-global-v2">
-/* The legacy editor list can live outside #editorModal. Hide it globally so
-   the paginated database editor is the only question list shown. */
-#editorList { display: none !important; }
-#dbPaginatedHost { display: block !important; width: 100% !important; max-width: none !important; box-sizing: border-box !important; }
-</style>
-
-<style id="te-header-size-fix">
-/* TE_HEADER_SIZE_FIX_V1 */
-header h1{font-size:clamp(30px,5vw,52px)!important;line-height:1.02!important;margin:4px 0!important;max-width:100%;}
-@media(max-width:600px){header{align-items:flex-start!important;}header h1{font-size:28px!important;line-height:1.02!important;letter-spacing:-.5px!important;max-width:calc(100vw - 24px);}}
-</style>
 </head>
 <body>
 <div class="app">
@@ -784,6 +806,7 @@ header h1{font-size:clamp(30px,5vw,52px)!important;line-height:1.02!important;ma
 <button class="menu-action" onclick="closeModal('settingsMenuModal');openPlayers()">👥<span><b>Jugadores</b><small>Número y nombres</small></span></button>
 <button class="menu-action" onclick="closeModal('settingsMenuModal');openTimeSettings()">⏱️<span><b>Tiempo</b><small>Tiempo por pregunta</small></span></button>
 <button class="menu-action" onclick="closeModal('settingsMenuModal');openQuestionManagement()">🗂️<span><b>Gestión de preguntas</b><small>Buscar, añadir y organizar</small></span></button>
+<button class="menu-action" onclick="closeModal('settingsMenuModal');openQuestionCorrection()">✏️<span><b>Corrección de preguntas</b><small>Revisar y modificar preguntas</small></span></button>
 <button class="menu-action" onclick="closeModal('settingsMenuModal');openRemoteMenu()">🌐<span><b>Partida remota</b><small>Jugar con otra persona por Internet</small></span></button>
 </div>
 <div class="actions"><button class="secondary" onclick="closeModal('settingsMenuModal')">Cerrar</button></div>
@@ -24546,7 +24569,7 @@ function askQuestion(pos){
    }
  }
 
- const explanationBox=document.getElementById("answerExplanation"); if(explanationBox){explanationBox.classList.remove("visible"); explanationBox.style.setProperty("display","none","important"); explanationBox.innerHTML="";}
+ const explanationBox=document.getElementById("answerExplanation"); if(explanationBox){explanationBox.style.display="none";explanationBox.innerHTML="";}
  const qimg=document.getElementById("questionImage");
  qimg.innerHTML="";
  const imgSrc=q.imageData||q.imageUrl||q._offlineImage||fallbackImageForQuestion(q);
@@ -24571,12 +24594,6 @@ function askQuestion(pos){
      if(questionLocked)return;
      questionLocked=true;
      stopQuestionTimer();
-     if(i!==q.c){
-       b.style.setProperty('background',i===q.c?'#43a047':'#d32f2f','important');
-     b.style.setProperty('background-color',i===q.c?'#43a047':'#d32f2f','important');
-     b.style.setProperty('color','#fff','important');
-     b.style.setProperty('border-color',i===q.c?'#81c784':'#ff8a80','important');
-     b.style.setProperty('box-shadow',i===q.c?'0 0 0 3px rgba(67,160,71,.35)':'0 0 0 3px rgba(211,47,47,.35)','important');
      answer(i===q.c,q.cat);
    };
    ans.appendChild(b);
@@ -24599,7 +24616,7 @@ function answer(correct,cat){
    const finalExplanation=explanation || (typeof generateQuestionExplanation === "function" ? generateQuestionExplanation(q) : "");
    box.innerHTML='<div class="explanation-title">💡 Explicación</div><div class="explanation-text">'+escapeHtml(finalExplanation||"No hay una explicación disponible para esta pregunta.")+'</div>';
    box.classList.add("visible");
-   box.style.setProperty("display","block","important");
+   box.style.display="block";
    const actions=document.querySelector('#questionModal .actions');
    if(actions){
      let oldContinue=actions.querySelector('.answer-continue-btn');
@@ -24643,7 +24660,7 @@ function answer(correct,cat){
      renderPlayers();
      aplicarSimbolosSinMover();
      marcarQuesitosRosco();
-   },2000);
+   },900);
  }
 }
 function openModal(id){document.getElementById(id).classList.add("show")}
@@ -25107,13 +25124,13 @@ function remoteShowQuestion(q,isQuesito,quesitoIndex,canAnswer){ currentQuestion
   }
   document.getElementById("questionTitle").textContent=categoryName(q.cat);
   document.getElementById("questionText").textContent=cleanQuestionText(q.q);
-  const explanationBox=document.getElementById("answerExplanation"); if(explanationBox){explanationBox.classList.remove("visible"); explanationBox.style.setProperty("display","none","important"); explanationBox.innerHTML="";}
+  const explanationBox=document.getElementById("answerExplanation"); if(explanationBox){explanationBox.style.display="none";explanationBox.innerHTML="";}
   const qimg=document.getElementById("questionImage");qimg.innerHTML="";
   const imgSrc=q.imageData||q.imageUrl||q._offlineImage||fallbackImageForQuestion(q);
   if(imgSrc){const im=document.createElement("img");im.alt="Imagen de la pregunta";im.src=imgSrc;im.onerror=()=>{qimg.style.display="none"};qimg.appendChild(im);qimg.style.display="block"}else qimg.style.display="none";
   const ans=document.getElementById("answers");ans.innerHTML="";
   q.a.forEach((txt,i)=>{const b=document.createElement("button");b.textContent=String.fromCharCode(65+i)+") "+txt;b.disabled=!canAnswer;
-    if(canAnswer)b.onclick=async()=>{if(questionLocked)return;questionLocked=true;stopQuestionTimer();if(i!==q.c){b.style.setProperty('background','#d32f2f','important');b.style.setProperty('background-color','#d32f2f','important');b.style.setProperty('color','#fff','important');b.style.setProperty('border-color','#ff8a80','important');b.style.setProperty('box-shadow','0 0 0 3px rgba(211,47,47,.35)','important');}if(remoteRole==="guest"&&remoteChannel){await remoteChannel.send({type:"broadcast",event:"game",payload:{type:"guestAnswer",slot:remoteSlot,correct:i===q.c,cat:q.cat}});closeModal("questionModal")}else answer(i===q.c,q.cat)};
+    if(canAnswer)b.onclick=async()=>{if(questionLocked)return;questionLocked=true;stopQuestionTimer();if(remoteRole==="guest"&&remoteChannel){await remoteChannel.send({type:"broadcast",event:"game",payload:{type:"guestAnswer",slot:remoteSlot,correct:i===q.c,cat:q.cat}});closeModal("questionModal")}else answer(i===q.c,q.cat)};
     ans.appendChild(b)});
   openModal("questionModal");if(canAnswer)startQuestionTimer();else stopQuestionTimer();
 }
@@ -25337,8 +25354,6 @@ window.addEventListener("DOMContentLoaded",function(){
 });
 </script>
 
-<script src="review-flags.js?v=7"></script>
-<script src="answer-fix.js?v=1"></script>
 </body>
 </html>
 
@@ -25356,4 +25371,31 @@ document.addEventListener("DOMContentLoaded",()=>{
     });
   });
 });
+</script>
+
+<!-- TRIVIAL SAFE STARTUP v1 -->
+<script id="trivial-safe-startup">
+(function(){
+  // Recuperación de arranque: si alguna rutina anterior se interrumpe,
+  // intenta completar únicamente la inicialización visual del juego.
+  function start(){
+    try{
+      const playersEl=document.getElementById('players');
+      const boardEl=document.getElementById('board');
+      if(!playersEl || !boardEl) return;
+      if(typeof fillCategorySelects==='function') fillCategorySelects();
+      if(typeof buildBoard==='function' && !boardEl.querySelector('.cell')) buildBoard();
+      if(typeof renderPlayers==='function' && !playersEl.children.length) renderPlayers();
+      if(typeof aplicarSimbolosSinMover==='function') aplicarSimbolosSinMover();
+      if(typeof marcarQuesitosRosco==='function') marcarQuesitosRosco();
+      if(typeof window.roll2D==='function' && !document.getElementById('diceCanvas')?.getContext){}
+    }catch(e){
+      console.error('Trivial Electricista: error de arranque',e);
+      const st=document.getElementById('status');
+      if(st) st.textContent='⚠️ Error de arranque. Recarga la página.';
+    }
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',()=>setTimeout(start,50),{once:true});
+  else setTimeout(start,50);
+})();
 </script>
