@@ -272,6 +272,28 @@ textarea{min-height:90px;resize:vertical}
 .remote-online{background:#2e7d32;color:#fff}.remote-offline{background:#6d4c41;color:#fff}
 @media(max-width:600px){.remote-grid{grid-template-columns:1fr}}
 </style>
+<style id="editor-mobile-final-fix">
+html,body{max-width:100%;overflow-x:hidden}
+.modal{box-sizing:border-box;overflow:auto;overscroll-behavior:contain}
+.modal>.panel{box-sizing:border-box;width:min(1000px,calc(100vw - 20px));max-width:1000px;margin:auto;color:#fff}
+#editorModal>.panel{width:min(1000px,calc(100vw - 20px));max-width:1000px}
+#editorList{width:100%;box-sizing:border-box}
+#editorList .qrow{width:100%;box-sizing:border-box;background:#1b120b!important;color:#fff!important;border:1px solid #6b4a2d!important}
+#editorList .qrow b,#editorList .qrow .qnumber{color:#fff!important}
+#editorList .qrow .qanswer{background:#332316!important;color:#fff!important}
+#editorList .qrow .qanswer.correct{background:#387b3d!important;color:#fff!important}
+#editorList .qrow .badge{color:#111!important}
+#editorList .rowactions{flex-wrap:wrap}
+@media(max-width:600px){
+ .modal{padding:8px;align-items:flex-start}
+ .modal>.panel,#editorModal>.panel{width:calc(100vw - 16px);max-width:none;max-height:calc(100vh - 16px);margin:0 auto;padding:14px}
+ #editorModal h2{font-size:22px;line-height:1.2}
+ #editorList .qrow{grid-template-columns:42px minmax(0,1fr);gap:8px}
+ #editorList .qrow .rowactions{grid-column:1/-1;justify-content:flex-start}
+ #editorList .qrow .qmain{min-width:0;overflow:hidden}
+ #editorList .qrow .qmain b{display:block;overflow-wrap:anywhere;word-break:break-word}
+}
+</style>
 <style id="question-explanation">
 .answer-explanation{margin:14px 0 4px;padding:12px 14px;border-left:4px solid #d9a52b;border-radius:10px;background:#fff8df;color:#2a2117;text-align:left}
 .answer-explanation .explanation-title{font-weight:900;margin-bottom:5px}
@@ -24346,8 +24368,16 @@ function initQuestionDatabase(){
     rows.sort((a,b)=>(a.id||0)-(b.id||0));
     questions=rows;
     questions.forEach(repairKnownQuestionErrors);
-    // Reconciliamos respuestas y explicaciones con la colección oficial incorporada.
-    repairAndDeduplicateQuestions();
+    // IMPORTANTE: IndexedDB es la fuente persistente. No eliminamos duplicados aquí: 
+    // la cantidad de registros del usuario debe conservarse (por ejemplo, 1800).
+    // Solo corregimos errores conocidos, limpiamos el texto y completamos explicaciones/imágenes.
+    questions.forEach(q=>{
+      q.q=cleanQuestionText(q.q);
+      const oldExplanation=String(q.explanation||"").trim();
+      if(!oldExplanation || /pendiente de revisión técnica|respuesta correcta es la opción indicada|el enunciado describe una situación en la que esta opción/i.test(oldExplanation)){
+        q.explanation=generateQuestionExplanation(q);
+      }
+    });
     ensureQuestionImages(questions);
     localStorage.setItem("trivial_questions",JSON.stringify(questions));
     questionDbReplaceAll(questions).catch(err=>console.warn("No se pudo actualizar la colección revisada en IndexedDB",err));
@@ -24797,6 +24827,8 @@ function renderEditor(){
  const list=document.getElementById("editorList");
  const totalBadge=document.getElementById("totalQuestionsBadge");
  if(totalBadge) totalBadge.textContent=questions.length+" preguntas";
+ const liveCount=document.getElementById("editorCount");
+ if(liveCount && !document.getElementById("searchQ")?.value && (document.getElementById("filterCat")?.value||"-1")==="-1") liveCount.textContent=questions.length+" preguntas disponibles";
  const search=normalizeSearchText(document.getElementById("searchQ").value);
  const filter=parseInt(document.getElementById("filterCat").value,10);
 
