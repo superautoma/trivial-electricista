@@ -598,6 +598,91 @@ textarea{min-height:90px;resize:vertical}
 })();
 </script>
 
+
+<style id="editor-visual-fix">
+/* Corrección visual del editor en móvil */
+#dbEditor, #databaseEditor, .db-editor, .database-editor,
+.question-editor, .editor-panel, .questions-editor {
+  box-sizing:border-box;
+}
+#dbEditor *, #databaseEditor *, .db-editor *, .database-editor *,
+.question-editor *, .editor-panel *, .questions-editor * {
+  box-sizing:border-box;
+}
+
+/* Las tarjetas de preguntas deben ser legibles */
+.db-question-card, .question-card, .database-question-card {
+  color:#fff !important;
+  background:#21170f !important;
+  border:1px solid #8d652d !important;
+}
+.db-question-card h1,.db-question-card h2,.db-question-card h3,
+.db-question-card p,.db-question-card span,.db-question-card div,
+.question-card h1,.question-card h2,.question-card h3,
+.question-card p,.question-card span,.question-card div,
+.database-question-card h1,.database-question-card h2,.database-question-card h3,
+.database-question-card p,.database-question-card span,.database-question-card div {
+  color:inherit !important;
+}
+
+/* Evitar que el editor quede en una columna minúscula */
+@media (max-width:700px){
+  #editorArea, .editor-area, .database-layout, .db-layout,
+  .editor-container, .questions-layout {
+    display:block !important;
+    width:100% !important;
+    max-width:100% !important;
+  }
+  #editorArea > *, .editor-area > *, .database-layout > *,
+  .db-layout > *, .editor-container > *, .questions-layout > * {
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+  }
+  .db-question-card, .question-card, .database-question-card {
+    width:100% !important;
+    min-width:0 !important;
+    overflow:hidden !important;
+  }
+}
+
+/* Modal de edición siempre por encima y a pantalla completa */
+#fullDbEditor{
+  position:fixed !important;
+  inset:0 !important;
+  z-index:2147483647 !important;
+  display:none;
+  align-items:center !important;
+  justify-content:center !important;
+  padding:12px !important;
+  background:rgba(0,0,0,.72) !important;
+}
+#fullDbEditor .full-db-panel{
+  width:min(720px,100%) !important;
+  max-height:92vh !important;
+  overflow-y:auto !important;
+  background:#24180f !important;
+  color:#fff !important;
+  border:2px solid #b17b2e !important;
+  border-radius:16px !important;
+  padding:16px !important;
+}
+#fullDbEditor .full-db-panel h3,
+#fullDbEditor .full-db-panel label{
+  color:#fff !important;
+}
+#fullDbEditor .full-db-panel input,
+#fullDbEditor .full-db-panel textarea,
+#fullDbEditor .full-db-panel select{
+  background:#fff !important;
+  color:#111 !important;
+  border:1px solid #aaa !important;
+}
+#fullDbEditor .full-db-save{
+  background:#ffd447 !important;
+  color:#17100a !important;
+}
+</style>
 </head>
 <body>
 <div class="app">
@@ -25251,3 +25336,19 @@ window.addEventListener("DOMContentLoaded",function(){
 
 </body>
 </html>
+
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+  const selectors=[
+    "#editorArea",".editor-area",".database-layout",".db-layout",
+    ".editor-container",".questions-layout"
+  ];
+  selectors.forEach(sel=>{
+    document.querySelectorAll(sel).forEach(el=>{
+      if(el.querySelector(".db-question-card,.question-card,.database-question-card")){
+        el.style.maxWidth="100%";
+      }
+    });
+  });
+});
+</script>
