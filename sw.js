@@ -1,4 +1,4 @@
-const CACHE_NAME = "trivial-electricista-db8";
+const CACHE_NAME = "trivial-electricista-db9";
 const CORE = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png"];
 
 const DB_LAYOUT_FIX = `<style id="db-layout-fix">
@@ -23,8 +23,24 @@ const DB_LAYOUT_FIX = `<style id="db-layout-fix">
   if(grid){grid.style.setProperty('display','block','important');grid.style.setProperty('width','100%','important');grid.style.setProperty('max-width','100%','important');}
   host.querySelectorAll(':scope > div > div').forEach(card=>{card.style.setProperty('width','100%','important');card.style.setProperty('max-width','100%','important');card.style.setProperty('box-sizing','border-box','important');});
  }
- const observer=new MutationObserver(fixDbHost);
- function start(){fixDbHost();observer.observe(document.body,{childList:true,subtree:true});}
+ function fixBackButton(){
+  const modal=document.getElementById('databaseModal'); if(!modal || modal.dataset.backFixed==='1') return;
+  modal.dataset.backFixed='1';
+  modal.addEventListener('click',function(e){
+   const target=e.target.closest('button,[role="button"],a,div');
+   if(!target || !modal.contains(target)) return;
+   const text=(target.textContent||'').replace(/\s+/g,' ').trim().toLowerCase();
+   if(!(text==='volver' || text.startsWith('← volver') || text.startsWith('← volver'))) return;
+   e.preventDefault(); e.stopPropagation();
+   modal.style.setProperty('display','none','important');
+   modal.setAttribute('aria-hidden','true');
+   document.body.classList.remove('modal-open');
+   const editor=document.getElementById('editorModal');
+   if(editor){editor.style.removeProperty('display');editor.removeAttribute('aria-hidden');}
+  },true);
+ }
+ const observer=new MutationObserver(()=>{fixDbHost();fixBackButton();});
+ function start(){fixDbHost();fixBackButton();observer.observe(document.body,{childList:true,subtree:true});}
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
 })();
 </script>`;
