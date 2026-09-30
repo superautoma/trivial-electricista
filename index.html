@@ -715,7 +715,7 @@ textarea{min-height:90px;resize:vertical}
 <div id="questionText" class="question"></div>
 <div id="answers" class="answers"></div>
 <div id="answerExplanation" class="answer-explanation" style="display:none"></div>
-<div class="actions"><button class="secondary" onclick="closeModal('questionModal')">Cerrar</button></div>
+<div class="actions"><button id="answerContinueBtn" class="primary">➡️ Continuar</button></div>
 </div></div>
 
 <div class="modal" id="editorModal"><div class="panel">
@@ -24648,12 +24648,9 @@ function answer(correct,cat){
    box.innerHTML='<div class="explanation-title">💡 Explicación</div><div class="explanation-text">'+escapeHtml(finalExplanation||"No hay una explicación disponible para esta pregunta.")+'</div>';
    box.classList.add("visible");
    box.style.display="block";
-   const actions=document.querySelector('#questionModal .actions');
-   if(actions){
-     let oldContinue=actions.querySelector('.answer-continue-btn');
-     if(oldContinue) oldContinue.remove();
-     const continueBtn=document.createElement('button');
-     continueBtn.className='primary answer-continue-btn';
+   const continueBtn=document.getElementById('answerContinueBtn');
+   if(continueBtn){
+     continueBtn.disabled=false;
      continueBtn.textContent='➡️ Continuar';
      continueBtn.onclick=()=>{
        continueBtn.disabled=true;
@@ -24663,7 +24660,6 @@ function answer(correct,cat){
        aplicarSimbolosSinMover();
        marcarQuesitosRosco();
      };
-     actions.appendChild(continueBtn);
    }
  }
 
