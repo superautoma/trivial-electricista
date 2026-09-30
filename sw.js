@@ -1,4 +1,4 @@
-const CACHE_NAME = "trivial-electricista-db9";
+const CACHE_NAME = "trivial-electricista-db10";
 const CORE = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png"];
 
 const DB_LAYOUT_FIX = `<style id="db-layout-fix">
@@ -30,7 +30,7 @@ const DB_LAYOUT_FIX = `<style id="db-layout-fix">
    const target=e.target.closest('button,[role="button"],a,div');
    if(!target || !modal.contains(target)) return;
    const text=(target.textContent||'').replace(/\s+/g,' ').trim().toLowerCase();
-   if(!(text==='volver' || text.startsWith('← volver') || text.startsWith('← volver'))) return;
+   if(!(text==='volver' || text.startsWith('← volver'))) return;
    e.preventDefault(); e.stopPropagation();
    modal.style.setProperty('display','none','important');
    modal.setAttribute('aria-hidden','true');
@@ -39,8 +39,20 @@ const DB_LAYOUT_FIX = `<style id="db-layout-fix">
    if(editor){editor.style.removeProperty('display');editor.removeAttribute('aria-hidden');}
   },true);
  }
- const observer=new MutationObserver(()=>{fixDbHost();fixBackButton();});
- function start(){fixDbHost();fixBackButton();observer.observe(document.body,{childList:true,subtree:true});}
+ function removeDuplicateCorrection(){
+  const nodes=document.querySelectorAll('button,a,[role="button"],.menu-item,.option,.card,div');
+  nodes.forEach(el=>{
+   if(el.dataset.duplicateCorrectionRemoved==='1') return;
+   const text=(el.textContent||'').replace(/\s+/g,' ').trim().toLowerCase();
+   if(text==='✏️ corrección de preguntas' || text==='corrección de preguntas' || text==='✏️corrección de preguntas'){
+    const parent=el.closest('button,a,[role="button"],.menu-item,.option,.card') || el;
+    parent.dataset.duplicateCorrectionRemoved='1';
+    parent.style.setProperty('display','none','important');
+   }
+  });
+ }
+ const observer=new MutationObserver(()=>{fixDbHost();fixBackButton();removeDuplicateCorrection();});
+ function start(){fixDbHost();fixBackButton();removeDuplicateCorrection();observer.observe(document.body,{childList:true,subtree:true});}
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
 })();
 </script>`;
