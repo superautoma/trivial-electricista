@@ -673,6 +673,11 @@ html,body{max-width:100%;overflow-x:hidden}
 #editorModal>.panel>#dbPaginatedHost{display:block!important;width:100%!important;max-width:none!important;min-width:0!important}
 @media(max-width:600px){#editorModal>.panel{width:calc(100vw - 16px)!important;max-width:none!important;padding:14px!important}}
 </style>
+<style id="fix-editor-duplicate-list">
+/* The old editor list (#editorList) was left visible beside the new paginated database list. */
+#editorModal #editorList { display: none !important; }
+#editorModal #dbPaginatedHost { display: block !important; width: 100% !important; }
+</style>
 </head>
 <body>
 <div class="app">
