@@ -1,15 +1,13 @@
 (function(){
   'use strict';
-  const KEY='trivial-electricista-review-flags-v4';
+  const KEY='trivial-electricista-review-flags-v5';
   const load=()=>{try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return {}}};
   const save=o=>{try{localStorage.setItem(KEY,JSON.stringify(o));return true}catch(e){return false}};
   let flags=load();
 
   const css=`
-  #te-review-tools{position:fixed;right:12px;bottom:18px;z-index:99999;display:flex;gap:7px;flex-direction:column;align-items:flex-end;font-family:Arial,sans-serif}
-  #te-review-tools button{border:0;border-radius:10px;padding:10px 13px;font-weight:800;box-shadow:0 3px 10px #0008;cursor:pointer}
-  #te-review-list{background:#444;color:#fff}
-  #te-review-badge{display:none;background:#d32f2f;color:#fff;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:800}
+  #te-review-menu-button{background:#444;color:#fff;border:0;border-radius:10px;padding:10px 14px;font-weight:800;box-shadow:0 3px 10px #0008;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+  #te-review-badge{background:#d32f2f;color:#fff;border-radius:999px;padding:3px 8px;font-size:12px;font-weight:800}
   #te-review-panel{position:fixed;inset:0;background:#000b;z-index:100000;display:none;align-items:center;justify-content:center;padding:12px}
   #te-review-panel.show{display:flex}
   #te-review-panel .box{background:#2a1c11;color:#fff;border:3px solid #a97939;border-radius:16px;padding:18px;max-width:760px;width:100%;max-height:88vh;overflow:auto}
@@ -19,6 +17,7 @@
   #te-review-panel .item button{background:#ffd54a;color:#20170b;border:0;border-radius:8px;padding:7px 10px;font-weight:bold}
   #te-review-panel .item button.remove{background:#555;color:#fff}
   #te-question-mark{background:#ffd54a;color:#20170b;border:0;border-radius:9px;padding:10px 14px;font-weight:800;display:inline-block}
+  @media(max-width:600px){#te-review-menu-button{width:100%;justify-content:center}}
   `;
   const st=document.createElement('style');st.id='te-review-css';st.textContent=css;document.head.appendChild(st);
 
@@ -32,12 +31,10 @@
     return {q,cat,key:norm(q)};
   }
   function esc(s){return String(s).replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]))}
+  function count(){return Object.keys(flags).length}
   function updateBadge(){
-    const n=Object.keys(flags).length;
     const badge=document.getElementById('te-review-badge');
-    if(badge){badge.style.display=n?'block':'none';badge.textContent=n+' marcada'+(n===1?'':'s')}
-    const list=document.getElementById('te-review-list');
-    if(list) list.textContent='⚠️ Revisar marcadas'+(n?' ('+n+')':'');
+    if(badge){const n=count();badge.textContent=n;badge.style.display=n?'inline-block':'none'}
   }
   function isMarked(q){return !!(q&&flags[q.key])}
   function markQuestion(q){
@@ -69,6 +66,45 @@
     }
     refreshQuestionButton();
   }
+
+  function visible(el){
+    if(!el)return false;
+    const cs=getComputedStyle(el), r=el.getBoundingClientRect();
+    return cs.display!=='none' && cs.visibility!=='hidden' && r.width>0 && r.height>0;
+  }
+  function findMenuContainer(){
+    const candidates=[];
+    document.querySelectorAll('.modal.show,[role="dialog"],.menu,.menu-panel,.menu-content,.panel,.screen.active').forEach(el=>{
+      if(!visible(el))return;
+      if(el.id==='questionModal' || el.id==='te-review-panel')return;
+      const t=norm(el.innerText||'');
+      if(/nueva partida|editor|configur|jugadores|salir/.test(t)) candidates.push(el);
+    });
+    if(candidates.length)return candidates.sort((a,b)=>a.querySelectorAll('button').length-b.querySelectorAll('button').length).pop();
+    return null;
+  }
+  function openReviewPanel(){renderPanel();document.getElementById('te-review-panel')?.classList.add('show')}
+  function installMenuButton(){
+    const menu=findMenuContainer();
+    if(!menu)return false;
+    let b=document.getElementById('te-review-menu-button');
+    if(b && menu.contains(b)){updateBadge();return true}
+    if(b)b.remove();
+    b=document.createElement('button');
+    b.id='te-review-menu-button';
+    b.type='button';
+    b.innerHTML='⚠️ Revisar marcadas <span id="te-review-badge"></span>';
+    b.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();openReviewPanel()});
+    const actions=menu.querySelector('.actions');
+    if(actions) actions.appendChild(b); else menu.appendChild(b);
+    updateBadge();
+    return true;
+  }
+  function menuWasClicked(target){
+    const b=target?.closest?.('button,a');
+    return !!b && /menú|menu/i.test((b.innerText||b.textContent||'').trim());
+  }
+
   function renderPanel(){
     const p=document.getElementById('te-review-panel');if(!p)return;
     const items=Object.entries(flags);
@@ -87,18 +123,19 @@
       else if(typeof window.openEditor==='function') window.openEditor();
     });
   }
-  function ensureUI(){
-    if(!document.getElementById('te-review-tools')){
-      const wrap=document.createElement('div');wrap.id='te-review-tools';
-      wrap.innerHTML='<span id="te-review-badge"></span><button id="te-review-list" type="button">⚠️ Revisar marcadas</button>';
-      document.body.appendChild(wrap);
-      document.getElementById('te-review-list').onclick=e=>{e.preventDefault();e.stopPropagation();renderPanel();document.getElementById('te-review-panel').classList.add('show')};
-    }
+  function ensurePanel(){
     if(!document.getElementById('te-review-panel')){const p=document.createElement('div');p.id='te-review-panel';document.body.appendChild(p)}
-    ensureQuestionButton();updateBadge();
   }
   function boot(){
-    try{ensureUI();refreshQuestionButton();setInterval(()=>{ensureQuestionButton();refreshQuestionButton()},700)}catch(e){console.warn('Review flags disabled:',e)}
+    try{
+      ensurePanel();
+      ensureQuestionButton();
+      document.addEventListener('click',function(e){
+        if(menuWasClicked(e.target)) setTimeout(installMenuButton,60);
+      },true);
+      window.addEventListener('pageshow',()=>setTimeout(installMenuButton,60));
+      updateBadge();
+    }catch(e){console.warn('Review flags disabled:',e)}
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
 })();
