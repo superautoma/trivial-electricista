@@ -1,12 +1,12 @@
 (function(){
   'use strict';
-  const KEY='trivial-electricista-review-flags-v5';
+  const KEY='trivial-electricista-review-flags-v6';
   const load=()=>{try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return {}}};
   const save=o=>{try{localStorage.setItem(KEY,JSON.stringify(o));return true}catch(e){return false}};
   let flags=load();
 
   const css=`
-  #te-review-menu-button{background:#444;color:#fff;border:0;border-radius:10px;padding:10px 14px;font-weight:800;box-shadow:0 3px 10px #0008;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+  #te-review-menu-button{background:#444;color:#fff;border:0;border-radius:10px;padding:10px 14px;font-weight:800;box-shadow:0 3px 10px #0008;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;width:100%;box-sizing:border-box;margin-top:8px}
   #te-review-badge{background:#d32f2f;color:#fff;border-radius:999px;padding:3px 8px;font-size:12px;font-weight:800}
   #te-review-panel{position:fixed;inset:0;background:#000b;z-index:100000;display:none;align-items:center;justify-content:center;padding:12px}
   #te-review-panel.show{display:flex}
@@ -17,7 +17,6 @@
   #te-review-panel .item button{background:#ffd54a;color:#20170b;border:0;border-radius:8px;padding:7px 10px;font-weight:bold}
   #te-review-panel .item button.remove{background:#555;color:#fff}
   #te-question-mark{background:#ffd54a;color:#20170b;border:0;border-radius:9px;padding:10px 14px;font-weight:800;display:inline-block}
-  @media(max-width:600px){#te-review-menu-button{width:100%;justify-content:center}}
   `;
   const st=document.createElement('style');st.id='te-review-css';st.textContent=css;document.head.appendChild(st);
 
@@ -72,18 +71,31 @@
     const cs=getComputedStyle(el), r=el.getBoundingClientRect();
     return cs.display!=='none' && cs.visibility!=='hidden' && r.width>0 && r.height>0;
   }
+
+  // Find the actual menu by locating its visible menu buttons, rather than relying on CSS class names.
   function findMenuContainer(){
+    const menuButton=[...document.querySelectorAll('button,a')].find(el=>visible(el)&&/^\s*(☰|≡)?\s*menú\s*$/i.test((el.innerText||el.textContent||'')));
+    if(menuButton){
+      let p=menuButton.parentElement;
+      for(let i=0;p&&p!==document.body&&i<8;i++,p=p.parentElement){
+        const txt=norm(p.innerText||'');
+        const n=p.querySelectorAll('button,a').length;
+        if(n>=2 && /nueva partida|editor|jugadores|configur|salir/.test(txt)) return p;
+      }
+    }
     const candidates=[];
-    document.querySelectorAll('.modal.show,[role="dialog"],.menu,.menu-panel,.menu-content,.panel,.screen.active').forEach(el=>{
-      if(!visible(el))return;
-      if(el.id==='questionModal' || el.id==='te-review-panel')return;
-      const t=norm(el.innerText||'');
-      if(/nueva partida|editor|configur|jugadores|salir/.test(t)) candidates.push(el);
+    document.querySelectorAll('body *').forEach(el=>{
+      if(!visible(el)||el.id==='questionModal'||el.id==='te-review-panel')return;
+      const txt=norm(el.innerText||'');
+      const n=el.querySelectorAll('button,a').length;
+      if(n>=2 && n<=20 && /nueva partida/.test(txt) && /editor|jugadores|configur|salir/.test(txt)) candidates.push(el);
     });
-    if(candidates.length)return candidates.sort((a,b)=>a.querySelectorAll('button').length-b.querySelectorAll('button').length).pop();
+    if(candidates.length) return candidates.sort((a,b)=>a.querySelectorAll('button,a').length-b.querySelectorAll('button,a').length)[0];
     return null;
   }
+
   function openReviewPanel(){renderPanel();document.getElementById('te-review-panel')?.classList.add('show')}
+
   function installMenuButton(){
     const menu=findMenuContainer();
     if(!menu)return false;
@@ -100,9 +112,14 @@
     updateBadge();
     return true;
   }
+
+  function scheduleMenuInstall(){
+    [60,180,400,800].forEach(ms=>setTimeout(installMenuButton,ms));
+  }
+
   function menuWasClicked(target){
     const b=target?.closest?.('button,a');
-    return !!b && /menú|menu/i.test((b.innerText||b.textContent||'').trim());
+    return !!b && /^\s*(☰|≡)?\s*menú\s*$/i.test((b.innerText||b.textContent||''));
   }
 
   function renderPanel(){
@@ -123,17 +140,21 @@
       else if(typeof window.openEditor==='function') window.openEditor();
     });
   }
+
   function ensurePanel(){
     if(!document.getElementById('te-review-panel')){const p=document.createElement('div');p.id='te-review-panel';document.body.appendChild(p)}
   }
+
   function boot(){
     try{
       ensurePanel();
       ensureQuestionButton();
       document.addEventListener('click',function(e){
-        if(menuWasClicked(e.target)) setTimeout(installMenuButton,60);
+        if(menuWasClicked(e.target)) scheduleMenuInstall();
       },true);
-      window.addEventListener('pageshow',()=>setTimeout(installMenuButton,60));
+      window.addEventListener('pageshow',scheduleMenuInstall);
+      window.addEventListener('load',scheduleMenuInstall);
+      scheduleMenuInstall();
       updateBadge();
     }catch(e){console.warn('Review flags disabled:',e)}
   }
