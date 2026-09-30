@@ -272,28 +272,6 @@ textarea{min-height:90px;resize:vertical}
 .remote-online{background:#2e7d32;color:#fff}.remote-offline{background:#6d4c41;color:#fff}
 @media(max-width:600px){.remote-grid{grid-template-columns:1fr}}
 </style>
-<style id="editor-mobile-final-fix">
-html,body{max-width:100%;overflow-x:hidden}
-.modal{box-sizing:border-box;overflow:auto;overscroll-behavior:contain}
-.modal>.panel{box-sizing:border-box;width:min(1000px,calc(100vw - 20px));max-width:1000px;margin:auto;color:#fff}
-#editorModal>.panel{width:min(1000px,calc(100vw - 20px));max-width:1000px}
-#editorList{width:100%;box-sizing:border-box}
-#editorList .qrow{width:100%;box-sizing:border-box;background:#1b120b!important;color:#fff!important;border:1px solid #6b4a2d!important}
-#editorList .qrow b,#editorList .qrow .qnumber{color:#fff!important}
-#editorList .qrow .qanswer{background:#332316!important;color:#fff!important}
-#editorList .qrow .qanswer.correct{background:#387b3d!important;color:#fff!important}
-#editorList .qrow .badge{color:#111!important}
-#editorList .rowactions{flex-wrap:wrap}
-@media(max-width:600px){
- .modal{padding:8px;align-items:flex-start}
- .modal>.panel,#editorModal>.panel{width:calc(100vw - 16px);max-width:none;max-height:calc(100vh - 16px);margin:0 auto;padding:14px}
- #editorModal h2{font-size:22px;line-height:1.2}
- #editorList .qrow{grid-template-columns:42px minmax(0,1fr);gap:8px}
- #editorList .qrow .rowactions{grid-column:1/-1;justify-content:flex-start}
- #editorList .qrow .qmain{min-width:0;overflow:hidden}
- #editorList .qrow .qmain b{display:block;overflow-wrap:anywhere;word-break:break-word}
-}
-</style>
 <style id="question-explanation">
 .answer-explanation{margin:14px 0 4px;padding:12px 14px;border-left:4px solid #d9a52b;border-radius:10px;background:#fff8df;color:#2a2117;text-align:left}
 .answer-explanation .explanation-title{font-weight:900;margin-bottom:5px}
@@ -305,12 +283,10 @@ html,body{max-width:100%;overflow-x:hidden}
   function cleanQuestionText(q){
     if(!q || typeof q.q !== "string") return q;
     q.q = q.q
-      .replace(/^\s*¿?\s*Caso práctico\s*:\s*/i,"")
-      .replace(/^\s*¿?\s*Caso práctico\s+\d+\s*[:.\-]?\s*/i,"")
+      .replace(/^\s*Caso práctico\s*:\s*/i,"")
       .replace(/\s*Caso práctico\s+\d+\s*\.?\s*$/i,"")
       .replace(/\s*Caso práctico\s*\.?\s*$/i,"")
-      .replace(/\s*Variante de(?:\s+\d+)?\s*$/i,"")
-      .replace(/^\s*¿\s*/i,"¿")
+      .replace(/\s*Variante de\s*$/i,"")
       .replace(/\s{2,}/g," ")
       .trim();
     return q;
@@ -395,23 +371,12 @@ html,body{max-width:100%;overflow-x:hidden}
 <script id="db-pagination-final">
 (function(){
   const state={page:1,size:50,items:[],filtered:[]};
-  function getDB(){ return Array.isArray(window.questions) ? window.questions : (typeof questions!=="undefined" && Array.isArray(questions) ? questions : []); }
-  function text(q){ return [q.q,q.cat,q.explanation,...(q.a||[])].join(" ").toLowerCase(); }
-  function ensureHost(){
-    const panel=document.querySelector("#editorModal > .panel");
-    if(!panel) return null;
-    // Siempre reubicar el host dentro del panel. La versión anterior podía
-    // dejarlo como hermano del panel, creando exactamente la columna izquierda
-    // que aparece en Android.
-    let host=document.getElementById("dbPaginatedHost");
-    if(!host){ host=document.createElement("div"); host.id="dbPaginatedHost"; }
-    if(host.parentElement !== panel){
-      const list=document.getElementById("editorList");
-      if(list && list.parentElement===panel) panel.insertBefore(host,list);
-      else panel.appendChild(host);
-    }
-    host.style.cssText="display:block;width:100%;max-width:none;box-sizing:border-box;margin:12px 0;";
-    return host;
+
+  function getDB(){
+    return Array.isArray(window.TRIVIAL_DATABASE) ? window.TRIVIAL_DATABASE : [];
+  }
+  function text(q){
+    return [q.q,q.cat,q.explanation,...(q.a||[])].join(" ").toLowerCase();
   }
   function apply(){
     const term=(document.getElementById("searchQ")?.value||"").trim().toLowerCase();
@@ -422,33 +387,85 @@ html,body{max-width:100%;overflow-x:hidden}
     render();
   }
   function render(){
-    const host=ensureHost(); if(!host) return;
-    const total=state.filtered.length, pages=Math.max(1,Math.ceil(total/state.size));
-    const start=(state.page-1)*state.size, pageItems=state.filtered.slice(start,start+state.size);
+    let host=document.getElementById("dbPaginatedHost");
+    if(!host){
+      const editor=document.getElementById("editorModal") || document.body;
+      host=document.createElement("div");
+      host.id="dbPaginatedHost";
+      host.style.cssText="margin:12px 0";
+      editor.prepend(host);
+    }
+    const total=state.filtered.length;
+    const pages=Math.max(1,Math.ceil(total/state.size));
+    const start=(state.page-1)*state.size;
+    const pageItems=state.filtered.slice(start,start+state.size);
+
     host.innerHTML="";
-    const size=document.createElement("div"); size.className="db-page-size"; size.innerHTML="<label>Preguntas por página:</label>";
-    const sel=document.createElement("select"); [25,50,100,250].forEach(n=>{const o=document.createElement("option");o.value=n;o.textContent=n;if(n===state.size)o.selected=true;sel.appendChild(o);});
-    sel.onchange=()=>{state.size=+sel.value;state.page=1;render();}; size.appendChild(sel); host.appendChild(size);
-    const info=document.createElement("div"); info.className="db-page-info"; info.textContent=total?`Mostrando ${start+1}–${Math.min(start+pageItems.length,total)} de ${total} preguntas`:"No hay preguntas que coincidan"; host.appendChild(info);
-    const nav=document.createElement("div"); nav.className="db-pagination";
-    function btn(label,disabled,fn){const b=document.createElement("button");b.textContent=label;b.disabled=disabled;b.onclick=fn;nav.appendChild(b);}
-    btn("«",state.page===1,()=>{state.page=1;render()}); btn("‹",state.page===1,()=>{state.page--;render()});
+    const size=document.createElement("div");
+    size.className="db-page-size";
+    size.innerHTML="<label>Preguntas por página:</label>";
+    const sel=document.createElement("select");
+    [25,50,100,250].forEach(n=>{
+      const o=document.createElement("option");o.value=n;o.textContent=n;
+      if(n===state.size)o.selected=true;sel.appendChild(o);
+    });
+    sel.onchange=()=>{state.size=+sel.value;state.page=1;render();};
+    size.appendChild(sel);host.appendChild(size);
+
+    const info=document.createElement("div");
+    info.className="db-page-info";
+    info.textContent=total ? `Mostrando ${start+1}–${Math.min(start+pageItems.length,total)} de ${total} preguntas` : "No hay preguntas que coincidan";
+    host.appendChild(info);
+
+    const nav=document.createElement("div");nav.className="db-pagination";
+    function btn(label,disabled,fn){
+      const b=document.createElement("button");b.textContent=label;b.disabled=disabled;b.onclick=fn;nav.appendChild(b);
+    }
+    btn("«",state.page===1,()=>{state.page=1;render()});
+    btn("‹",state.page===1,()=>{state.page--;render()});
     let a=Math.max(1,state.page-2), b=Math.min(pages,a+4); a=Math.max(1,b-4);
-    for(let n=a;n<=b;n++){const x=document.createElement("button");x.textContent=n;x.className=n===state.page?"active":"";x.onclick=()=>{state.page=n;render()};nav.appendChild(x);}
-    btn("›",state.page===pages,()=>{state.page++;render()}); btn("»",state.page===pages,()=>{state.page=pages;render()}); host.appendChild(nav);
-    const list=document.createElement("div"); list.style.cssText="display:grid;gap:8px;width:100%;";
+    for(let n=a;n<=b;n++){const x=document.createElement("button");x.textContent=n;x.className=n===state.page?"active":"";x.onclick=()=>{state.page=n;render()};nav.appendChild(x)}
+    btn("›",state.page===pages,()=>{state.page++;render()});
+    btn("»",state.page===pages,()=>{state.page=pages;render()});
+    host.appendChild(nav);
+
+    const list=document.createElement("div");
+    list.style.cssText="display:grid;gap:8px";
     pageItems.forEach((q,idx)=>{
-      const card=document.createElement("div"); card.className="db-question-card";
-      const id=start+idx+1, correct=(q.a||[])[q.c]||"";
-      card.innerHTML=`<div class="qnumber"><b>#${id}</b> · ${escapeHtml(q.cat??"")}</div><div class="qtext-full"><b>${escapeHtml(q.q||"")}</b></div><div class="qanswer-line">Correcta: <b>${escapeHtml(correct)}</b></div><div class="db-row-actions"><button type="button">Ver/editar</button></div>`;
-      card.querySelector("button").onclick=()=>editFromDB(start+idx); list.appendChild(card);
+      const card=document.createElement("div");
+      card.style.cssText="border:1px solid #ddd;border-radius:10px;padding:10px;background:#fafafa";
+      const id=start+idx+1;
+      const correct=(q.a||[])[q.c]||"";
+      card.innerHTML=`<div><b>#${id}</b> <span>${escapeHtml(q.cat||"")}</span></div>
+      <div style="margin:5px 0"><b>${escapeHtml(q.q||"")}</b></div>
+      <div style="font-size:13px">Correcta: <b>${escapeHtml(correct)}</b></div>
+      <div class="db-row-actions" style="margin-top:7px">
+        <button type="button" data-export="${idx}">Ver/editar</button>
+      </div>`;
+      card.querySelector("[data-export]").onclick=()=>editFromDB(start+idx);
+      list.appendChild(card);
     });
     host.appendChild(list);
   }
-  function escapeHtml(s){return String(s).replace(/[&<>\"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'\"':"&quot;","'":"&#39;"}[m]));}
-  function editFromDB(index){const q=getDB()[index];if(!q)return;if(window.DBOpenEditor){window.DBOpenEditor(index);return;}const search=document.getElementById("searchQ");if(search){search.value=(q.q||"").slice(0,120);if(typeof window.renderEditor==="function")window.renderEditor();}}
+  function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));}
+  function editFromDB(index){
+    const q=getDB()[index];
+    if(!q) return;
+    // Usa el editor existente cuando está disponible.
+    if(window.DBOpenEditor){ window.DBOpenEditor(index); return; }
+    const search=document.getElementById("searchQ");
+    if(search){search.value=(q.q||"").slice(0,120); if(typeof window.renderEditor==="function") window.renderEditor();}
+  }
   window.DBPagination={apply,render};
-  document.addEventListener("DOMContentLoaded",()=>setTimeout(()=>{const search=document.getElementById("searchQ");if(search&&!search.dataset.paginationBound){search.dataset.paginationBound="1";search.addEventListener("input",()=>{state.page=1;apply();});}apply();},900));
+  document.addEventListener("DOMContentLoaded",()=>{
+    setTimeout(()=>{
+      const search=document.getElementById("searchQ");
+      if(search){
+        search.addEventListener("input",()=>{state.page=1;apply()});
+      }
+      apply();
+    },900);
+  });
 })();
 </script>
 
@@ -665,30 +682,6 @@ html,body{max-width:100%;overflow-x:hidden}
   background:#ffd447 !important;
   color:#17100a !important;
 }
-</style>
-<style id="editor-layout-hard-fix">
-#editorModal{box-sizing:border-box!important}
-#editorModal>.panel{width:calc(100vw - 16px)!important;max-width:1000px!important;min-width:0!important}
-#editorModal>#dbPaginatedHost{display:none!important}
-#editorModal>.panel>#dbPaginatedHost{display:block!important;width:100%!important;max-width:none!important;min-width:0!important}
-@media(max-width:600px){#editorModal>.panel{width:calc(100vw - 16px)!important;max-width:none!important;padding:14px!important}}
-</style>
-<style id="fix-editor-duplicate-list">
-/* The old editor list (#editorList) was left visible beside the new paginated database list. */
-#editorModal #editorList { display: none !important; }
-#editorModal #dbPaginatedHost { display: block !important; width: 100% !important; }
-</style>
-<style id="fix-editor-duplicate-list-global-v2">
-/* The legacy editor list can live outside #editorModal. Hide it globally so
-   the paginated database editor is the only question list shown. */
-#editorList { display: none !important; }
-#dbPaginatedHost { display: block !important; width: 100% !important; max-width: none !important; box-sizing: border-box !important; }
-</style>
-
-<style id="te-header-size-fix">
-/* TE_HEADER_SIZE_FIX_V1 */
-header h1{font-size:clamp(30px,5vw,52px)!important;line-height:1.02!important;margin:4px 0!important;max-width:100%;}
-@media(max-width:600px){header{align-items:flex-start!important;}header h1{font-size:28px!important;line-height:1.02!important;letter-spacing:-.5px!important;max-width:calc(100vw - 24px);}}
 </style>
 </head>
 <body>
@@ -24121,20 +24114,10 @@ const REVIEWED_EXPLANATIONS = {
 function generateQuestionExplanation(q){
  const question=String(q?.q||"").trim();
  const ans=(q?.a&&q.a[q.c]!=null)?String(q.a[q.c]):"";
- const low=cleanQuestionText({q:question}).q.toLowerCase();
+ const low=question.toLowerCase();
  const reviewed=REVIEWED_EXPLANATIONS[cleanQuestionText(question).trim().toLowerCase()];
  if(reviewed) return reviewed;
  if(!ans) return String(q?.explanation||"").trim();
- // Reglas de revisión prioritaria para preguntas de instalación real.
- if(low.includes("finalidad tiene una puesta a tierra")) return `💡 La puesta a tierra de protección proporciona un camino de baja impedancia para las corrientes de defecto y ayuda a mantener las tensiones de contacto dentro de límites de seguridad, facilitando la actuación de las protecciones. Por eso la respuesta correcta es «${ans}».`;
- if(low.includes("instrumento se usa para medir resistencia de aislamiento") || low.includes("instrumento se utiliza para medir aislamiento")) return `💡 El megóhmetro aplica una tensión de prueba y mide la resistencia de aislamiento, normalmente expresada en MΩ. Se utiliza para comprobar el estado del aislamiento de cables, motores y otros equipos. Por eso la respuesta correcta es «${ans}».`;
- if(low.includes("tensión corresponde normalmente a una red trifásica entre fases")) return `💡 En una red trifásica de baja tensión habitual en España, la tensión nominal entre fases es 400 V y entre fase y neutro es 230 V. Por eso la respuesta correcta es «${ans}».`;
- if(low.includes("frecuencia tiene normalmente la red eléctrica en españa")) return `💡 La frecuencia nominal de la red eléctrica en España es 50 Hz, es decir, 50 ciclos por segundo. Por eso la respuesta correcta es «${ans}».`;
- if(low.includes("señal corresponde a un transmisor industrial") || low.includes("señal analógica industrial")) return `💡 La señal 4–20 mA es un estándar muy utilizado en instrumentación industrial para transmitir magnitudes analógicas. El rango de 4 a 20 mA permite representar el valor de la variable y facilita la detección de determinadas averías del lazo. Por eso la respuesta correcta es «${ans}».`;
- if(low.includes("sensor detecta objetos metálicos sin contacto")) return `💡 Un sensor inductivo detecta objetos metálicos sin contacto mediante la variación de su campo electromagnético. Es habitual en automatización industrial para detectar posición o presencia. Por eso la respuesta correcta es «${ans}».`;
- if(low.includes("elemento permite seccionar manualmente un circuito")) return `💡 Un seccionador permite aislar manualmente una parte de una instalación para realizar trabajos con ella desconectada. Su función principal es el seccionamiento y no la protección automática frente a sobreintensidades. Por eso la respuesta correcta es «${ans}».`;
- if(low.includes("aparato detecta una diferencia de corriente entre conductores")) return `💡 El interruptor diferencial compara la corriente que circula por los conductores activos. Si aparece una corriente residual hacia tierra que supera su umbral de disparo, desconecta el circuito. Por eso la respuesta correcta es «${ans}».`;
- if(!String(q?.explanation||"").trim() || /pendiente de revisión técnica|respuesta correcta es la opción indicada|el enunciado describe una situación en la que esta opción/i.test(String(q.explanation))) return `💡 La respuesta correcta es «${ans}». Esta opción es la que corresponde al principio, magnitud, componente o procedimiento descrito en el enunciado.`;
  // Explicaciones específicas para conceptos básicos y preguntas frecuentes.
  if(low.includes("ley de ohm")){
    const m=question.match(/resistencia de\s*([0-9.,]+)\s*Ω.*?([0-9.,]+)\s*A/i);
@@ -24214,8 +24197,7 @@ if(typeof generatedQuestions!=="undefined" && Array.isArray(generatedQuestions))
 // Completar imágenes sin sobrescribir imágenes personalizadas.
 questions.forEach(q=>{
  q.q=cleanQuestionText(q.q);
- const oldExplanation=String(q.explanation||"").trim();
- if(!oldExplanation || /pendiente de revisión técnica|respuesta correcta es la opción indicada|el enunciado describe una situación en la que esta opción/i.test(oldExplanation)) q.explanation=generateQuestionExplanation(q);
+ q.explanation=generateQuestionExplanation(q)||String(q.explanation||"").trim();
 });
 
 // Revisión de integridad de la colección incorporada: corrige respuestas/alternativas
@@ -24245,7 +24227,6 @@ function repairAndDeduplicateQuestions(){
  const seen=new Set(), out=[];
  questions.forEach(q=>{
    repairKnownQuestionErrors(q);
-   q.q=cleanQuestionText(q.q);
    const k=normalizeQuestionKey(q.q);
    if(!k || seen.has(k)) return;
    const base=canonical.get(k);
@@ -24254,7 +24235,7 @@ function repairAndDeduplicateQuestions(){
      if(base.imageUrl) q.imageUrl=base.imageUrl;
    }
    q.explanation=String(q.explanation||"").trim();
-   if(!q.explanation || /pendiente de revisión técnica|La respuesta correcta es la opción indicada|El enunciado describe una situación en la que esta opción/i.test(q.explanation)) q.explanation=generateQuestionExplanation(q);
+   if(!q.explanation || q.explanation.includes("La respuesta correcta es la opción indicada") || q.explanation.includes("El enunciado describe una situación en la que esta opción")) q.explanation=generateQuestionExplanation(q);
    seen.add(k); out.push(q);
  });
  questions=out;
@@ -24268,7 +24249,7 @@ localStorage.setItem("trivial_questions",JSON.stringify(questions));
 // Las preguntas viven en memoria durante la partida, pero su almacenamiento
 // persistente se realiza en IndexedDB para no depender del tamaño de localStorage.
 const QUESTION_DB_NAME="TrivialPreguntasDB";
-const QUESTION_DB_VERSION=5;
+const QUESTION_DB_VERSION=4;
 const QUESTION_STORE="questions";
 let questionDb=null;
 let questionDbReady=null;
@@ -24351,16 +24332,8 @@ function initQuestionDatabase(){
     rows.sort((a,b)=>(a.id||0)-(b.id||0));
     questions=rows;
     questions.forEach(repairKnownQuestionErrors);
-    // IMPORTANTE: IndexedDB es la fuente persistente. No eliminamos duplicados aquí: 
-    // la cantidad de registros del usuario debe conservarse (por ejemplo, 1800).
-    // Solo corregimos errores conocidos, limpiamos el texto y completamos explicaciones/imágenes.
-    questions.forEach(q=>{
-      q.q=cleanQuestionText(q.q);
-      const oldExplanation=String(q.explanation||"").trim();
-      if(!oldExplanation || /pendiente de revisión técnica|respuesta correcta es la opción indicada|el enunciado describe una situación en la que esta opción/i.test(oldExplanation)){
-        q.explanation=generateQuestionExplanation(q);
-      }
-    });
+    // Reconciliamos respuestas y explicaciones con la colección oficial incorporada.
+    repairAndDeduplicateQuestions();
     ensureQuestionImages(questions);
     localStorage.setItem("trivial_questions",JSON.stringify(questions));
     questionDbReplaceAll(questions).catch(err=>console.warn("No se pudo actualizar la colección revisada en IndexedDB",err));
@@ -24575,6 +24548,7 @@ function askQuestion(pos){
  const pick=pool[Math.floor(Math.random()*pool.length)];
  lastQuestion=pick.i;
  const q=pick.q;
+ currentQuestionForExplanation=q;
  questionLocked=false;
 
  document.getElementById("questionTitle").textContent=categoryName(q.cat);
@@ -24639,11 +24613,27 @@ function answer(correct,cat){
 
  if(!correct && box){
    const explanation=String(q?.explanation||"").trim();
-   const finalExplanation=(explanation && !/pendiente de revisión técnica/i.test(explanation)) ? explanation : generateQuestionExplanation(q);
-   if(finalExplanation) q.explanation=finalExplanation;
+   const finalExplanation=explanation || (typeof generateQuestionExplanation === "function" ? generateQuestionExplanation(q) : "");
    box.innerHTML='<div class="explanation-title">💡 Explicación</div><div class="explanation-text">'+escapeHtml(finalExplanation||"No hay una explicación disponible para esta pregunta.")+'</div>';
    box.classList.add("visible");
    box.style.display="block";
+   const actions=document.querySelector('#questionModal .actions');
+   if(actions){
+     let oldContinue=actions.querySelector('.answer-continue-btn');
+     if(oldContinue) oldContinue.remove();
+     const continueBtn=document.createElement('button');
+     continueBtn.className='primary answer-continue-btn';
+     continueBtn.textContent='➡️ Continuar';
+     continueBtn.onclick=()=>{
+       continueBtn.disabled=true;
+       closeModal("questionModal");
+       currentPlayer=(currentPlayer+1)%players.length;
+       renderPlayers();
+       aplicarSimbolosSinMover();
+       marcarQuesitosRosco();
+     };
+     actions.appendChild(continueBtn);
+   }
  }
 
  if(correct){
@@ -24663,14 +24653,15 @@ function answer(correct,cat){
  renderTokens();
  marcarQuesitosRosco();
 
- const delay=correct ? 900 : 6000;
- setTimeout(()=>{
-   closeModal("questionModal");
-   currentPlayer=(currentPlayer+1)%players.length;
-   renderPlayers();
-   aplicarSimbolosSinMover();
-   marcarQuesitosRosco();
- },delay);
+ if(correct){
+   setTimeout(()=>{
+     closeModal("questionModal");
+     currentPlayer=(currentPlayer+1)%players.length;
+     renderPlayers();
+     aplicarSimbolosSinMover();
+     marcarQuesitosRosco();
+   },900);
+ }
 }
 function openModal(id){document.getElementById(id).classList.add("show")}
 function closeModal(id){document.getElementById(id).classList.remove("show");if(id==="questionModal")stopQuestionTimer()}
@@ -24810,8 +24801,6 @@ function renderEditor(){
  const list=document.getElementById("editorList");
  const totalBadge=document.getElementById("totalQuestionsBadge");
  if(totalBadge) totalBadge.textContent=questions.length+" preguntas";
- const liveCount=document.getElementById("editorCount");
- if(liveCount && !document.getElementById("searchQ")?.value && (document.getElementById("filterCat")?.value||"-1")==="-1") liveCount.textContent=questions.length+" preguntas disponibles";
  const search=normalizeSearchText(document.getElementById("searchQ").value);
  const filter=parseInt(document.getElementById("filterCat").value,10);
 
@@ -25365,8 +25354,6 @@ window.addEventListener("DOMContentLoaded",function(){
 });
 </script>
 
-<script src="review-flags.js"></script>
-<script src="answer-fix.js?v=1"></script>
 </body>
 </html>
 
