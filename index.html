@@ -283,10 +283,12 @@ textarea{min-height:90px;resize:vertical}
   function cleanQuestionText(q){
     if(!q || typeof q.q !== "string") return q;
     q.q = q.q
-      .replace(/^\s*Caso práctico\s*:\s*/i,"")
+      .replace(/^\s*¿?\s*Caso práctico\s*:\s*/i,"")
+      .replace(/^\s*¿?\s*Caso práctico\s+\d+\s*[:.\-]?\s*/i,"")
       .replace(/\s*Caso práctico\s+\d+\s*\.?\s*$/i,"")
       .replace(/\s*Caso práctico\s*\.?\s*$/i,"")
-      .replace(/\s*Variante de\s*$/i,"")
+      .replace(/\s*Variante de(?:\s+\d+)?\s*$/i,"")
+      .replace(/^\s*¿\s*/i,"¿")
       .replace(/\s{2,}/g," ")
       .trim();
     return q;
@@ -24114,10 +24116,20 @@ const REVIEWED_EXPLANATIONS = {
 function generateQuestionExplanation(q){
  const question=String(q?.q||"").trim();
  const ans=(q?.a&&q.a[q.c]!=null)?String(q.a[q.c]):"";
- const low=question.toLowerCase();
+ const low=cleanQuestionText({q:question}).q.toLowerCase();
  const reviewed=REVIEWED_EXPLANATIONS[cleanQuestionText(question).trim().toLowerCase()];
  if(reviewed) return reviewed;
  if(!ans) return String(q?.explanation||"").trim();
+ // Reglas de revisión prioritaria para preguntas de instalación real.
+ if(low.includes("finalidad tiene una puesta a tierra")) return `💡 La puesta a tierra de protección proporciona un camino de baja impedancia para las corrientes de defecto y ayuda a mantener las tensiones de contacto dentro de límites de seguridad, facilitando la actuación de las protecciones. Por eso la respuesta correcta es «${ans}».`;
+ if(low.includes("instrumento se usa para medir resistencia de aislamiento") || low.includes("instrumento se utiliza para medir aislamiento")) return `💡 El megóhmetro aplica una tensión de prueba y mide la resistencia de aislamiento, normalmente expresada en MΩ. Se utiliza para comprobar el estado del aislamiento de cables, motores y otros equipos. Por eso la respuesta correcta es «${ans}».`;
+ if(low.includes("tensión corresponde normalmente a una red trifásica entre fases")) return `💡 En una red trifásica de baja tensión habitual en España, la tensión nominal entre fases es 400 V y entre fase y neutro es 230 V. Por eso la respuesta correcta es «${ans}».`;
+ if(low.includes("frecuencia tiene normalmente la red eléctrica en españa")) return `💡 La frecuencia nominal de la red eléctrica en España es 50 Hz, es decir, 50 ciclos por segundo. Por eso la respuesta correcta es «${ans}».`;
+ if(low.includes("señal corresponde a un transmisor industrial") || low.includes("señal analógica industrial")) return `💡 La señal 4–20 mA es un estándar muy utilizado en instrumentación industrial para transmitir magnitudes analógicas. El rango de 4 a 20 mA permite representar el valor de la variable y facilita la detección de determinadas averías del lazo. Por eso la respuesta correcta es «${ans}».`;
+ if(low.includes("sensor detecta objetos metálicos sin contacto")) return `💡 Un sensor inductivo detecta objetos metálicos sin contacto mediante la variación de su campo electromagnético. Es habitual en automatización industrial para detectar posición o presencia. Por eso la respuesta correcta es «${ans}».`;
+ if(low.includes("elemento permite seccionar manualmente un circuito")) return `💡 Un seccionador permite aislar manualmente una parte de una instalación para realizar trabajos con ella desconectada. Su función principal es el seccionamiento y no la protección automática frente a sobreintensidades. Por eso la respuesta correcta es «${ans}».`;
+ if(low.includes("aparato detecta una diferencia de corriente entre conductores")) return `💡 El interruptor diferencial compara la corriente que circula por los conductores activos. Si aparece una corriente residual hacia tierra que supera su umbral de disparo, desconecta el circuito. Por eso la respuesta correcta es «${ans}».`;
+ if(!String(q?.explanation||"").trim() || /pendiente de revisión técnica|respuesta correcta es la opción indicada|el enunciado describe una situación en la que esta opción/i.test(String(q.explanation))) return `💡 La respuesta correcta es «${ans}». Esta opción es la que corresponde al principio, magnitud, componente o procedimiento descrito en el enunciado.`;
  // Explicaciones específicas para conceptos básicos y preguntas frecuentes.
  if(low.includes("ley de ohm")){
    const m=question.match(/resistencia de\s*([0-9.,]+)\s*Ω.*?([0-9.,]+)\s*A/i);
@@ -24197,7 +24209,8 @@ if(typeof generatedQuestions!=="undefined" && Array.isArray(generatedQuestions))
 // Completar imágenes sin sobrescribir imágenes personalizadas.
 questions.forEach(q=>{
  q.q=cleanQuestionText(q.q);
- q.explanation=generateQuestionExplanation(q)||String(q.explanation||"").trim();
+ const oldExplanation=String(q.explanation||"").trim();
+ if(!oldExplanation || /pendiente de revisión técnica|respuesta correcta es la opción indicada|el enunciado describe una situación en la que esta opción/i.test(oldExplanation)) q.explanation=generateQuestionExplanation(q);
 });
 
 // Revisión de integridad de la colección incorporada: corrige respuestas/alternativas
@@ -24227,6 +24240,7 @@ function repairAndDeduplicateQuestions(){
  const seen=new Set(), out=[];
  questions.forEach(q=>{
    repairKnownQuestionErrors(q);
+   q.q=cleanQuestionText(q.q);
    const k=normalizeQuestionKey(q.q);
    if(!k || seen.has(k)) return;
    const base=canonical.get(k);
@@ -24235,7 +24249,7 @@ function repairAndDeduplicateQuestions(){
      if(base.imageUrl) q.imageUrl=base.imageUrl;
    }
    q.explanation=String(q.explanation||"").trim();
-   if(!q.explanation || q.explanation.includes("La respuesta correcta es la opción indicada") || q.explanation.includes("El enunciado describe una situación en la que esta opción")) q.explanation=generateQuestionExplanation(q);
+   if(!q.explanation || /pendiente de revisión técnica|La respuesta correcta es la opción indicada|El enunciado describe una situación en la que esta opción/i.test(q.explanation)) q.explanation=generateQuestionExplanation(q);
    seen.add(k); out.push(q);
  });
  questions=out;
@@ -24249,7 +24263,7 @@ localStorage.setItem("trivial_questions",JSON.stringify(questions));
 // Las preguntas viven en memoria durante la partida, pero su almacenamiento
 // persistente se realiza en IndexedDB para no depender del tamaño de localStorage.
 const QUESTION_DB_NAME="TrivialPreguntasDB";
-const QUESTION_DB_VERSION=4;
+const QUESTION_DB_VERSION=5;
 const QUESTION_STORE="questions";
 let questionDb=null;
 let questionDbReady=null;
@@ -24612,7 +24626,9 @@ function answer(correct,cat){
 
  if(!correct && box){
    const explanation=String(q?.explanation||"").trim();
-   box.innerHTML='<div class="explanation-title">💡 Explicación</div><div class="explanation-text">'+escapeHtml(explanation||"Explicación pendiente de revisión técnica.")+'</div>';
+   const finalExplanation=(explanation && !/pendiente de revisión técnica/i.test(explanation)) ? explanation : generateQuestionExplanation(q);
+   if(finalExplanation) q.explanation=finalExplanation;
+   box.innerHTML='<div class="explanation-title">💡 Explicación</div><div class="explanation-text">'+escapeHtml(finalExplanation||"No hay una explicación disponible para esta pregunta.")+'</div>';
    box.classList.add("visible");
    box.style.display="block";
  }
