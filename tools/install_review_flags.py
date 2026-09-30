@@ -1,4 +1,5 @@
 from pathlib import Path
+import re
 
 p = Path('index.html')
 s = p.read_text(encoding='utf-8')
@@ -6,14 +7,24 @@ s = p.read_text(encoding='utf-8')
 # Keep the review script and bust the browser/PWA cache whenever this feature changes.
 marker = 'review-flags.js'
 if marker not in s:
-    script = '<script src="review-flags.js?v=6"></script>\n'
+    script = '<script src="review-flags.js?v=7"></script>\n'
     pos = s.lower().rfind('</body>')
     if pos < 0:
         raise SystemExit('Closing </body> not found')
     s = s[:pos] + script + s[pos:]
 else:
-    import re
-    s = re.sub(r'review-flags\\.js(?:\\?v=[^"\']+)?</script>', 'review-flags.js?v=6</script>', s)
+    s = re.sub(r'review-flags\.js(?:\?v=[^"\']+)?</script>', 'review-flags.js?v=7</script>', s)
+
+# Reliable fallback for the explanation after an incorrect answer.
+answer_marker = 'answer-fix.js'
+if answer_marker not in s:
+    script = '<script src="answer-fix.js?v=1"></script>\n'
+    pos = s.lower().rfind('</body>')
+    if pos < 0:
+        raise SystemExit('Closing </body> not found')
+    s = s[:pos] + script + s[pos:]
+else:
+    s = re.sub(r'answer-fix\.js(?:\?v=[^"\']+)?</script>', 'answer-fix.js?v=1</script>', s)
 
 # Fix the title size on phones and keep it compact on desktop.
 css_marker = '/* TE_HEADER_SIZE_FIX_V1 */'
@@ -25,4 +36,4 @@ if css_marker not in s:
     s = s[:pos] + css + s[pos:]
 
 p.write_text(s, encoding='utf-8')
-print('Applied review script v6 and header size fix')
+print('Applied review script v7, answer explanation fallback and header size fix')
