@@ -3,17 +3,17 @@ from pathlib import Path
 p = Path('index.html')
 s = p.read_text(encoding='utf-8')
 
-# Keep the review script, but ensure the current safe implementation is loaded.
+# Keep the review script and bust the browser/PWA cache whenever this feature changes.
 marker = 'review-flags.js'
 if marker not in s:
-    script = '<script src="review-flags.js?v=4"></script>\n'
+    script = '<script src="review-flags.js?v=5"></script>\n'
     pos = s.lower().rfind('</body>')
     if pos < 0:
         raise SystemExit('Closing </body> not found')
     s = s[:pos] + script + s[pos:]
 else:
-    # Bust the browser/PWA cache for the review script without duplicating it.
-    s = s.replace('review-flags.js</script>', 'review-flags.js?v=4</script>')
+    import re
+    s = re.sub(r'review-flags\.js(?:\?v=[^"\']+)?</script>', 'review-flags.js?v=5</script>', s)
 
 # Fix the title size on phones and keep it compact on desktop.
 css_marker = '/* TE_HEADER_SIZE_FIX_V1 */'
@@ -25,4 +25,4 @@ if css_marker not in s:
     s = s[:pos] + css + s[pos:]
 
 p.write_text(s, encoding='utf-8')
-print('Applied safe review script and header size fix')
+print('Applied review script v5 and header size fix')
