@@ -1,5 +1,5 @@
-const CACHE_NAME = "trivial-electricista-db12";
-const CORE = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png"];
+const CACHE_NAME = "trivial-electricista-db13";
+const CORE = ["./manifest.webmanifest", "./icon-192.png", "./icon-512.png"];
 
 const FIX = `<style id="trivial-fix-db12">
 @media(max-width:700px){#databaseModal{width:100%!important;max-width:100%!important;overflow-x:hidden!important}#databaseModal .panel{width:100%!important;max-width:100%!important;box-sizing:border-box!important}#databaseModal #dbPaginatedHost{width:100%!important;max-width:100%!important;min-width:0!important}#databaseModal #dbPaginatedHost>div{display:block!important;width:100%!important;max-width:100%!important}}
@@ -41,4 +41,4 @@ const FIX = `<style id="trivial-fix-db12">
 </script>`;
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE_NAME).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
-self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith((async()=>{try{const r=await fetch(e.request);const type=r.headers.get('content-type')||'';if(e.request.mode==='navigate'&&r.ok&&type.includes('text/html')){let h=await r.text();if(!h.includes('trivial-fix-db12'))h=h.replace(/<\\/head>/i,FIX+'</head>');const hs=new Headers(r.headers);hs.delete('content-length');return new Response(h,{status:r.status,statusText:r.statusText,headers:hs});}const c=r.clone();caches.open(CACHE_NAME).then(x=>x.put(e.request,c)).catch(()=>{});return r;}catch(err){return caches.match(e.request).then(r=>r||caches.match('./index.html'));}})());});
+self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith((async()=>{try{const r=await fetch(e.request);const type=r.headers.get('content-type')||'';if(e.request.mode==='navigate'&&r.ok&&type.includes('text/html')){let h=await r.text();if(!h.includes('trivial-fix-db12'))h=h.replace(/<\\/head>/i,FIX+'</head>');const hs=new Headers(r.headers);hs.delete('content-length');return new Response(h,{status:r.status,statusText:r.statusText,headers:hs});}const c=r.clone();caches.open(CACHE_NAME).then(x=>x.put(e.request,c)).catch(()=>{});return r;}catch(err){return new Response("Sin conexión",{status:503,headers:{"Content-Type":"text/plain; charset=utf-8"}});}})());});
