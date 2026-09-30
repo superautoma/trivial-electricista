@@ -24571,6 +24571,13 @@ function askQuestion(pos){
      if(questionLocked)return;
      questionLocked=true;
      stopQuestionTimer();
+     if(i!==q.c){
+       b.style.setProperty('background','#d32f2f','important');
+       b.style.setProperty('background-color','#d32f2f','important');
+       b.style.setProperty('color','#fff','important');
+       b.style.setProperty('border-color','#ff8a80','important');
+       b.style.setProperty('box-shadow','0 0 0 3px rgba(211,47,47,.35)','important');
+     }
      answer(i===q.c,q.cat);
    };
    ans.appendChild(b);
@@ -25107,7 +25114,7 @@ function remoteShowQuestion(q,isQuesito,quesitoIndex,canAnswer){ currentQuestion
   if(imgSrc){const im=document.createElement("img");im.alt="Imagen de la pregunta";im.src=imgSrc;im.onerror=()=>{qimg.style.display="none"};qimg.appendChild(im);qimg.style.display="block"}else qimg.style.display="none";
   const ans=document.getElementById("answers");ans.innerHTML="";
   q.a.forEach((txt,i)=>{const b=document.createElement("button");b.textContent=String.fromCharCode(65+i)+") "+txt;b.disabled=!canAnswer;
-    if(canAnswer)b.onclick=async()=>{if(questionLocked)return;questionLocked=true;stopQuestionTimer();if(remoteRole==="guest"&&remoteChannel){await remoteChannel.send({type:"broadcast",event:"game",payload:{type:"guestAnswer",slot:remoteSlot,correct:i===q.c,cat:q.cat}});closeModal("questionModal")}else answer(i===q.c,q.cat)};
+    if(canAnswer)b.onclick=async()=>{if(questionLocked)return;questionLocked=true;stopQuestionTimer();if(i!==q.c){b.style.setProperty('background','#d32f2f','important');b.style.setProperty('background-color','#d32f2f','important');b.style.setProperty('color','#fff','important');b.style.setProperty('border-color','#ff8a80','important');b.style.setProperty('box-shadow','0 0 0 3px rgba(211,47,47,.35)','important');}if(remoteRole==="guest"&&remoteChannel){await remoteChannel.send({type:"broadcast",event:"game",payload:{type:"guestAnswer",slot:remoteSlot,correct:i===q.c,cat:q.cat}});closeModal("questionModal")}else answer(i===q.c,q.cat)};
     ans.appendChild(b)});
   openModal("questionModal");if(canAnswer)startQuestionTimer();else stopQuestionTimer();
 }
