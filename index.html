@@ -684,6 +684,12 @@ html,body{max-width:100%;overflow-x:hidden}
 #editorList { display: none !important; }
 #dbPaginatedHost { display: block !important; width: 100% !important; max-width: none !important; box-sizing: border-box !important; }
 </style>
+
+<style id="te-header-size-fix">
+/* TE_HEADER_SIZE_FIX_V1 */
+header h1{font-size:clamp(30px,5vw,52px)!important;line-height:1.02!important;margin:4px 0!important;max-width:100%;}
+@media(max-width:600px){header{align-items:flex-start!important;}header h1{font-size:28px!important;line-height:1.02!important;letter-spacing:-.5px!important;max-width:calc(100vw - 24px);}}
+</style>
 </head>
 <body>
 <div class="app">
