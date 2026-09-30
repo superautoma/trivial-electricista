@@ -23747,7 +23747,13 @@ const generatedQuestions=[
 // Así, si el navegador tenía la versión antigua de 12/60 preguntas,
 // se incorporan las nuevas 600 sin borrar las preguntas que el usuario haya editado.
 const IMAGE_SYSTEM_VERSION="offline-v3"; localStorage.setItem("trivial_image_system_version",IMAGE_SYSTEM_VERSION);
-let storedQuestions=JSON.parse(localStorage.getItem("trivial_questions")||"null");
+let storedQuestions=null;
+try{
+  storedQuestions=JSON.parse(localStorage.getItem("trivial_questions")||"null");
+}catch(e){
+  console.warn("Trivial Electricista: datos de preguntas guardados dañados; se restaurarán los datos incorporados.");
+  localStorage.removeItem("trivial_questions");
+}
 
 
 // Imágenes integradas localmente: funcionan incluso sin Internet.
@@ -24364,7 +24370,14 @@ function persistQuestions(){
 initQuestionDatabase();
 
 document.getElementById("totalQuestionsBadge").textContent=questions.length;
-let players=JSON.parse(localStorage.getItem("trivial_players")||"null")||[
+let players=null;
+try{
+  players=JSON.parse(localStorage.getItem("trivial_players")||"null");
+}catch(e){
+  console.warn("Trivial Electricista: datos de jugadores dañados; se restaurarán los jugadores predeterminados.");
+  localStorage.removeItem("trivial_players");
+}
+if(!Array.isArray(players)||!players.length) players=[
  {name:"Jugador 1",pos:0,wedges:[]},{name:"Jugador 2",pos:0,wedges:[]}
 ];
 let currentPlayer=0, rolling=false, editingIndex=null, lastQuestion=-1;
