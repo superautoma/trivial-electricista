@@ -25394,17 +25394,7 @@ if ('serviceWorker' in navigator) {
 }
 </script>
 
-<script id="database-status">
-window.addEventListener("DOMContentLoaded",function(){
-  setTimeout(function(){
-    if(!window.TRIVIAL_DATABASE) return;
-    const el=document.createElement("div");
-    el.textContent="Base de preguntas: "+window.TRIVIAL_DATABASE.length+" registros";
-    el.style.cssText="position:fixed;left:8px;bottom:8px;z-index:9999;background:#1f1a14;color:#fff;padding:5px 9px;border-radius:8px;font:12px sans-serif;opacity:.72";
-    document.body.appendChild(el);
-  },800);
-});
-</script>
+
 
 </body>
 </html>
