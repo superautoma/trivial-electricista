@@ -1,23 +1,25 @@
-const CACHE_NAME = "trivial-electricista-db4";
+const CACHE_NAME = "trivial-electricista-db5";
 const CORE = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png"];
 
-// Corrección aislada para el visor paginado de preguntas.
-// No modifica la partida ni el editor de preguntas: solo evita que las
-// tarjetas generadas dinámicamente queden blancas con texto blanco.
+// Corrección aislada del visor de preguntas de la base de datos.
+// No modifica la partida, el tablero, el dado ni la lógica del editor.
 const DB_CARD_FIX = `<style id="db-cards-contrast-fix">
-#dbPaginatedHost > div[style*="display:grid"] > div {
+/* Tarjetas creadas por el visor paginado */
+#dbPaginatedHost .db-row-card,
+#dbPaginatedHost > div > div {
   background:#21170f !important;
-  color:#fff !important;
-  border:1px solid #8d652d !important;
+  color:#ffffff !important;
+  border-color:#8d652d !important;
 }
-#dbPaginatedHost > div[style*="display:grid"] > div b,
-#dbPaginatedHost > div[style*="display:grid"] > div span,
-#dbPaginatedHost > div[style*="display:grid"] > div div {
-  color:inherit !important;
+#dbPaginatedHost .db-row-card *,
+#dbPaginatedHost > div > div * {
+  color:#ffffff !important;
 }
-#dbPaginatedHost .db-row-actions button {
-  background:#555 !important;
-  color:#fff !important;
+#dbPaginatedHost .db-row-actions button,
+#dbPaginatedHost button[data-export] {
+  background:#555555 !important;
+  color:#ffffff !important;
+  border-color:#777777 !important;
 }
 </style>`;
 
@@ -45,7 +47,7 @@ self.addEventListener("fetch", event => {
       const response = await fetch(event.request);
       const type = response.headers.get("content-type") || "";
 
-      // Solo se transforma HTML de navegación. El resto de recursos queda intacto.
+      // Solo transformamos la navegación HTML. Los demás recursos quedan intactos.
       if (event.request.mode === "navigate" && response.ok && type.includes("text/html")) {
         const html = await response.text();
         const fixed = html.includes('id="db-cards-contrast-fix"')
@@ -53,13 +55,11 @@ self.addEventListener("fetch", event => {
           : html.replace(/<\/head>/i, DB_CARD_FIX + "</head>");
         const headers = new Headers(response.headers);
         headers.delete("content-length");
-        const finalResponse = new Response(fixed, {
+        return new Response(fixed, {
           status: response.status,
           statusText: response.statusText,
           headers
         });
-        caches.open(CACHE_NAME).then(cache => cache.put(event.request, finalResponse.clone())).catch(()=>{});
-        return finalResponse;
       }
 
       const copy = response.clone();
