@@ -678,6 +678,12 @@ html,body{max-width:100%;overflow-x:hidden}
 #editorModal #editorList { display: none !important; }
 #editorModal #dbPaginatedHost { display: block !important; width: 100% !important; }
 </style>
+<style id="fix-editor-duplicate-list-global-v2">
+/* The legacy editor list can live outside #editorModal. Hide it globally so
+   the paginated database editor is the only question list shown. */
+#editorList { display: none !important; }
+#dbPaginatedHost { display: block !important; width: 100% !important; max-width: none !important; box-sizing: border-box !important; }
+</style>
 </head>
 <body>
 <div class="app">
