@@ -14092,9 +14092,5766 @@ const expansionQuestions=[
     "id": 824
   },
   {
-    "q": "Un divisor sin carga tiene
-... 169604 bytes omitted ...
-{
+    "q": "Un divisor sin carga tiene 7 Ω arriba y 12 Ω abajo, alimentado con 28 V. ¿Qué tensión aparece en la resistencia inferior?",
+    "a": [
+      "26,53 V",
+      "8,84 V",
+      "17,68 V",
+      "35,37 V"
+    ],
+    "c": 2,
+    "cat": 5,
+    "explanation": "U₂=U·R₂/(R₁+R₂)=28·12/(7+12)=17,68 V.",
+    "uid": "te-8f46c3c4dfff975e",
+    "topic": "Divisores",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 825
+  },
+  {
+    "q": "Una máquina entrega 650 W útiles y pierde 30 W. ¿Qué rendimiento tiene?",
+    "a": [
+      "143,38 %",
+      "191,18 %",
+      "95,59 %",
+      "47,79 %"
+    ],
+    "c": 2,
+    "cat": 0,
+    "explanation": "η=Pútil/(Pútil+Ppérdidas)·100=95,59 %.",
+    "uid": "te-0ab32ae6ee780209",
+    "topic": "Rendimiento",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 826
+  },
+  {
+    "q": "Con A=0, B=1, Y=NAND(A,B) y Z=NOT Y, ¿qué par (Y,Z) resulta?",
+    "a": [
+      "(1,0)",
+      "(0,0)",
+      "(1,1)",
+      "(0,1)"
+    ],
+    "c": 0,
+    "cat": 1,
+    "explanation": "La función NAND da Y=1; al negar Y resulta Z=0.",
+    "uid": "te-2950fe543325fed2",
+    "topic": "Lógica booleana",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 827
+  },
+  {
+    "q": "Para el ejercicio TT se fija UL=50 V y se aplica RA·IΔn ≤ UL con IΔn=50 mA. ¿Qué RA máxima teórica resulta?",
+    "a": [
+      "1000 Ω",
+      "2000 Ω",
+      "1500 Ω",
+      "500 Ω"
+    ],
+    "c": 0,
+    "cat": 2,
+    "explanation": "RA≤UL/IΔn=50/(50/1000)=1000 Ω. Deben cumplirse también los restantes requisitos de protección.",
+    "uid": "te-1d975bae0a0f9520",
+    "topic": "Sistema TT",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 828
+  },
+  {
+    "q": "Una señal de 5 mA atraviesa una resistencia de medida de 120 Ω. ¿Qué tensión produce?",
+    "a": [
+      "0,9 V",
+      "0,6 V",
+      "0,3 V",
+      "1,2 V"
+    ],
+    "c": 1,
+    "cat": 3,
+    "explanation": "U=I·R=5/1000·120=0,6 V.",
+    "uid": "te-a8e215ed544d53fd",
+    "topic": "Shunt",
+    "kind": "cálculo",
+    "source": "https://www.fluke.com/en-us/learn/blog/calibration/what-is-a-4-20-ma-current-loop",
+    "bankVersion": "2026-10-01-v2",
+    "id": 829
+  },
+  {
+    "q": "Un motor entrega 2 kW mecánicos a 850 r/min. Usando T≈9550·P/n, ¿qué par entrega?",
+    "a": [
+      "11,24 N·m",
+      "22,47 N·m",
+      "33,71 N·m",
+      "44,94 N·m"
+    ],
+    "c": 1,
+    "cat": 4,
+    "explanation": "T≈9550·2/850=22,47 N·m.",
+    "uid": "te-6f7d7a6cd88696c0",
+    "topic": "Par y potencia",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 830
+  },
+  {
+    "q": "Un circuito RC sencillo tiene R=1200 Ω y C=12 µF. ¿Qué constante de tiempo tiene?",
+    "a": [
+      "28,8 ms",
+      "21,6 ms",
+      "7,2 ms",
+      "14,4 ms"
+    ],
+    "c": 3,
+    "cat": 5,
+    "explanation": "τ=RC=1200·12·10⁻⁶ s=14,4 ms.",
+    "uid": "te-ec8b0b87c638916f",
+    "topic": "Transitorios RC",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 831
+  },
+  {
+    "q": "Un devanado de resistencia 0,5 Ω conduce 4 A eficaces. ¿Qué pérdidas Joule produce?",
+    "a": [
+      "12 W",
+      "8 W",
+      "16 W",
+      "4 W"
+    ],
+    "c": 1,
+    "cat": 0,
+    "explanation": "Pcu=I²R=4²·0,5=8 W.",
+    "uid": "te-24607dfb9dcb685a",
+    "topic": "Pérdidas en cobre",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 832
+  },
+  {
+    "q": "Con A=0, B=1, Y=NOR(A,B) y Z=NOT Y, ¿qué par (Y,Z) resulta?",
+    "a": [
+      "(0,1)",
+      "(1,0)",
+      "(1,1)",
+      "(0,0)"
+    ],
+    "c": 0,
+    "cat": 1,
+    "explanation": "La función NOR da Y=0; al negar Y resulta Z=1.",
+    "uid": "te-e90a900561424de0",
+    "topic": "Lógica booleana",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 833
+  },
+  {
+    "q": "Una corriente de defecto equivale a 5 veces In de un interruptor de 8 A. ¿Qué corriente es?",
+    "a": [
+      "80 A",
+      "20 A",
+      "60 A",
+      "40 A"
+    ],
+    "c": 3,
+    "cat": 2,
+    "explanation": "I=5·8=40 A; el tiempo de disparo requiere la curva del aparato.",
+    "uid": "te-bc88bd62cd1317a0",
+    "topic": "Curvas de protección",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 834
+  },
+  {
+    "q": "Un patrón vale 60 V y un instrumento indica 63 V. ¿Cuál es el error absoluto con signo, lectura menos patrón?",
+    "a": [
+      "3 V",
+      "1,5 V",
+      "6 V",
+      "4,5 V"
+    ],
+    "c": 0,
+    "cat": 3,
+    "explanation": "Error=63−60=3 V.",
+    "uid": "te-8d1d367706c63dee",
+    "topic": "Errores de medida",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 835
+  },
+  {
+    "q": "Un eje desarrolla 14 N·m a 980 r/min. ¿Qué potencia mecánica entrega?",
+    "a": [
+      "0,72 kW",
+      "2,16 kW",
+      "1,44 kW",
+      "2,87 kW"
+    ],
+    "c": 2,
+    "cat": 4,
+    "explanation": "P=T·2πn/60=14·2π·980/60=1,44 kW.",
+    "uid": "te-186d109c72c52018",
+    "topic": "Potencia mecánica",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 836
+  },
+  {
+    "q": "Un circuito RL sencillo tiene L=14 mH y R=7 Ω. ¿Qué constante de tiempo tiene?",
+    "a": [
+      "3 ms",
+      "2 ms",
+      "4 ms",
+      "1 ms"
+    ],
+    "c": 1,
+    "cat": 5,
+    "explanation": "τ=L/R=14/7=2 ms.",
+    "uid": "te-f8e8b4dbf08a7387",
+    "topic": "Transitorios RL",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 837
+  },
+  {
+    "q": "Un alternador síncrono tiene 6 polos y gira a 720 r/min. ¿Qué frecuencia genera?",
+    "a": [
+      "36 Hz",
+      "18 Hz",
+      "54 Hz",
+      "72 Hz"
+    ],
+    "c": 0,
+    "cat": 0,
+    "explanation": "f=p·n/120=6·720/120=36 Hz.",
+    "uid": "te-766c8d8555191609",
+    "topic": "Alternadores",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 838
+  },
+  {
+    "q": "Con A=0, B=1, C=0, D=0, Y=(A AND B) OR (C AND D) y Z=NOT Y, ¿qué par (Y,Z) resulta?",
+    "a": [
+      "(0,1)",
+      "(1,0)",
+      "(1,1)",
+      "(0,0)"
+    ],
+    "c": 0,
+    "cat": 1,
+    "explanation": "La función (A AND B) OR (C AND D) da Y=0; al negar Y resulta Z=1.",
+    "uid": "te-e6765c8c36221c6a",
+    "topic": "Lógica booleana",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 839
+  },
+  {
+    "q": "Un receptor monofásico puramente resistivo de 1200 W a 230 V requiere calcular Ib. ¿Qué corriente de diseño resulta?",
+    "a": [
+      "5,22 A",
+      "10,43 A",
+      "2,61 A",
+      "7,83 A"
+    ],
+    "c": 0,
+    "cat": 2,
+    "explanation": "Ib=P/U=1200/230=5,22 A. La selección de protección requiere otras comprobaciones.",
+    "uid": "te-09b1d7f3fe19c889",
+    "topic": "Corriente de diseño",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 840
+  },
+  {
+    "q": "Un instrumento indica 124 Ω ante un patrón de 120 Ω. ¿Cuál es el error relativo porcentual con signo?",
+    "a": [
+      "1,67 %",
+      "3,33 %",
+      "6,67 %",
+      "5 %"
+    ],
+    "c": 1,
+    "cat": 3,
+    "explanation": "Error relativo=(lectura−patrón)/patrón·100=4/120·100=3,33 %.",
+    "uid": "te-71e58514bb076f37",
+    "topic": "Errores de medida",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 841
+  },
+  {
+    "q": "Un motor trifásico equilibrado entrega 3 kW a 400 V, con η=81 % y cos φ=0,76. ¿Qué corriente de línea teórica absorbe?",
+    "a": [
+      "3,52 A",
+      "14,07 A",
+      "7,03 A",
+      "10,55 A"
+    ],
+    "c": 2,
+    "cat": 4,
+    "explanation": "I=Pútil/(√3·U·η·cos φ)=7,03 A, incluyendo rendimiento y factor de potencia.",
+    "uid": "te-398b210b0cd2cbfe",
+    "topic": "Corriente de motor",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 842
+  },
+  {
+    "q": "Un condensador ideal de 20 µF está cargado a 14 V. ¿Qué energía almacena?",
+    "a": [
+      "1,96 mJ",
+      "3,92 mJ",
+      "0,98 mJ",
+      "2,94 mJ"
+    ],
+    "c": 0,
+    "cat": 5,
+    "explanation": "E=½CU²=0,5·20·10⁻⁶·14² J=1,96 mJ.",
+    "uid": "te-840a18a0ebf91621",
+    "topic": "Energía de condensador",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 843
+  },
+  {
+    "q": "¿A qué velocidad debe girar un alternador de 6 polos para generar 34 Hz?",
+    "a": [
+      "1360 r/min",
+      "340 r/min",
+      "680 r/min",
+      "1020 r/min"
+    ],
+    "c": 2,
+    "cat": 0,
+    "explanation": "n=120f/p=120·34/6=680 r/min.",
+    "uid": "te-a00bf27bd4e7b463",
+    "topic": "Velocidad síncrona",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 844
+  },
+  {
+    "q": "Un contador inicia en 4, recibe 7 impulsos de incremento y 3 de decremento, sin reset. ¿Qué valor final muestra?",
+    "a": [
+      "16 cuentas",
+      "8 cuentas",
+      "12 cuentas",
+      "4 cuentas"
+    ],
+    "c": 1,
+    "cat": 1,
+    "explanation": "Valor final=4+7−3=8.",
+    "uid": "te-964447ceb750ee20",
+    "topic": "Contadores",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 845
+  },
+  {
+    "q": "En un modelo simplificado de bucle resistivo, U₀=230 V y Zs=0,2 Ω. ¿Qué corriente de defecto estima I=U₀/Zs?",
+    "a": [
+      "575 A",
+      "1150 A",
+      "1725 A",
+      "2300 A"
+    ],
+    "c": 1,
+    "cat": 2,
+    "explanation": "I=230/0,2=1150 A. Es un modelo simplificado, no una verificación reglamentaria completa.",
+    "uid": "te-ec7a78e5810de1fc",
+    "topic": "Bucle de defecto",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 846
+  },
+  {
+    "q": "Una señal ocupa 4 divisiones verticales en un osciloscopio ajustado a 0,7 V/div, con factor de sonda ya incluido. ¿Qué tensión representa?",
+    "a": [
+      "2,8 V",
+      "5,6 V",
+      "4,2 V",
+      "1,4 V"
+    ],
+    "c": 0,
+    "cat": 3,
+    "explanation": "U=divisiones·escala=4·0,7=2,8 V.",
+    "uid": "te-d037496fc5712d2e",
+    "topic": "Osciloscopios",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 847
+  },
+  {
+    "q": "Un motor asíncrono recibe 34 Hz y tiene deslizamiento 1,4 %. ¿Qué frecuencia eléctrica tienen las corrientes del rotor?",
+    "a": [
+      "0,24 Hz",
+      "0,95 Hz",
+      "0,48 Hz",
+      "0,71 Hz"
+    ],
+    "c": 2,
+    "cat": 4,
+    "explanation": "frotor=s·f=0,01·34=0,48 Hz.",
+    "uid": "te-55527fd006d1b9be",
+    "topic": "Frecuencia del rotor",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 848
+  },
+  {
+    "q": "Una inductancia ideal de 14 mH conduce 4 A. ¿Qué energía magnética almacena?",
+    "a": [
+      "224 mJ",
+      "112 mJ",
+      "168 mJ",
+      "56 mJ"
+    ],
+    "c": 1,
+    "cat": 5,
+    "explanation": "E=½LI²=0,5·14·4²=112 mJ.",
+    "uid": "te-1b59bfff4ef92037",
+    "topic": "Energía de inductancia",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 849
+  },
+  {
+    "q": "Un TC ideal de 150/5 A da una lectura secundaria de 0,9 A. ¿Qué corriente primaria representa?",
+    "a": [
+      "40,5 A",
+      "54 A",
+      "27 A",
+      "13,5 A"
+    ],
+    "c": 2,
+    "cat": 0,
+    "explanation": "Iprim=Isec·relación=0,9·150/5=27 A.",
+    "uid": "te-ad56ffa98e8f7f3b",
+    "topic": "Transformadores de medida",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 850
+  },
+  {
+    "q": "Un caudalímetro entrega 12 impulsos por litro. Se cuentan 140 impulsos. ¿Qué volumen se calcula?",
+    "a": [
+      "17,5 L",
+      "23,33 L",
+      "11,67 L",
+      "5,83 L"
+    ],
+    "c": 2,
+    "cat": 1,
+    "explanation": "Volumen=impulsos/(impulsos por litro)=140/12=11,67 L.",
+    "uid": "te-b7ceacb78ecb1b24",
+    "topic": "Contadores",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 851
+  },
+  {
+    "q": "Una corriente constante de cortocircuito de 150 A dura 0,04 s. ¿Qué integral Joule I²t produce en ese modelo?",
+    "a": [
+      "450 A²·s",
+      "1800 A²·s",
+      "900 A²·s",
+      "1350 A²·s"
+    ],
+    "c": 2,
+    "cat": 2,
+    "explanation": "I²t=150²·0,04=900 A²·s.",
+    "uid": "te-0d38884eb1eafe26",
+    "topic": "Energía de defecto",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 852
+  },
+  {
+    "q": "El período medido de una señal periódica es 2,8 ms. ¿Qué frecuencia tiene?",
+    "a": [
+      "178,57 Hz",
+      "357,14 Hz",
+      "535,71 Hz",
+      "714,29 Hz"
+    ],
+    "c": 1,
+    "cat": 3,
+    "explanation": "f=1/T=1000/2,8=357,14 Hz.",
+    "uid": "te-13d9e73f4bdde7ef",
+    "topic": "Frecuencia",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 853
+  },
+  {
+    "q": "En el modelo de arranque estrella-triángulo a igual tensión de línea, la corriente de arranque directo en triángulo sería 16 A. ¿Qué corriente de línea aproximada corresponde en estrella?",
+    "a": [
+      "5,33 A",
+      "8 A",
+      "10,67 A",
+      "2,67 A"
+    ],
+    "c": 0,
+    "cat": 4,
+    "explanation": "Iestrella≈Itriángulo/3=16/3=5,33 A, para el mismo motor y tensión.",
+    "uid": "te-a4b13aff158fb1ad",
+    "topic": "Estrella-triángulo",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 854
+  },
+  {
+    "q": "Una inductancia ideal de 14 mH trabaja a 60 Hz. ¿Qué reactancia inductiva presenta?",
+    "a": [
+      "7,92 Ω",
+      "10,56 Ω",
+      "5,28 Ω",
+      "2,64 Ω"
+    ],
+    "c": 2,
+    "cat": 5,
+    "explanation": "XL=2πfL=2π·60·14/1000=5,28 Ω.",
+    "uid": "te-a148bde5abd16689",
+    "topic": "Reactancia inductiva",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 855
+  },
+  {
+    "q": "Un transformador trifásico equilibrado de 12000 VA tiene tensión entre fases de 400 V. ¿Qué corriente de línea nominal resulta?",
+    "a": [
+      "34,64 A",
+      "17,32 A",
+      "8,66 A",
+      "25,98 A"
+    ],
+    "c": 1,
+    "cat": 0,
+    "explanation": "I=S/(√3·U)=12000/(√3·400)=17,32 A.",
+    "uid": "te-192d7ff94512231f",
+    "topic": "Transformador trifásico",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 856
+  },
+  {
+    "q": "Un TON ajustado a 3 s lleva 1,5 s con entrada activa continua. ¿Cuánto falta para activar la salida?",
+    "a": [
+      "1,5 s",
+      "3 s",
+      "2,25 s",
+      "0,75 s"
+    ],
+    "c": 0,
+    "cat": 1,
+    "explanation": "Tiempo restante=ajuste−transcurrido=3−1,5=1,5 s.",
+    "uid": "te-61139565259fdbc0",
+    "topic": "Temporización",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 857
+  },
+  {
+    "q": "En un ejercicio adiabático, I=1200 A, t=0,07 s y k=115 A·√s/mm². ¿Qué sección mínima matemática da S=I√t/k?",
+    "a": [
+      "4,14 mm²",
+      "5,52 mm²",
+      "1,38 mm²",
+      "2,76 mm²"
+    ],
+    "c": 3,
+    "cat": 2,
+    "explanation": "S=1200·√0,07/115=2,76 mm²; se requiere una sección normalizada y verificar las demás condiciones.",
+    "uid": "te-c6485d2243bef087",
+    "topic": "Criterio adiabático",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 858
+  },
+  {
+    "q": "Una senoide sin componente continua tiene un pico de 14 V. ¿Cuál es su valor eficaz?",
+    "a": [
+      "19,8 V",
+      "14,85 V",
+      "4,95 V",
+      "9,9 V"
+    ],
+    "c": 3,
+    "cat": 3,
+    "explanation": "Uef=Upico/√2=14/√2=9,9 V.",
+    "uid": "te-0d3b9e316fc10f7f",
+    "topic": "Valor eficaz",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 859
+  },
+  {
+    "q": "Una bomba centrífuga mantiene geometría y fluido. Según las leyes de afinidad, si su velocidad pasa de 1040 a 540,8 r/min y antes daba 12 m³/h, ¿qué caudal ideal se estima?",
+    "a": [
+      "9,36 m³/h",
+      "6,24 m³/h",
+      "12,48 m³/h",
+      "3,12 m³/h"
+    ],
+    "c": 1,
+    "cat": 4,
+    "explanation": "Q₂/Q₁=n₂/n₁=0,52; Q₂=12·0,52=6,24 m³/h.",
+    "uid": "te-31233ff2feb9b2cf",
+    "topic": "Bombas",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 860
+  },
+  {
+    "q": "Un condensador ideal de 14 µF trabaja a 60 Hz. ¿Qué magnitud de reactancia capacitiva tiene?",
+    "a": [
+      "189,47 Ω",
+      "94,74 Ω",
+      "378,94 Ω",
+      "284,21 Ω"
+    ],
+    "c": 0,
+    "cat": 5,
+    "explanation": "XC=1/(2πfC)=189,47 Ω.",
+    "uid": "te-efef38988c2499aa",
+    "topic": "Reactancia capacitiva",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 861
+  },
+  {
+    "q": "Un transformador da 244 V en vacío y 239 V con una carga definida. Tomando como base la tensión con carga, ¿qué regulación porcentual resulta?",
+    "a": [
+      "2,09 %",
+      "1,05 %",
+      "3,14 %",
+      "4,18 %"
+    ],
+    "c": 0,
+    "cat": 0,
+    "explanation": "Regulación=(Uvacío−Ucarga)/Ucarga·100=2,09 %.",
+    "uid": "te-76fd42aea600f148",
+    "topic": "Regulación",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 862
+  },
+  {
+    "q": "Una entrada analógica se escala linealmente: 0 cuentas=0 bar y 1000 cuentas=42 bar. ¿Qué presión corresponde a 150 cuentas?",
+    "a": [
+      "3,15 bar",
+      "9,45 bar",
+      "12,6 bar",
+      "6,3 bar"
+    ],
+    "c": 3,
+    "cat": 1,
+    "explanation": "p=cuentas·rango/1000=150·42/1000=6,3 bar.",
+    "uid": "te-08b748af6e65bcf6",
+    "topic": "Escalado",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 863
+  },
+  {
+    "q": "En un modelo resistivo de aislamiento, una tensión de ensayo de 500 V se aplica a 2 MΩ. ¿Qué corriente ideal en µA resulta?",
+    "a": [
+      "500 µA",
+      "375 µA",
+      "250 µA",
+      "125 µA"
+    ],
+    "c": 2,
+    "cat": 2,
+    "explanation": "I=U/R; V/MΩ equivale a µA: 500/2=250 µA.",
+    "uid": "te-b2ca1e42d81027cf",
+    "topic": "Aislamiento",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 864
+  },
+  {
+    "q": "Una senoide sin componente continua mide 26 V eficaces. ¿Qué valor pico a pico tiene?",
+    "a": [
+      "110,31 V",
+      "36,77 V",
+      "147,08 V",
+      "73,54 V"
+    ],
+    "c": 3,
+    "cat": 3,
+    "explanation": "Upp=2√2·Uef=2√2·26=73,54 V.",
+    "uid": "te-588ff3dfb96a7a00",
+    "topic": "Pico a pico",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 865
+  },
+  {
+    "q": "Una bomba centrífuga reduce la velocidad al 53 % de la inicial. Con altura inicial 22 m y leyes de afinidad ideales, ¿qué altura nueva se estima?",
+    "a": [
+      "3,09 m",
+      "12,36 m",
+      "9,27 m",
+      "6,18 m"
+    ],
+    "c": 3,
+    "cat": 4,
+    "explanation": "H₂=H₁·(n₂/n₁)²=22·0,53²=6,18 m.",
+    "uid": "te-e02bd322f65e92b3",
+    "topic": "Bombas",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 866
+  },
+  {
+    "q": "Una carga serie tiene R=12 Ω y reactancia neta X=24 Ω. ¿Qué módulo de impedancia tiene?",
+    "a": [
+      "53,67 Ω",
+      "26,83 Ω",
+      "13,42 Ω",
+      "40,25 Ω"
+    ],
+    "c": 1,
+    "cat": 5,
+    "explanation": "|Z|=√(R²+X²)=√(12²+24²)=26,83 Ω.",
+    "uid": "te-f44f75b73b831e9b",
+    "topic": "Impedancia",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 867
+  },
+  {
+    "q": "El grupo vectorial de un transformador tiene índice horario 3. ¿Qué desplazamiento angular representa ese índice?",
+    "a": [
+      "45 °",
+      "180 °",
+      "135 °",
+      "90 °"
+    ],
+    "c": 3,
+    "cat": 0,
+    "explanation": "Cada hora de la notación corresponde a 30°: 3·30=90°.",
+    "uid": "te-51aef8d7749aae66",
+    "topic": "Grupos vectoriales",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 868
+  },
+  {
+    "q": "Un ciclo de ejecución tarda 7 ms. Sin interrupciones ni sobrecarga, ¿cuántos ciclos completos por segundo representa?",
+    "a": [
+      "285,71 ciclos/s",
+      "214,29 ciclos/s",
+      "142,86 ciclos/s",
+      "71,43 ciclos/s"
+    ],
+    "c": 2,
+    "cat": 1,
+    "explanation": "f=1000/Tms=1000/7=142,86 ciclos/s.",
+    "uid": "te-008b32fb772e4f39",
+    "topic": "Tiempo de ciclo",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 869
+  },
+  {
+    "q": "La capacidad de referencia de un cable es 34 A. Se aplican factores independientes 0,8 y 0,72. ¿Qué capacidad corregida resulta?",
+    "a": [
+      "19,58 A",
+      "9,79 A",
+      "39,17 A",
+      "29,38 A"
+    ],
+    "c": 0,
+    "cat": 2,
+    "explanation": "Iz=34·0,8·0,72=19,58 A.",
+    "uid": "te-0b1d8d70597aadd7",
+    "topic": "Factores térmicos",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 870
+  },
+  {
+    "q": "Un voltímetro tiene límite de error ±(0,7 % de lectura + 2 dígitos), resolución 0,1 V y lectura 120 V. ¿Qué límite absoluto se calcula?",
+    "a": [
+      "2,08 V",
+      "1,56 V",
+      "1,04 V",
+      "0,52 V"
+    ],
+    "c": 2,
+    "cat": 3,
+    "explanation": "Error límite=120·0,7/100+2·0,1=1,04 V.",
+    "uid": "te-1bbaece6570bb23f",
+    "topic": "Especificaciones",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 871
+  },
+  {
+    "q": "Una bomba centrífuga consumía 6 kW. Si gira al 53 % de su velocidad inicial, ¿qué potencia predicen las leyes de afinidad ideales?",
+    "a": [
+      "0,45 kW",
+      "1,79 kW",
+      "1,34 kW",
+      "0,89 kW"
+    ],
+    "c": 3,
+    "cat": 4,
+    "explanation": "P₂=P₁·(n₂/n₁)³=6·0,53³=0,89 kW.",
+    "uid": "te-e5658fd839c299a4",
+    "topic": "Bombas",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 872
+  },
+  {
+    "q": "Una carga senoidal absorbe P=1200 W y Q=600 var. ¿Qué potencia aparente resulta?",
+    "a": [
+      "670,82 VA",
+      "2683,28 VA",
+      "1341,64 VA",
+      "2012,46 VA"
+    ],
+    "c": 2,
+    "cat": 5,
+    "explanation": "S=√(P²+Q²)=√(1200²+600²)=1341,64 VA.",
+    "uid": "te-ed2bdfc646b2a6b8",
+    "topic": "Triángulo de potencia",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 873
+  },
+  {
+    "q": "Para flujo senoidal, un devanado tiene 250 espiras y flujo máximo 4 mWb a 50 Hz. ¿Qué tensión eficaz inducida predice E=4,44·f·N·Φ?",
+    "a": [
+      "444 V",
+      "222 V",
+      "111 V",
+      "333 V"
+    ],
+    "c": 1,
+    "cat": 0,
+    "explanation": "E=4,44·50·250·4/1000=222 V.",
+    "uid": "te-9f1f1465f33f081f",
+    "topic": "Inducción",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 874
+  },
+  {
+    "q": "Un grupo de 4 bombas disponibles alterna estrictamente en cada arranque, empezando por B1. ¿Qué bomba recibe el arranque número 9?",
+    "a": [
+      "1,5 (número de bomba)",
+      "1 (número de bomba)",
+      "0,5 (número de bomba)",
+      "2 (número de bomba)"
+    ],
+    "c": 1,
+    "cat": 1,
+    "explanation": "Posición=1+((9−1) módulo 4)=1.",
+    "uid": "te-5245e28a8fad57ca",
+    "topic": "Alternancia",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 875
+  },
+  {
+    "q": "La corriente de cortocircuito prevista es 4,6 kA. ¿Qué poder de corte de los propuestos es suficiente por comparación directa?",
+    "a": [
+      "5,1 kA",
+      "4,5 kA",
+      "4,1 kA",
+      "3,6 kA"
+    ],
+    "c": 0,
+    "cat": 2,
+    "explanation": "Se necesita un poder de corte no inferior a 4,6 kA; el único propuesto que lo supera es 5,1 kA.",
+    "uid": "te-a3c94169b4d238fb",
+    "topic": "Poder de corte",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 876
+  },
+  {
+    "q": "Un contador registra 110 kWh durante 4 h. ¿Qué potencia activa media representa?",
+    "a": [
+      "41,25 kW",
+      "27,5 kW",
+      "55 kW",
+      "13,75 kW"
+    ],
+    "c": 1,
+    "cat": 3,
+    "explanation": "Pmedia=E/t=110/4=27,5 kW.",
+    "uid": "te-d877421cec5b470b",
+    "topic": "Contadores de energía",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 877
+  },
+  {
+    "q": "Un motor gira a 1100 r/min y acciona un reductor ideal de relación de reducción 4:1. ¿Qué velocidad tiene la salida?",
+    "a": [
+      "550 r/min",
+      "412,5 r/min",
+      "137,5 r/min",
+      "275 r/min"
+    ],
+    "c": 3,
+    "cat": 4,
+    "explanation": "nsalida=nentrada/relación=1100/4=275 r/min.",
+    "uid": "te-000f4131db1931f1",
+    "topic": "Transmisiones",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 878
+  },
+  {
+    "q": "En un nodo de CC entran 7 A y salen 4 A por una rama. Si la única rama restante es de salida, ¿qué corriente debe llevar?",
+    "a": [
+      "3 A",
+      "6 A",
+      "4,5 A",
+      "1,5 A"
+    ],
+    "c": 0,
+    "cat": 5,
+    "explanation": "Por la ley de corrientes de Kirchhoff, Irestante=7−4=3 A.",
+    "uid": "te-418758d7d527bd16",
+    "topic": "Kirchhoff",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 879
+  },
+  {
+    "q": "Una máquina absorbe 1200 W y tiene rendimiento 82 %. ¿Qué potencia útil entrega?",
+    "a": [
+      "1968 W",
+      "984 W",
+      "492 W",
+      "1476 W"
+    ],
+    "c": 1,
+    "cat": 0,
+    "explanation": "Pútil=η·Pabsorbida=0,82·1200=984 W.",
+    "uid": "te-921ede1df58affa5",
+    "topic": "Balance de potencia",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 880
+  },
+  {
+    "q": "Un TOF de 4 s tenía su salida activa y pierde la entrada en t=5 s. Si no se reactiva, ¿en qué instante se desactiva la salida?",
+    "a": [
+      "13,5 s",
+      "4,5 s",
+      "9 s",
+      "18 s"
+    ],
+    "c": 2,
+    "cat": 1,
+    "explanation": "Instante de desconexión=5+4=9 s.",
+    "uid": "te-8676d7147a562d34",
+    "topic": "Temporización",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 881
+  },
+  {
+    "q": "Para estudiar un defecto se modela un conductor de protección con 0,26 Ω y una corriente de 2,8 A. ¿Qué caída resistiva aparece?",
+    "a": [
+      "0,73 V",
+      "1,46 V",
+      "1,09 V",
+      "0,36 V"
+    ],
+    "c": 0,
+    "cat": 2,
+    "explanation": "ΔU=I·R=2,8·0,26=0,73 V.",
+    "uid": "te-8c7ef322a62292b4",
+    "topic": "Conductores de protección",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 882
+  },
+  {
+    "q": "Una tensión medida es 222 V frente a un valor de referencia de 230 V. ¿Cuál es la desviación porcentual con signo?",
+    "a": [
+      "-3,48 %",
+      "-1,74 %",
+      "-5,22 %",
+      "-6,96 %"
+    ],
+    "c": 0,
+    "cat": 3,
+    "explanation": "Desviación=(U−Uref)/Uref·100=(222−230)/230·100=-3,48 %.",
+    "uid": "te-01a0c43548d63f25",
+    "topic": "Tensión",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 883
+  },
+  {
+    "q": "Un reductor ideal sin pérdidas de relación 4:1 recibe 7 N·m. ¿Qué par de salida proporciona?",
+    "a": [
+      "14 N·m",
+      "56 N·m",
+      "28 N·m",
+      "42 N·m"
+    ],
+    "c": 2,
+    "cat": 4,
+    "explanation": "Tsalida=Tentrada·relación=7·4=28 N·m.",
+    "uid": "te-1c1ceeaa8ab52f4c",
+    "topic": "Transmisiones",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 884
+  },
+  {
+    "q": "Un conductor de cobre se modela con ρ=0,0175 Ω·mm²/m, longitud 20 m y sección 7,5 mm². ¿Qué resistencia tiene?",
+    "a": [
+      "0,07 Ω",
+      "0,05 Ω",
+      "0,09 Ω",
+      "0,02 Ω"
+    ],
+    "c": 1,
+    "cat": 5,
+    "explanation": "R=ρL/S=0,0175·20/7,5=0,05 Ω.",
+    "uid": "te-5ad122be0df2c5a5",
+    "topic": "Conductores",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 885
+  },
+  {
+    "q": "Una carga conectada a un transformador absorbe 1200 VA con cos φ=0,64. ¿Qué potencia activa consume?",
+    "a": [
+      "1536 W",
+      "384 W",
+      "1152 W",
+      "768 W"
+    ],
+    "c": 3,
+    "cat": 0,
+    "explanation": "P=S·cos φ=1200·0,64=768 W.",
+    "uid": "te-d3554ad71e094d0e",
+    "topic": "Potencia aparente",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 886
+  },
+  {
+    "q": "Un contador debe acumular 120 pulsos de una señal constante de 7 Hz, desde cero. ¿Qué tiempo de acumulación ideal resulta?",
+    "a": [
+      "25,71 s",
+      "34,29 s",
+      "8,57 s",
+      "17,14 s"
+    ],
+    "c": 3,
+    "cat": 1,
+    "explanation": "t=N/f=120/7=17,14 s.",
+    "uid": "te-9ce6567fc90488a8",
+    "topic": "Contadores",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 887
+  },
+  {
+    "q": "4 receptores tienen cada uno una fuga senoidal en fase de 3 mA. En ese supuesto, ¿qué fuga total se suma?",
+    "a": [
+      "18 mA",
+      "24 mA",
+      "6 mA",
+      "12 mA"
+    ],
+    "c": 3,
+    "cat": 2,
+    "explanation": "Con las corrientes en fase, la suma es 4·3=12 mA.",
+    "uid": "te-ef0a0d1bb812e5e3",
+    "topic": "Corrientes residuales",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 888
+  },
+  {
+    "q": "Un analizador usa correctamente un TC de 150/5 A y recibe 1,2 A secundarios. ¿Qué corriente muestra en el primario?",
+    "a": [
+      "18 A",
+      "36 A",
+      "54 A",
+      "72 A"
+    ],
+    "c": 1,
+    "cat": 3,
+    "explanation": "Iprim=Isec·(150/5)=1,2·30=36 A.",
+    "uid": "te-8b07fef8bf58bb8d",
+    "topic": "Escalado de TC",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 889
+  },
+  {
+    "q": "En un control V/f lineal ideal por debajo de frecuencia base, con base 400 V a 50 Hz y sin refuerzo de tensión, ¿qué tensión corresponde a 14 Hz?",
+    "a": [
+      "56 V",
+      "168 V",
+      "224 V",
+      "112 V"
+    ],
+    "c": 3,
+    "cat": 4,
+    "explanation": "U=Ubase·f/fbase=400·14/50=112 V.",
+    "uid": "te-9d2eadf341b54323",
+    "topic": "Control V/f",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 890
+  },
+  {
+    "q": "Dos condensadores ideales de 12 µF y 24 µF están en serie. ¿Qué capacidad equivalente tienen?",
+    "a": [
+      "16 µF",
+      "12 µF",
+      "8 µF",
+      "4 µF"
+    ],
+    "c": 2,
+    "cat": 5,
+    "explanation": "Ceq=C₁C₂/(C₁+C₂)=8 µF.",
+    "uid": "te-295f879b42c6c27e",
+    "topic": "Condensadores en serie",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 891
+  },
+  {
+    "q": "En un transformador ideal, N₁=550 y N₂=60. ¿Cuál es la relación U₁/U₂?",
+    "a": [
+      "9,17 ",
+      "18,33 ",
+      "4,58 ",
+      "13,75 "
+    ],
+    "c": 0,
+    "cat": 0,
+    "explanation": "U₁/U₂=N₁/N₂=550/60=9,17.",
+    "uid": "te-27183c56650b4a59",
+    "topic": "Relación de espiras",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 892
+  },
+  {
+    "q": "Un control con histéresis conecta al bajar hasta 8 bar y desconecta al subir a 12 bar. ¿Qué anchura tiene su banda?",
+    "a": [
+      "4 bar",
+      "8 bar",
+      "2 bar",
+      "6 bar"
+    ],
+    "c": 0,
+    "cat": 1,
+    "explanation": "Banda=umbral superior−inferior=12−8=4 bar.",
+    "uid": "te-e57f9ba9734d25aa",
+    "topic": "Histéresis",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 893
+  },
+  {
+    "q": "Para comparar una protección de In=12 A con una carga Ib=10 A, ¿qué cociente Ib/In se obtiene?",
+    "a": [
+      "1,25 ",
+      "0,83 ",
+      "1,67 ",
+      "0,42 "
+    ],
+    "c": 1,
+    "cat": 2,
+    "explanation": "Ib/In=10/12=0,83. Esto no determina por sí solo el tiempo de disparo.",
+    "uid": "te-27d532498adbcf4f",
+    "topic": "Sobrecargas",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 894
+  },
+  {
+    "q": "Un conversor ideal de 12 bits se escala de código 0=0 V a código 4095=10 V. ¿Qué tensión representa el código 768?",
+    "a": [
+      "2,81 V",
+      "1,88 V",
+      "0,94 V",
+      "3,75 V"
+    ],
+    "c": 1,
+    "cat": 3,
+    "explanation": "U=código·10/4095=768·10/4095=1,88 V.",
+    "uid": "te-1bfdc6f71c88352a",
+    "topic": "Conversión analógica",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 895
+  },
+  {
+    "q": "Un variador hace una rampa lineal de 7 a 42 Hz en 7 s. ¿Cuál es su pendiente?",
+    "a": [
+      "10 Hz/s",
+      "7,5 Hz/s",
+      "5 Hz/s",
+      "2,5 Hz/s"
+    ],
+    "c": 2,
+    "cat": 4,
+    "explanation": "Pendiente=(ffinal−finicial)/t=(42−7)/7=5 Hz/s.",
+    "uid": "te-fdebfc3e7a34770d",
+    "topic": "Rampas",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 896
+  },
+  {
+    "q": "Una resistencia de 22 Ω tiene aplicados 16 V. ¿Qué potencia disipa?",
+    "a": [
+      "23,27 W",
+      "11,64 W",
+      "17,45 W",
+      "5,82 W"
+    ],
+    "c": 1,
+    "cat": 5,
+    "explanation": "P=U²/R=16²/22=11,64 W.",
+    "uid": "te-7f787c2ee63f5883",
+    "topic": "Efecto Joule",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 897
+  },
+  {
+    "q": "Las pérdidas constantes en vacío de un transformador son 14 W. Si permanece energizado 5 h sin carga, ¿qué energía consume?",
+    "a": [
+      "0,11 kWh",
+      "0,04 kWh",
+      "0,07 kWh",
+      "0,14 kWh"
+    ],
+    "c": 2,
+    "cat": 0,
+    "explanation": "E=P·t/1000=14·5/1000=0,07 kWh.",
+    "uid": "te-b3cbad54450e7798",
+    "topic": "Energía en vacío",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 898
+  },
+  {
+    "q": "Un temporizador usa una base de 12 ms por cuenta. ¿Cuántas cuentas representan 30 s?",
+    "a": [
+      "1250 cuentas",
+      "5000 cuentas",
+      "2500 cuentas",
+      "3750 cuentas"
+    ],
+    "c": 2,
+    "cat": 1,
+    "explanation": "N=t/base=30·1000/12=2500 cuentas.",
+    "uid": "te-333b117f98be7816",
+    "topic": "Base de tiempo",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 899
+  },
+  {
+    "q": "Un contacto deteriorado tiene 0,7 Ω y conduce 12 A. ¿Qué potencia térmica se calcula en ese contacto?",
+    "a": [
+      "151,2 W",
+      "201,6 W",
+      "50,4 W",
+      "100,8 W"
+    ],
+    "c": 3,
+    "cat": 2,
+    "explanation": "P=I²R=12²·0,7=100,8 W.",
+    "uid": "te-7019ee86e8fe39e9",
+    "topic": "Calentamientos",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 900
+  },
+  {
+    "q": "Dos senoides de igual período 7 ms tienen una separación temporal de 3 ms. ¿Qué magnitud de desfase corresponde?",
+    "a": [
+      "308,57 °",
+      "77,14 °",
+      "231,43 °",
+      "154,29 °"
+    ],
+    "c": 3,
+    "cat": 3,
+    "explanation": "φ=360·Δt/T=360·3/7=154,29°.",
+    "uid": "te-8e619347d98993f8",
+    "topic": "Desfase",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 901
+  },
+  {
+    "q": "Un motor consume una potencia eléctrica constante de 2,5 kW durante 4 h. ¿Qué energía activa utiliza?",
+    "a": [
+      "5 kWh",
+      "15 kWh",
+      "20 kWh",
+      "10 kWh"
+    ],
+    "c": 3,
+    "cat": 4,
+    "explanation": "E=P·t=2,5·4=10 kWh.",
+    "uid": "te-29386a2fcc69064b",
+    "topic": "Energía de motor",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 902
+  },
+  {
+    "q": "Una línea de 230 V tiene una caída calculada de 2,8 V. ¿Qué porcentaje representa respecto a la tensión de origen?",
+    "a": [
+      "0,61 %",
+      "1,83 %",
+      "1,22 %",
+      "2,43 %"
+    ],
+    "c": 2,
+    "cat": 5,
+    "explanation": "ΔU%=2,8/230·100=1,22 %.",
+    "uid": "te-8b82bd26841d25d2",
+    "topic": "Caída de tensión",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 903
+  },
+  {
+    "q": "Transformador ideal: N₁=260 espiras, N₂=70 y U₁=230 V. ¿Cuál es U₂?",
+    "a": [
+      "123,85 V",
+      "30,96 V",
+      "61,92 V",
+      "92,88 V"
+    ],
+    "c": 2,
+    "cat": 0,
+    "explanation": "U₂=U₁·N₂/N₁=230·70/260=61,92 V.",
+    "uid": "te-07c1c234c863fbc1",
+    "topic": "Relación de transformación",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 904
+  },
+  {
+    "q": "Con A=1, B=1, Y=AND(A,B) y Z=NOT Y, ¿qué par (Y,Z) resulta?",
+    "a": [
+      "(0,1)",
+      "(1,1)",
+      "(1,0)",
+      "(0,0)"
+    ],
+    "c": 2,
+    "cat": 1,
+    "explanation": "La función AND da Y=1; al negar Y resulta Z=0.",
+    "uid": "te-489c967272127100",
+    "topic": "Lógica booleana",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 905
+  },
+  {
+    "q": "En un ejercicio de coordinación se exige Ib ≤ In ≤ Iz. Si Ib=8 A e Iz=14 A, ¿qué calibre de los propuestos cumple esa desigualdad?",
+    "a": [
+      "15 A",
+      "7 A",
+      "9 A",
+      "19 A"
+    ],
+    "c": 2,
+    "cat": 2,
+    "explanation": "Debe estar entre 8 y 14 A, ambos incluidos; 9 A es el único propuesto que lo cumple. Faltan otras verificaciones para una instalación real.",
+    "uid": "te-9aaee73c316aa9c2",
+    "topic": "Coordinación",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 906
+  },
+  {
+    "q": "Un transmisor lineal de 4–20 mA cubre 0–25 bar. ¿Qué presión representa una señal de 8 mA?",
+    "a": [
+      "12,5 bar",
+      "6,25 bar",
+      "3,12 bar",
+      "9,38 bar"
+    ],
+    "c": 1,
+    "cat": 3,
+    "explanation": "p=(I−4)·rango/16=(8−4)·25/16=6,25 bar.",
+    "uid": "te-dd16797ab521dd0b",
+    "topic": "Escalado 4–20 mA",
+    "kind": "cálculo",
+    "source": "https://www.fluke.com/en-us/learn/blog/calibration/what-is-a-4-20-ma-current-loop",
+    "bankVersion": "2026-10-01-v2",
+    "id": 907
+  },
+  {
+    "q": "Un motor asíncrono de 8 polos se alimenta a 26 Hz. ¿Cuál es la velocidad síncrona de su campo?",
+    "a": [
+      "390 r/min",
+      "585 r/min",
+      "195 r/min",
+      "780 r/min"
+    ],
+    "c": 0,
+    "cat": 4,
+    "explanation": "ns=120f/p=120·26/8=390 r/min.",
+    "uid": "te-c9061916adbc5e93",
+    "topic": "Velocidad síncrona",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 908
+  },
+  {
+    "q": "Una resistencia ideal de 7 Ω se conecta a 18 V de CC. ¿Qué corriente circula?",
+    "a": [
+      "1,29 A",
+      "5,14 A",
+      "2,57 A",
+      "3,86 A"
+    ],
+    "c": 2,
+    "cat": 5,
+    "explanation": "I=U/R=18/7=2,57 A.",
+    "uid": "te-68ea623cad54655d",
+    "topic": "Ley de Ohm",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 909
+  },
+  {
+    "q": "Un transformador ideal de 400/42 V suministra 5 A en el secundario. ¿Qué corriente absorbe el primario?",
+    "a": [
+      "0,26 A",
+      "1,05 A",
+      "0,53 A",
+      "0,79 A"
+    ],
+    "c": 2,
+    "cat": 0,
+    "explanation": "En el modelo ideal U₁I₁=U₂I₂; I₁=42·5/400=0,53 A.",
+    "uid": "te-f90c6f3c445c9508",
+    "topic": "Corriente de transformador",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 910
+  },
+  {
+    "q": "Con A=1, B=1, Y=OR(A,B) y Z=NOT Y, ¿qué par (Y,Z) resulta?",
+    "a": [
+      "(1,0)",
+      "(1,1)",
+      "(0,1)",
+      "(0,0)"
+    ],
+    "c": 0,
+    "cat": 1,
+    "explanation": "La función OR da Y=1; al negar Y resulta Z=0.",
+    "uid": "te-f4dfab32321a6297",
+    "topic": "Lógica booleana",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 911
+  },
+  {
+    "q": "Un conductor tiene capacidad de referencia 23 A y un único factor de corrección 0,63. ¿Cuál es su capacidad corregida?",
+    "a": [
+      "28,98 A",
+      "21,73 A",
+      "14,49 A",
+      "7,25 A"
+    ],
+    "c": 2,
+    "cat": 2,
+    "explanation": "Iz corregida=23·0,63=14,49 A.",
+    "uid": "te-cc530f491ba4e51b",
+    "topic": "Factores térmicos",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 912
+  },
+  {
+    "q": "Un transmisor lineal de 4–20 mA cubre -43 a 166 °C. ¿Qué temperatura representa 9 mA?",
+    "a": [
+      "44,62 °C",
+      "11,16 °C",
+      "33,47 °C",
+      "22,31 °C"
+    ],
+    "c": 3,
+    "cat": 3,
+    "explanation": "T=Tmin+(I−4)·(Tmax−Tmin)/16=-43+(9−4)·209/16=22,31 °C.",
+    "uid": "te-fc7b71fbdda8b24c",
+    "topic": "Temperatura",
+    "kind": "cálculo",
+    "source": "https://www.fluke.com/en-us/learn/blog/calibration/what-is-a-4-20-ma-current-loop",
+    "bankVersion": "2026-10-01-v2",
+    "id": 913
+  },
+  {
+    "q": "El campo giratorio de un motor va a 1500 r/min y su rotor a 1315 r/min. ¿Qué deslizamiento porcentual tiene?",
+    "a": [
+      "24,67 %",
+      "12,33 %",
+      "18,5 %",
+      "6,17 %"
+    ],
+    "c": 1,
+    "cat": 4,
+    "explanation": "s=(ns−n)/ns·100=(1500−1315)/1500·100=12,33 %.",
+    "uid": "te-1bfd2553a09d7030",
+    "topic": "Deslizamiento",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 914
+  },
+  {
+    "q": "Dos resistencias ideales de 13 Ω y 26 Ω se conectan en paralelo. ¿Qué resistencia equivalente tienen?",
+    "a": [
+      "13 Ω",
+      "8,67 Ω",
+      "17,33 Ω",
+      "4,33 Ω"
+    ],
+    "c": 1,
+    "cat": 5,
+    "explanation": "Req=R₁R₂/(R₁+R₂)=13·26/(13+26)=8,67 Ω.",
+    "uid": "te-1c8ca040b1ccfe4b",
+    "topic": "Paralelo",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 915
+  },
+  {
+    "q": "Un transformador monofásico de 800 VA tiene un secundario de 60 V. ¿Cuál es su corriente secundaria asignada teórica?",
+    "a": [
+      "26,67 A",
+      "13,33 A",
+      "6,67 A",
+      "20 A"
+    ],
+    "c": 1,
+    "cat": 0,
+    "explanation": "I=S/U=800/60=13,33 A.",
+    "uid": "te-a78ad6101d2a42b5",
+    "topic": "Potencia de transformador",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 916
+  },
+  {
+    "q": "Con A=1, B=1, Y=XOR(A,B) y Z=NOT Y, ¿qué par (Y,Z) resulta?",
+    "a": [
+      "(1,0)",
+      "(1,1)",
+      "(0,1)",
+      "(0,0)"
+    ],
+    "c": 2,
+    "cat": 1,
+    "explanation": "La función XOR da Y=0; al negar Y resulta Z=1.",
+    "uid": "te-28cdeba47a946de9",
+    "topic": "Lógica booleana",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 917
+  },
+  {
+    "q": "En un cálculo teórico TT, RA=35 Ω e IΔn=60 mA. ¿Qué producto RA·IΔn resulta?",
+    "a": [
+      "1,05 V",
+      "2,1 V",
+      "4,2 V",
+      "3,15 V"
+    ],
+    "c": 1,
+    "cat": 2,
+    "explanation": "Se convierten mA a A: RA·IΔn=35·60/1000=2,1 V. Esto no certifica por sí solo la protección.",
+    "uid": "te-d30e882e2c03c552",
+    "topic": "Sistema TT",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 918
+  },
+  {
+    "q": "Un transmisor lineal 4–20 mA de 0–160 L/min está al 25 % de su rango. ¿Qué corriente debe entregar?",
+    "a": [
+      "4 mA",
+      "8 mA",
+      "16 mA",
+      "12 mA"
+    ],
+    "c": 1,
+    "cat": 3,
+    "explanation": "I=4+16·porcentaje/100=4+16·25/100=8 mA.",
+    "uid": "te-780f648f6c92f795",
+    "topic": "Escalado 4–20 mA",
+    "kind": "cálculo",
+    "source": "https://www.fluke.com/en-us/learn/blog/calibration/what-is-a-4-20-ma-current-loop",
+    "bankVersion": "2026-10-01-v2",
+    "id": 919
+  },
+  {
+    "q": "Un motor tiene velocidad síncrona 3000 r/min y deslizamiento 1,6 %. ¿A qué velocidad gira el rotor?",
+    "a": [
+      "5904 r/min",
+      "4428 r/min",
+      "1476 r/min",
+      "2952 r/min"
+    ],
+    "c": 3,
+    "cat": 4,
+    "explanation": "n=ns·(1−s)=3000·(1−1,6/100)=2952 r/min.",
+    "uid": "te-1de819f5a0a47c79",
+    "topic": "Velocidad del rotor",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 920
+  },
+  {
+    "q": "Un divisor sin carga tiene 8 Ω arriba y 13 Ω abajo, alimentado con 30 V. ¿Qué tensión aparece en la resistencia inferior?",
+    "a": [
+      "27,86 V",
+      "18,57 V",
+      "37,14 V",
+      "9,29 V"
+    ],
+    "c": 1,
+    "cat": 5,
+    "explanation": "U₂=U·R₂/(R₁+R₂)=30·13/(8+13)=18,57 V.",
+    "uid": "te-597da5dfc5d272de",
+    "topic": "Divisores",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 921
+  },
+  {
+    "q": "Una máquina entrega 725 W útiles y pierde 35 W. ¿Qué rendimiento tiene?",
+    "a": [
+      "95,39 %",
+      "190,79 %",
+      "143,09 %",
+      "47,7 %"
+    ],
+    "c": 0,
+    "cat": 0,
+    "explanation": "η=Pútil/(Pútil+Ppérdidas)·100=95,39 %.",
+    "uid": "te-47450c692bc16a59",
+    "topic": "Rendimiento",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 922
+  },
+  {
+    "q": "Con A=1, B=1, Y=NAND(A,B) y Z=NOT Y, ¿qué par (Y,Z) resulta?",
+    "a": [
+      "(1,1)",
+      "(0,1)",
+      "(0,0)",
+      "(1,0)"
+    ],
+    "c": 1,
+    "cat": 1,
+    "explanation": "La función NAND da Y=0; al negar Y resulta Z=1.",
+    "uid": "te-a7e4f70ddfcfb3c2",
+    "topic": "Lógica booleana",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 923
+  },
+  {
+    "q": "Para el ejercicio TT se fija UL=50 V y se aplica RA·IΔn ≤ UL con IΔn=60 mA. ¿Qué RA máxima teórica resulta?",
+    "a": [
+      "416,67 Ω",
+      "1250 Ω",
+      "1666,67 Ω",
+      "833,33 Ω"
+    ],
+    "c": 3,
+    "cat": 2,
+    "explanation": "RA≤UL/IΔn=50/(60/1000)=833,33 Ω. Deben cumplirse también los restantes requisitos de protección.",
+    "uid": "te-8ebb6fcfdd84d49b",
+    "topic": "Sistema TT",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 924
+  },
+  {
+    "q": "Una señal de 5,5 mA atraviesa una resistencia de medida de 130 Ω. ¿Qué tensión produce?",
+    "a": [
+      "1,07 V",
+      "1,43 V",
+      "0,71 V",
+      "0,36 V"
+    ],
+    "c": 2,
+    "cat": 3,
+    "explanation": "U=I·R=5,5/1000·130=0,71 V.",
+    "uid": "te-eda92fa0bfe32eb1",
+    "topic": "Shunt",
+    "kind": "cálculo",
+    "source": "https://www.fluke.com/en-us/learn/blog/calibration/what-is-a-4-20-ma-current-loop",
+    "bankVersion": "2026-10-01-v2",
+    "id": 925
+  },
+  {
+    "q": "Un motor entrega 2,5 kW mecánicos a 900 r/min. Usando T≈9550·P/n, ¿qué par entrega?",
+    "a": [
+      "13,26 N·m",
+      "39,79 N·m",
+      "26,53 N·m",
+      "53,06 N·m"
+    ],
+    "c": 2,
+    "cat": 4,
+    "explanation": "T≈9550·2,5/900=26,53 N·m.",
+    "uid": "te-8e7dc0f55a09befb",
+    "topic": "Par y potencia",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 926
+  },
+  {
+    "q": "Un circuito RC sencillo tiene R=1300 Ω y C=13 µF. ¿Qué constante de tiempo tiene?",
+    "a": [
+      "8,45 ms",
+      "33,8 ms",
+      "16,9 ms",
+      "25,35 ms"
+    ],
+    "c": 2,
+    "cat": 5,
+    "explanation": "τ=RC=1300·13·10⁻⁶ s=16,9 ms.",
+    "uid": "te-8492f7556a36b267",
+    "topic": "Transitorios RC",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 927
+  },
+  {
+    "q": "Un devanado de resistencia 0,6 Ω conduce 5 A eficaces. ¿Qué pérdidas Joule produce?",
+    "a": [
+      "15 W",
+      "22,5 W",
+      "7,5 W",
+      "30 W"
+    ],
+    "c": 0,
+    "cat": 0,
+    "explanation": "Pcu=I²R=5²·0,6=15 W.",
+    "uid": "te-2c0aaef39735788d",
+    "topic": "Pérdidas en cobre",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 928
+  },
+  {
+    "q": "Con A=1, B=1, Y=NOR(A,B) y Z=NOT Y, ¿qué par (Y,Z) resulta?",
+    "a": [
+      "(1,0)",
+      "(0,0)",
+      "(0,1)",
+      "(1,1)"
+    ],
+    "c": 2,
+    "cat": 1,
+    "explanation": "La función NOR da Y=0; al negar Y resulta Z=1.",
+    "uid": "te-a2556739a6770e45",
+    "topic": "Lógica booleana",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 929
+  },
+  {
+    "q": "Una corriente de defecto equivale a 6 veces In de un interruptor de 9 A. ¿Qué corriente es?",
+    "a": [
+      "27 A",
+      "81 A",
+      "54 A",
+      "108 A"
+    ],
+    "c": 2,
+    "cat": 2,
+    "explanation": "I=6·9=54 A; el tiempo de disparo requiere la curva del aparato.",
+    "uid": "te-fb108831ddf3a968",
+    "topic": "Curvas de protección",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 930
+  },
+  {
+    "q": "Un patrón vale 65 V y un instrumento indica 69 V. ¿Cuál es el error absoluto con signo, lectura menos patrón?",
+    "a": [
+      "8 V",
+      "2 V",
+      "6 V",
+      "4 V"
+    ],
+    "c": 3,
+    "cat": 3,
+    "explanation": "Error=69−65=4 V.",
+    "uid": "te-b8c03a6b8a874b59",
+    "topic": "Errores de medida",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 931
+  },
+  {
+    "q": "Un eje desarrolla 16 N·m a 1020 r/min. ¿Qué potencia mecánica entrega?",
+    "a": [
+      "1,71 kW",
+      "3,42 kW",
+      "0,85 kW",
+      "2,56 kW"
+    ],
+    "c": 0,
+    "cat": 4,
+    "explanation": "P=T·2πn/60=16·2π·1020/60=1,71 kW.",
+    "uid": "te-bf2fd9bac3db2569",
+    "topic": "Potencia mecánica",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 932
+  },
+  {
+    "q": "Un circuito RL sencillo tiene L=16 mH y R=8 Ω. ¿Qué constante de tiempo tiene?",
+    "a": [
+      "3 ms",
+      "2 ms",
+      "1 ms",
+      "4 ms"
+    ],
+    "c": 1,
+    "cat": 5,
+    "explanation": "τ=L/R=16/8=2 ms.",
+    "uid": "te-af3b0acc832fabe9",
+    "topic": "Transitorios RL",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 933
+  },
+  {
+    "q": "Un alternador síncrono tiene 8 polos y gira a 780 r/min. ¿Qué frecuencia genera?",
+    "a": [
+      "26 Hz",
+      "78 Hz",
+      "52 Hz",
+      "104 Hz"
+    ],
+    "c": 2,
+    "cat": 0,
+    "explanation": "f=p·n/120=8·780/120=52 Hz.",
+    "uid": "te-8be60bae64ad41a6",
+    "topic": "Alternadores",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 934
+  },
+  {
+    "q": "Con A=1, B=1, C=0, D=0, Y=(A AND B) OR (C AND D) y Z=NOT Y, ¿qué par (Y,Z) resulta?",
+    "a": [
+      "(1,1)",
+      "(1,0)",
+      "(0,0)",
+      "(0,1)"
+    ],
+    "c": 1,
+    "cat": 1,
+    "explanation": "La función (A AND B) OR (C AND D) da Y=1; al negar Y resulta Z=0.",
+    "uid": "te-b52fa39582d499cc",
+    "topic": "Lógica booleana",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 935
+  },
+  {
+    "q": "Un receptor monofásico puramente resistivo de 1300 W a 230 V requiere calcular Ib. ¿Qué corriente de diseño resulta?",
+    "a": [
+      "5,65 A",
+      "11,3 A",
+      "8,48 A",
+      "2,83 A"
+    ],
+    "c": 0,
+    "cat": 2,
+    "explanation": "Ib=P/U=1300/230=5,65 A. La selección de protección requiere otras comprobaciones.",
+    "uid": "te-f2dcaf82ad37d065",
+    "topic": "Corriente de diseño",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 936
+  },
+  {
+    "q": "Un instrumento indica 135 Ω ante un patrón de 130 Ω. ¿Cuál es el error relativo porcentual con signo?",
+    "a": [
+      "1,92 %",
+      "7,69 %",
+      "5,77 %",
+      "3,85 %"
+    ],
+    "c": 3,
+    "cat": 3,
+    "explanation": "Error relativo=(lectura−patrón)/patrón·100=5/130·100=3,85 %.",
+    "uid": "te-eb67f56b48947e5b",
+    "topic": "Errores de medida",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 937
+  },
+  {
+    "q": "Un motor trifásico equilibrado entrega 3,5 kW a 400 V, con η=81,5 % y cos φ=0,77. ¿Qué corriente de línea teórica absorbe?",
+    "a": [
+      "4,05 A",
+      "8,1 A",
+      "16,21 A",
+      "12,15 A"
+    ],
+    "c": 1,
+    "cat": 4,
+    "explanation": "I=Pútil/(√3·U·η·cos φ)=8,1 A, incluyendo rendimiento y factor de potencia.",
+    "uid": "te-bd2781fb4ce7a2a7",
+    "topic": "Corriente de motor",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 938
+  },
+  {
+    "q": "Un condensador ideal de 25 µF está cargado a 15 V. ¿Qué energía almacena?",
+    "a": [
+      "2,81 mJ",
+      "5,62 mJ",
+      "1,41 mJ",
+      "4,22 mJ"
+    ],
+    "c": 0,
+    "cat": 5,
+    "explanation": "E=½CU²=0,5·25·10⁻⁶·15² J=2,81 mJ.",
+    "uid": "te-23d706a8cbdf932e",
+    "topic": "Energía de condensador",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 939
+  },
+  {
+    "q": "¿A qué velocidad debe girar un alternador de 8 polos para generar 36 Hz?",
+    "a": [
+      "1080 r/min",
+      "810 r/min",
+      "540 r/min",
+      "270 r/min"
+    ],
+    "c": 2,
+    "cat": 0,
+    "explanation": "n=120f/p=120·36/8=540 r/min.",
+    "uid": "te-ab72a21d5cb77cf2",
+    "topic": "Velocidad síncrona",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 940
+  },
+  {
+    "q": "Un contador inicia en 5, recibe 8 impulsos de incremento y 4 de decremento, sin reset. ¿Qué valor final muestra?",
+    "a": [
+      "4,5 cuentas",
+      "9 cuentas",
+      "18 cuentas",
+      "13,5 cuentas"
+    ],
+    "c": 1,
+    "cat": 1,
+    "explanation": "Valor final=5+8−4=9.",
+    "uid": "te-8b5b6640a2c5a82d",
+    "topic": "Contadores",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 941
+  },
+  {
+    "q": "En un modelo simplificado de bucle resistivo, U₀=230 V y Zs=0,25 Ω. ¿Qué corriente de defecto estima I=U₀/Zs?",
+    "a": [
+      "920 A",
+      "1380 A",
+      "460 A",
+      "1840 A"
+    ],
+    "c": 0,
+    "cat": 2,
+    "explanation": "I=230/0,25=920 A. Es un modelo simplificado, no una verificación reglamentaria completa.",
+    "uid": "te-278e4aef43d22afd",
+    "topic": "Bucle de defecto",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 942
+  },
+  {
+    "q": "Una señal ocupa 5 divisiones verticales en un osciloscopio ajustado a 0,8 V/div, con factor de sonda ya incluido. ¿Qué tensión representa?",
+    "a": [
+      "8 V",
+      "6 V",
+      "2 V",
+      "4 V"
+    ],
+    "c": 3,
+    "cat": 3,
+    "explanation": "U=divisiones·escala=5·0,8=4 V.",
+    "uid": "te-c3e237b026824e43",
+    "topic": "Osciloscopios",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 943
+  },
+  {
+    "q": "Un motor asíncrono recibe 36 Hz y tiene deslizamiento 1,6 %. ¿Qué frecuencia eléctrica tienen las corrientes del rotor?",
+    "a": [
+      "0,86 Hz",
+      "0,58 Hz",
+      "0,29 Hz",
+      "1,15 Hz"
+    ],
+    "c": 1,
+    "cat": 4,
+    "explanation": "frotor=s·f=0,02·36=0,58 Hz.",
+    "uid": "te-a7716e2ce49383a7",
+    "topic": "Frecuencia del rotor",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 944
+  },
+  {
+    "q": "Una inductancia ideal de 16 mH conduce 5 A. ¿Qué energía magnética almacena?",
+    "a": [
+      "300 mJ",
+      "200 mJ",
+      "400 mJ",
+      "100 mJ"
+    ],
+    "c": 1,
+    "cat": 5,
+    "explanation": "E=½LI²=0,5·16·5²=200 mJ.",
+    "uid": "te-940be6f1172c2ac7",
+    "topic": "Energía de inductancia",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 945
+  },
+  {
+    "q": "Un TC ideal de 175/5 A da una lectura secundaria de 1,1 A. ¿Qué corriente primaria representa?",
+    "a": [
+      "19,25 A",
+      "77 A",
+      "38,5 A",
+      "57,75 A"
+    ],
+    "c": 2,
+    "cat": 0,
+    "explanation": "Iprim=Isec·relación=1,1·175/5=38,5 A.",
+    "uid": "te-d136f93b9956bcae",
+    "topic": "Transformadores de medida",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 946
+  },
+  {
+    "q": "Un caudalímetro entrega 13 impulsos por litro. Se cuentan 160 impulsos. ¿Qué volumen se calcula?",
+    "a": [
+      "18,46 L",
+      "6,15 L",
+      "24,62 L",
+      "12,31 L"
+    ],
+    "c": 3,
+    "cat": 1,
+    "explanation": "Volumen=impulsos/(impulsos por litro)=160/13=12,31 L.",
+    "uid": "te-d2846bff091f46ba",
+    "topic": "Contadores",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 947
+  },
+  {
+    "q": "Una corriente constante de cortocircuito de 175 A dura 0,05 s. ¿Qué integral Joule I²t produce en ese modelo?",
+    "a": [
+      "765,62 A²·s",
+      "1531,25 A²·s",
+      "3062,5 A²·s",
+      "2296,88 A²·s"
+    ],
+    "c": 1,
+    "cat": 2,
+    "explanation": "I²t=175²·0,05=1531,25 A²·s.",
+    "uid": "te-3833c75dcb3e960c",
+    "topic": "Energía de defecto",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 948
+  },
+  {
+    "q": "El período medido de una señal periódica es 3,2 ms. ¿Qué frecuencia tiene?",
+    "a": [
+      "625 Hz",
+      "468,75 Hz",
+      "156,25 Hz",
+      "312,5 Hz"
+    ],
+    "c": 3,
+    "cat": 3,
+    "explanation": "f=1/T=1000/3,2=312,5 Hz.",
+    "uid": "te-4c52deabe0a35cfe",
+    "topic": "Frecuencia",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 949
+  },
+  {
+    "q": "En el modelo de arranque estrella-triángulo a igual tensión de línea, la corriente de arranque directo en triángulo sería 18 A. ¿Qué corriente de línea aproximada corresponde en estrella?",
+    "a": [
+      "6 A",
+      "12 A",
+      "3 A",
+      "9 A"
+    ],
+    "c": 0,
+    "cat": 4,
+    "explanation": "Iestrella≈Itriángulo/3=18/3=6 A, para el mismo motor y tensión.",
+    "uid": "te-dc1395c8891a0945",
+    "topic": "Estrella-triángulo",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 950
+  },
+  {
+    "q": "Una inductancia ideal de 16 mH trabaja a 65 Hz. ¿Qué reactancia inductiva presenta?",
+    "a": [
+      "13,07 Ω",
+      "6,53 Ω",
+      "9,8 Ω",
+      "3,27 Ω"
+    ],
+    "c": 1,
+    "cat": 5,
+    "explanation": "XL=2πfL=2π·65·16/1000=6,53 Ω.",
+    "uid": "te-40dd8c809d0e7cb7",
+    "topic": "Reactancia inductiva",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 951
+  },
+  {
+    "q": "Un transformador trifásico equilibrado de 13000 VA tiene tensión entre fases de 400 V. ¿Qué corriente de línea nominal resulta?",
+    "a": [
+      "9,38 A",
+      "18,76 A",
+      "28,15 A",
+      "37,53 A"
+    ],
+    "c": 1,
+    "cat": 0,
+    "explanation": "I=S/(√3·U)=13000/(√3·400)=18,76 A.",
+    "uid": "te-ed4ebb79e154ff63",
+    "topic": "Transformador trifásico",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 952
+  },
+  {
+    "q": "Un TON ajustado a 3,5 s lleva 1,75 s con entrada activa continua. ¿Cuánto falta para activar la salida?",
+    "a": [
+      "1,75 s",
+      "3,5 s",
+      "0,88 s",
+      "2,62 s"
+    ],
+    "c": 0,
+    "cat": 1,
+    "explanation": "Tiempo restante=ajuste−transcurrido=3,5−1,75=1,75 s.",
+    "uid": "te-05aaf845b38bbeed",
+    "topic": "Temporización",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 953
+  },
+  {
+    "q": "En un ejercicio adiabático, I=1300 A, t=0,08 s y k=115 A·√s/mm². ¿Qué sección mínima matemática da S=I√t/k?",
+    "a": [
+      "1,6 mm²",
+      "6,39 mm²",
+      "4,8 mm²",
+      "3,2 mm²"
+    ],
+    "c": 3,
+    "cat": 2,
+    "explanation": "S=1300·√0,08/115=3,2 mm²; se requiere una sección normalizada y verificar las demás condiciones.",
+    "uid": "te-635ec274ff2da4d7",
+    "topic": "Criterio adiabático",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 954
+  },
+  {
+    "q": "Una senoide sin componente continua tiene un pico de 16 V. ¿Cuál es su valor eficaz?",
+    "a": [
+      "22,63 V",
+      "11,31 V",
+      "16,97 V",
+      "5,66 V"
+    ],
+    "c": 1,
+    "cat": 3,
+    "explanation": "Uef=Upico/√2=16/√2=11,31 V.",
+    "uid": "te-01af796029748418",
+    "topic": "Valor eficaz",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 955
+  },
+  {
+    "q": "Una bomba centrífuga mantiene geometría y fluido. Según las leyes de afinidad, si su velocidad pasa de 1060 a 561,8 r/min y antes daba 13 m³/h, ¿qué caudal ideal se estima?",
+    "a": [
+      "10,34 m³/h",
+      "3,45 m³/h",
+      "6,89 m³/h",
+      "13,78 m³/h"
+    ],
+    "c": 2,
+    "cat": 4,
+    "explanation": "Q₂/Q₁=n₂/n₁=0,53; Q₂=13·0,53=6,89 m³/h.",
+    "uid": "te-6c87fed961e038c7",
+    "topic": "Bombas",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 956
+  },
+  {
+    "q": "Un condensador ideal de 16 µF trabaja a 65 Hz. ¿Qué magnitud de reactancia capacitiva tiene?",
+    "a": [
+      "306,07 Ω",
+      "229,55 Ω",
+      "76,52 Ω",
+      "153,03 Ω"
+    ],
+    "c": 3,
+    "cat": 5,
+    "explanation": "XC=1/(2πfC)=153,03 Ω.",
+    "uid": "te-1c52830568779701",
+    "topic": "Reactancia capacitiva",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 957
+  },
+  {
+    "q": "Un transformador da 246 V en vacío y 240 V con una carga definida. Tomando como base la tensión con carga, ¿qué regulación porcentual resulta?",
+    "a": [
+      "3,75 %",
+      "1,25 %",
+      "2,5 %",
+      "5 %"
+    ],
+    "c": 2,
+    "cat": 0,
+    "explanation": "Regulación=(Uvacío−Ucarga)/Ucarga·100=2,5 %.",
+    "uid": "te-3d327315ecaf7cec",
+    "topic": "Regulación",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 958
+  },
+  {
+    "q": "Una entrada analógica se escala linealmente: 0 cuentas=0 bar y 1000 cuentas=43 bar. ¿Qué presión corresponde a 175 cuentas?",
+    "a": [
+      "3,76 bar",
+      "15,05 bar",
+      "7,53 bar",
+      "11,29 bar"
+    ],
+    "c": 2,
+    "cat": 1,
+    "explanation": "p=cuentas·rango/1000=175·43/1000=7,53 bar.",
+    "uid": "te-0d80bb9f180ddc8f",
+    "topic": "Escalado",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 959
+  },
+  {
+    "q": "En un modelo resistivo de aislamiento, una tensión de ensayo de 500 V se aplica a 2,5 MΩ. ¿Qué corriente ideal en µA resulta?",
+    "a": [
+      "400 µA",
+      "200 µA",
+      "100 µA",
+      "300 µA"
+    ],
+    "c": 1,
+    "cat": 2,
+    "explanation": "I=U/R; V/MΩ equivale a µA: 500/2,5=200 µA.",
+    "uid": "te-da80e3901fbe2e86",
+    "topic": "Aislamiento",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 960
+  },
+  {
+    "q": "Una senoide sin componente continua mide 29 V eficaces. ¿Qué valor pico a pico tiene?",
+    "a": [
+      "41,01 V",
+      "82,02 V",
+      "123,04 V",
+      "164,05 V"
+    ],
+    "c": 1,
+    "cat": 3,
+    "explanation": "Upp=2√2·Uef=2√2·29=82,02 V.",
+    "uid": "te-951db6258a411cc6",
+    "topic": "Pico a pico",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 961
+  },
+  {
+    "q": "Una bomba centrífuga reduce la velocidad al 54,5 % de la inicial. Con altura inicial 23 m y leyes de afinidad ideales, ¿qué altura nueva se estima?",
+    "a": [
+      "6,83 m",
+      "3,42 m",
+      "13,66 m",
+      "10,25 m"
+    ],
+    "c": 0,
+    "cat": 4,
+    "explanation": "H₂=H₁·(n₂/n₁)²=23·0,55²=6,83 m.",
+    "uid": "te-ae8399f8f1d53db7",
+    "topic": "Bombas",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 962
+  },
+  {
+    "q": "Una carga serie tiene R=13 Ω y reactancia neta X=26 Ω. ¿Qué módulo de impedancia tiene?",
+    "a": [
+      "58,14 Ω",
+      "43,6 Ω",
+      "29,07 Ω",
+      "14,53 Ω"
+    ],
+    "c": 2,
+    "cat": 5,
+    "explanation": "|Z|=√(R²+X²)=√(13²+26²)=29,07 Ω.",
+    "uid": "te-5bfb8424ee326216",
+    "topic": "Impedancia",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 963
+  },
+  {
+    "q": "El grupo vectorial de un transformador tiene índice horario 4. ¿Qué desplazamiento angular representa ese índice?",
+    "a": [
+      "180 °",
+      "120 °",
+      "240 °",
+      "60 °"
+    ],
+    "c": 1,
+    "cat": 0,
+    "explanation": "Cada hora de la notación corresponde a 30°: 4·30=120°.",
+    "uid": "te-27aab95624c286cf",
+    "topic": "Grupos vectoriales",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 964
+  },
+  {
+    "q": "Un ciclo de ejecución tarda 8 ms. Sin interrupciones ni sobrecarga, ¿cuántos ciclos completos por segundo representa?",
+    "a": [
+      "125 ciclos/s",
+      "250 ciclos/s",
+      "187,5 ciclos/s",
+      "62,5 ciclos/s"
+    ],
+    "c": 0,
+    "cat": 1,
+    "explanation": "f=1000/Tms=1000/8=125 ciclos/s.",
+    "uid": "te-cad91d6647f257da",
+    "topic": "Tiempo de ciclo",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 965
+  },
+  {
+    "q": "La capacidad de referencia de un cable es 36 A. Se aplican factores independientes 0,8 y 0,73. ¿Qué capacidad corregida resulta?",
+    "a": [
+      "10,51 A",
+      "42,05 A",
+      "31,54 A",
+      "21,02 A"
+    ],
+    "c": 3,
+    "cat": 2,
+    "explanation": "Iz=36·0,8·0,73=21,02 A.",
+    "uid": "te-6a5e8c4be51d1da9",
+    "topic": "Factores térmicos",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 966
+  },
+  {
+    "q": "Un voltímetro tiene límite de error ±(0,8 % de lectura + 2 dígitos), resolución 0,1 V y lectura 130 V. ¿Qué límite absoluto se calcula?",
+    "a": [
+      "1,24 V",
+      "2,48 V",
+      "1,86 V",
+      "0,62 V"
+    ],
+    "c": 0,
+    "cat": 3,
+    "explanation": "Error límite=130·0,8/100+2·0,1=1,24 V.",
+    "uid": "te-ad84ffdac229bb15",
+    "topic": "Especificaciones",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 967
+  },
+  {
+    "q": "Una bomba centrífuga consumía 6,5 kW. Si gira al 54,5 % de su velocidad inicial, ¿qué potencia predicen las leyes de afinidad ideales?",
+    "a": [
+      "1,58 kW",
+      "0,53 kW",
+      "2,1 kW",
+      "1,05 kW"
+    ],
+    "c": 3,
+    "cat": 4,
+    "explanation": "P₂=P₁·(n₂/n₁)³=6,5·0,55³=1,05 kW.",
+    "uid": "te-600f18228cc7c9ae",
+    "topic": "Bombas",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 968
+  },
+  {
+    "q": "Una carga senoidal absorbe P=1300 W y Q=650 var. ¿Qué potencia aparente resulta?",
+    "a": [
+      "2906,89 VA",
+      "726,72 VA",
+      "1453,44 VA",
+      "2180,17 VA"
+    ],
+    "c": 2,
+    "cat": 5,
+    "explanation": "S=√(P²+Q²)=√(1300²+650²)=1453,44 VA.",
+    "uid": "te-f3a44d8999a3cda6",
+    "topic": "Triángulo de potencia",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 969
+  },
+  {
+    "q": "Para flujo senoidal, un devanado tiene 275 espiras y flujo máximo 5 mWb a 50 Hz. ¿Qué tensión eficaz inducida predice E=4,44·f·N·Φ?",
+    "a": [
+      "610,5 V",
+      "152,63 V",
+      "305,25 V",
+      "457,88 V"
+    ],
+    "c": 2,
+    "cat": 0,
+    "explanation": "E=4,44·50·275·5/1000=305,25 V.",
+    "uid": "te-e768b9b9f8e837f6",
+    "topic": "Inducción",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 970
+  },
+  {
+    "q": "Un grupo de 5 bombas disponibles alterna estrictamente en cada arranque, empezando por B1. ¿Qué bomba recibe el arranque número 11?",
+    "a": [
+      "1,5 (número de bomba)",
+      "0,5 (número de bomba)",
+      "2 (número de bomba)",
+      "1 (número de bomba)"
+    ],
+    "c": 3,
+    "cat": 1,
+    "explanation": "Posición=1+((11−1) módulo 5)=1.",
+    "uid": "te-9b6e81d3e2a092f9",
+    "topic": "Alternancia",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 971
+  },
+  {
+    "q": "La corriente de cortocircuito prevista es 4,9 kA. ¿Qué poder de corte de los propuestos es suficiente por comparación directa?",
+    "a": [
+      "4,4 kA",
+      "4,8 kA",
+      "5,4 kA",
+      "3,9 kA"
+    ],
+    "c": 2,
+    "cat": 2,
+    "explanation": "Se necesita un poder de corte no inferior a 4,9 kA; el único propuesto que lo supera es 5,4 kA.",
+    "uid": "te-7bfa2d7194822dff",
+    "topic": "Poder de corte",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 972
+  },
+  {
+    "q": "Un contador registra 115 kWh durante 5 h. ¿Qué potencia activa media representa?",
+    "a": [
+      "23 kW",
+      "34,5 kW",
+      "11,5 kW",
+      "46 kW"
+    ],
+    "c": 0,
+    "cat": 3,
+    "explanation": "Pmedia=E/t=115/5=23 kW.",
+    "uid": "te-868e3e3b9fae22ee",
+    "topic": "Contadores de energía",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 973
+  },
+  {
+    "q": "Un motor gira a 1150 r/min y acciona un reductor ideal de relación de reducción 5:1. ¿Qué velocidad tiene la salida?",
+    "a": [
+      "230 r/min",
+      "115 r/min",
+      "345 r/min",
+      "460 r/min"
+    ],
+    "c": 0,
+    "cat": 4,
+    "explanation": "nsalida=nentrada/relación=1150/5=230 r/min.",
+    "uid": "te-8abd52244d1dafc8",
+    "topic": "Transmisiones",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 974
+  },
+  {
+    "q": "En un nodo de CC entran 8 A y salen 5 A por una rama. Si la única rama restante es de salida, ¿qué corriente debe llevar?",
+    "a": [
+      "6 A",
+      "4,5 A",
+      "1,5 A",
+      "3 A"
+    ],
+    "c": 3,
+    "cat": 5,
+    "explanation": "Por la ley de corrientes de Kirchhoff, Irestante=8−5=3 A.",
+    "uid": "te-9bcac83aa180a3eb",
+    "topic": "Kirchhoff",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 975
+  },
+  {
+    "q": "Una máquina absorbe 1300 W y tiene rendimiento 83 %. ¿Qué potencia útil entrega?",
+    "a": [
+      "539,5 W",
+      "1079 W",
+      "2158 W",
+      "1618,5 W"
+    ],
+    "c": 1,
+    "cat": 0,
+    "explanation": "Pútil=η·Pabsorbida=0,83·1300=1079 W.",
+    "uid": "te-b977abb304f09016",
+    "topic": "Balance de potencia",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 976
+  },
+  {
+    "q": "Un TOF de 5 s tenía su salida activa y pierde la entrada en t=6 s. Si no se reactiva, ¿en qué instante se desactiva la salida?",
+    "a": [
+      "22 s",
+      "16,5 s",
+      "11 s",
+      "5,5 s"
+    ],
+    "c": 2,
+    "cat": 1,
+    "explanation": "Instante de desconexión=6+5=11 s.",
+    "uid": "te-e6503e2249764557",
+    "topic": "Temporización",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 977
+  },
+  {
+    "q": "Para estudiar un defecto se modela un conductor de protección con 0,29 Ω y una corriente de 3,2 A. ¿Qué caída resistiva aparece?",
+    "a": [
+      "0,46 V",
+      "0,93 V",
+      "1,86 V",
+      "1,39 V"
+    ],
+    "c": 1,
+    "cat": 2,
+    "explanation": "ΔU=I·R=3,2·0,29=0,93 V.",
+    "uid": "te-b4ee9e3ff25625d0",
+    "topic": "Conductores de protección",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 978
+  },
+  {
+    "q": "Una tensión medida es 223 V frente a un valor de referencia de 230 V. ¿Cuál es la desviación porcentual con signo?",
+    "a": [
+      "-4,57 %",
+      "-3,04 %",
+      "-1,52 %",
+      "-6,09 %"
+    ],
+    "c": 1,
+    "cat": 3,
+    "explanation": "Desviación=(U−Uref)/Uref·100=(223−230)/230·100=-3,04 %.",
+    "uid": "te-e7ccb3ab13061893",
+    "topic": "Tensión",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 979
+  },
+  {
+    "q": "Un reductor ideal sin pérdidas de relación 5:1 recibe 8 N·m. ¿Qué par de salida proporciona?",
+    "a": [
+      "60 N·m",
+      "80 N·m",
+      "40 N·m",
+      "20 N·m"
+    ],
+    "c": 2,
+    "cat": 4,
+    "explanation": "Tsalida=Tentrada·relación=8·5=40 N·m.",
+    "uid": "te-810a56ab885f5637",
+    "topic": "Transmisiones",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 980
+  },
+  {
+    "q": "Una carga conectada a un transformador absorbe 1300 VA con cos φ=0,66. ¿Qué potencia activa consume?",
+    "a": [
+      "858 W",
+      "1716 W",
+      "1287 W",
+      "429 W"
+    ],
+    "c": 0,
+    "cat": 0,
+    "explanation": "P=S·cos φ=1300·0,66=858 W.",
+    "uid": "te-5109c2476347d97c",
+    "topic": "Potencia aparente",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 981
+  },
+  {
+    "q": "Un contador debe acumular 130 pulsos de una señal constante de 8 Hz, desde cero. ¿Qué tiempo de acumulación ideal resulta?",
+    "a": [
+      "24,38 s",
+      "8,12 s",
+      "32,5 s",
+      "16,25 s"
+    ],
+    "c": 3,
+    "cat": 1,
+    "explanation": "t=N/f=130/8=16,25 s.",
+    "uid": "te-add99903f1e621c8",
+    "topic": "Contadores",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 982
+  },
+  {
+    "q": "5 receptores tienen cada uno una fuga senoidal en fase de 3,5 mA. En ese supuesto, ¿qué fuga total se suma?",
+    "a": [
+      "35 mA",
+      "17,5 mA",
+      "8,75 mA",
+      "26,25 mA"
+    ],
+    "c": 1,
+    "cat": 2,
+    "explanation": "Con las corrientes en fase, la suma es 5·3,5=17,5 mA.",
+    "uid": "te-193766f9d8208841",
+    "topic": "Corrientes residuales",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 983
+  },
+  {
+    "q": "Un analizador usa correctamente un TC de 175/5 A y recibe 1,3 A secundarios. ¿Qué corriente muestra en el primario?",
+    "a": [
+      "22,75 A",
+      "45,5 A",
+      "68,25 A",
+      "91 A"
+    ],
+    "c": 1,
+    "cat": 3,
+    "explanation": "Iprim=Isec·(175/5)=1,3·35=45,5 A.",
+    "uid": "te-ffa278825e7c1895",
+    "topic": "Escalado de TC",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 984
+  },
+  {
+    "q": "En un control V/f lineal ideal por debajo de frecuencia base, con base 400 V a 50 Hz y sin refuerzo de tensión, ¿qué tensión corresponde a 16 Hz?",
+    "a": [
+      "256 V",
+      "192 V",
+      "64 V",
+      "128 V"
+    ],
+    "c": 3,
+    "cat": 4,
+    "explanation": "U=Ubase·f/fbase=400·16/50=128 V.",
+    "uid": "te-4a16412a2fa768be",
+    "topic": "Control V/f",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 985
+  },
+  {
+    "q": "En un transformador ideal, N₁=575 y N₂=65. ¿Cuál es la relación U₁/U₂?",
+    "a": [
+      "8,85 ",
+      "17,69 ",
+      "4,42 ",
+      "13,27 "
+    ],
+    "c": 0,
+    "cat": 0,
+    "explanation": "U₁/U₂=N₁/N₂=575/65=8,85.",
+    "uid": "te-f93f7049ad1ca4f3",
+    "topic": "Relación de espiras",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 986
+  },
+  {
+    "q": "Un control con histéresis conecta al bajar hasta 8 bar y desconecta al subir a 13 bar. ¿Qué anchura tiene su banda?",
+    "a": [
+      "5 bar",
+      "7,5 bar",
+      "2,5 bar",
+      "10 bar"
+    ],
+    "c": 0,
+    "cat": 1,
+    "explanation": "Banda=umbral superior−inferior=13−8=5 bar.",
+    "uid": "te-47b816f09bbac816",
+    "topic": "Histéresis",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 987
+  },
+  {
+    "q": "Para comparar una protección de In=13 A con una carga Ib=11 A, ¿qué cociente Ib/In se obtiene?",
+    "a": [
+      "0,42 ",
+      "0,85 ",
+      "1,27 ",
+      "1,69 "
+    ],
+    "c": 1,
+    "cat": 2,
+    "explanation": "Ib/In=11/13=0,85. Esto no determina por sí solo el tiempo de disparo.",
+    "uid": "te-34a19ce2ec9e3ceb",
+    "topic": "Sobrecargas",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 988
+  },
+  {
+    "q": "Un conversor ideal de 12 bits se escala de código 0=0 V a código 4095=10 V. ¿Qué tensión representa el código 896?",
+    "a": [
+      "2,19 V",
+      "3,28 V",
+      "1,09 V",
+      "4,38 V"
+    ],
+    "c": 0,
+    "cat": 3,
+    "explanation": "U=código·10/4095=896·10/4095=2,19 V.",
+    "uid": "te-3bbeebd766b9a92e",
+    "topic": "Conversión analógica",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 989
+  },
+  {
+    "q": "Un variador hace una rampa lineal de 8 a 43 Hz en 8 s. ¿Cuál es su pendiente?",
+    "a": [
+      "8,75 Hz/s",
+      "2,19 Hz/s",
+      "6,56 Hz/s",
+      "4,38 Hz/s"
+    ],
+    "c": 3,
+    "cat": 4,
+    "explanation": "Pendiente=(ffinal−finicial)/t=(43−8)/8=4,38 Hz/s.",
+    "uid": "te-c4f4bff9cf138c4a",
+    "topic": "Rampas",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 990
+  },
+  {
+    "q": "Las pérdidas constantes en vacío de un transformador son 16 W. Si permanece energizado 6 h sin carga, ¿qué energía consume?",
+    "a": [
+      "0,19 kWh",
+      "0,14 kWh",
+      "0,1 kWh",
+      "0,05 kWh"
+    ],
+    "c": 2,
+    "cat": 0,
+    "explanation": "E=P·t/1000=16·6/1000=0,1 kWh.",
+    "uid": "te-afc462bf8e122d87",
+    "topic": "Energía en vacío",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 991
+  },
+  {
+    "q": "Un temporizador usa una base de 13 ms por cuenta. ¿Cuántas cuentas representan 35 s?",
+    "a": [
+      "2692,31 cuentas",
+      "5384,62 cuentas",
+      "1346,15 cuentas",
+      "4038,46 cuentas"
+    ],
+    "c": 0,
+    "cat": 1,
+    "explanation": "N=t/base=35·1000/13=2692,31 cuentas.",
+    "uid": "te-1dffab9f64596abb",
+    "topic": "Base de tiempo",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 992
+  },
+  {
+    "q": "Un contacto deteriorado tiene 0,8 Ω y conduce 13 A. ¿Qué potencia térmica se calcula en ese contacto?",
+    "a": [
+      "270,4 W",
+      "202,8 W",
+      "67,6 W",
+      "135,2 W"
+    ],
+    "c": 3,
+    "cat": 2,
+    "explanation": "P=I²R=13²·0,8=135,2 W.",
+    "uid": "te-200cd9cc7dcd9fcb",
+    "topic": "Calentamientos",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 993
+  },
+  {
+    "q": "Dos senoides de igual período 8 ms tienen una separación temporal de 1 ms. ¿Qué magnitud de desfase corresponde?",
+    "a": [
+      "67,5 °",
+      "45 °",
+      "90 °",
+      "22,5 °"
+    ],
+    "c": 1,
+    "cat": 3,
+    "explanation": "φ=360·Δt/T=360·1/8=45°.",
+    "uid": "te-f7b857b0b54d70b2",
+    "topic": "Desfase",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 994
+  },
+  {
+    "q": "Un motor consume una potencia eléctrica constante de 2,75 kW durante 5 h. ¿Qué energía activa utiliza?",
+    "a": [
+      "6,88 kWh",
+      "13,75 kWh",
+      "20,62 kWh",
+      "27,5 kWh"
+    ],
+    "c": 1,
+    "cat": 4,
+    "explanation": "E=P·t=2,75·5=13,75 kWh.",
+    "uid": "te-097f4a6acdc4a6f4",
+    "topic": "Energía de motor",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 995
+  },
+  {
+    "q": "Transformador ideal: N₁=280 espiras, N₂=80 y U₁=230 V. ¿Cuál es U₂?",
+    "a": [
+      "65,71 V",
+      "98,57 V",
+      "131,43 V",
+      "32,86 V"
+    ],
+    "c": 0,
+    "cat": 0,
+    "explanation": "U₂=U₁·N₂/N₁=230·80/280=65,71 V.",
+    "uid": "te-0407b7dc68fdae90",
+    "topic": "Relación de transformación",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 996
+  },
+  {
+    "q": "En un ejercicio de coordinación se exige Ib ≤ In ≤ Iz. Si Ib=9 A e Iz=15 A, ¿qué calibre de los propuestos cumple esa desigualdad?",
+    "a": [
+      "8 A",
+      "10 A",
+      "20 A",
+      "16 A"
+    ],
+    "c": 1,
+    "cat": 2,
+    "explanation": "Debe estar entre 9 y 15 A, ambos incluidos; 10 A es el único propuesto que lo cumple. Faltan otras verificaciones para una instalación real.",
+    "uid": "te-384604c1aeb9bbbb",
+    "topic": "Coordinación",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 997
+  },
+  {
+    "q": "Un transmisor lineal de 4–20 mA cubre 0–30 bar. ¿Qué presión representa una señal de 9 mA?",
+    "a": [
+      "18,75 bar",
+      "4,69 bar",
+      "9,38 bar",
+      "14,06 bar"
+    ],
+    "c": 2,
+    "cat": 3,
+    "explanation": "p=(I−4)·rango/16=(9−4)·30/16=9,38 bar.",
+    "uid": "te-76ac0510cb8a9500",
+    "topic": "Escalado 4–20 mA",
+    "kind": "cálculo",
+    "source": "https://www.fluke.com/en-us/learn/blog/calibration/what-is-a-4-20-ma-current-loop",
+    "bankVersion": "2026-10-01-v2",
+    "id": 998
+  },
+  {
+    "q": "Un motor asíncrono de 10 polos se alimenta a 28 Hz. ¿Cuál es la velocidad síncrona de su campo?",
+    "a": [
+      "504 r/min",
+      "336 r/min",
+      "168 r/min",
+      "672 r/min"
+    ],
+    "c": 1,
+    "cat": 4,
+    "explanation": "ns=120f/p=120·28/10=336 r/min.",
+    "uid": "te-a8ddae1e4211f6aa",
+    "topic": "Velocidad síncrona",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 999
+  },
+  {
+    "q": "Un transformador ideal de 400/48 V suministra 6 A en el secundario. ¿Qué corriente absorbe el primario?",
+    "a": [
+      "0,72 A",
+      "0,36 A",
+      "1,08 A",
+      "1,44 A"
+    ],
+    "c": 0,
+    "cat": 0,
+    "explanation": "En el modelo ideal U₁I₁=U₂I₂; I₁=48·6/400=0,72 A.",
+    "uid": "te-4846dbe81841ae44",
+    "topic": "Corriente de transformador",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1000
+  },
+  {
+    "q": "Un conductor tiene capacidad de referencia 24 A y un único factor de corrección 0,64. ¿Cuál es su capacidad corregida?",
+    "a": [
+      "23,04 A",
+      "7,68 A",
+      "30,72 A",
+      "15,36 A"
+    ],
+    "c": 3,
+    "cat": 2,
+    "explanation": "Iz corregida=24·0,64=15,36 A.",
+    "uid": "te-84bf8ce3a92bc233",
+    "topic": "Factores térmicos",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1001
+  },
+  {
+    "q": "Un transmisor lineal de 4–20 mA cubre -44 a 168 °C. ¿Qué temperatura representa 10 mA?",
+    "a": [
+      "35,5 °C",
+      "17,75 °C",
+      "71 °C",
+      "53,25 °C"
+    ],
+    "c": 0,
+    "cat": 3,
+    "explanation": "T=Tmin+(I−4)·(Tmax−Tmin)/16=-44+(10−4)·212/16=35,5 °C.",
+    "uid": "te-efe90a482b20fe52",
+    "topic": "Temperatura",
+    "kind": "cálculo",
+    "source": "https://www.fluke.com/en-us/learn/blog/calibration/what-is-a-4-20-ma-current-loop",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1002
+  },
+  {
+    "q": "El campo giratorio de un motor va a 1500 r/min y su rotor a 1320 r/min. ¿Qué deslizamiento porcentual tiene?",
+    "a": [
+      "18 %",
+      "12 %",
+      "24 %",
+      "6 %"
+    ],
+    "c": 1,
+    "cat": 4,
+    "explanation": "s=(ns−n)/ns·100=(1500−1320)/1500·100=12 %.",
+    "uid": "te-8e4032a8c5759903",
+    "topic": "Deslizamiento",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1003
+  },
+  {
+    "q": "Un transformador monofásico de 900 VA tiene un secundario de 72 V. ¿Cuál es su corriente secundaria asignada teórica?",
+    "a": [
+      "25 A",
+      "12,5 A",
+      "6,25 A",
+      "18,75 A"
+    ],
+    "c": 1,
+    "cat": 0,
+    "explanation": "I=S/U=900/72=12,5 A.",
+    "uid": "te-082ac939715515b5",
+    "topic": "Potencia de transformador",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1004
+  },
+  {
+    "q": "En un cálculo teórico TT, RA=40 Ω e IΔn=70 mA. ¿Qué producto RA·IΔn resulta?",
+    "a": [
+      "1,4 V",
+      "4,2 V",
+      "5,6 V",
+      "2,8 V"
+    ],
+    "c": 3,
+    "cat": 2,
+    "explanation": "Se convierten mA a A: RA·IΔn=40·70/1000=2,8 V. Esto no certifica por sí solo la protección.",
+    "uid": "te-e66c2f5660eeb03c",
+    "topic": "Sistema TT",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1005
+  },
+  {
+    "q": "Un transmisor lineal 4–20 mA de 0–180 L/min está al 30 % de su rango. ¿Qué corriente debe entregar?",
+    "a": [
+      "4,4 mA",
+      "13,2 mA",
+      "8,8 mA",
+      "17,6 mA"
+    ],
+    "c": 2,
+    "cat": 3,
+    "explanation": "I=4+16·porcentaje/100=4+16·30/100=8,8 mA.",
+    "uid": "te-23c40ecd87f88cfc",
+    "topic": "Escalado 4–20 mA",
+    "kind": "cálculo",
+    "source": "https://www.fluke.com/en-us/learn/blog/calibration/what-is-a-4-20-ma-current-loop",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1006
+  },
+  {
+    "q": "Un motor tiene velocidad síncrona 3000 r/min y deslizamiento 1,8 %. ¿A qué velocidad gira el rotor?",
+    "a": [
+      "1473 r/min",
+      "4419 r/min",
+      "5892 r/min",
+      "2946 r/min"
+    ],
+    "c": 3,
+    "cat": 4,
+    "explanation": "n=ns·(1−s)=3000·(1−1,8/100)=2946 r/min.",
+    "uid": "te-490192d2b620cb39",
+    "topic": "Velocidad del rotor",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1007
+  },
+  {
+    "q": "Una máquina entrega 800 W útiles y pierde 40 W. ¿Qué rendimiento tiene?",
+    "a": [
+      "142,86 %",
+      "47,62 %",
+      "95,24 %",
+      "190,48 %"
+    ],
+    "c": 2,
+    "cat": 0,
+    "explanation": "η=Pútil/(Pútil+Ppérdidas)·100=95,24 %.",
+    "uid": "te-7f638087c548bc7c",
+    "topic": "Rendimiento",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1008
+  },
+  {
+    "q": "Para el ejercicio TT se fija UL=50 V y se aplica RA·IΔn ≤ UL con IΔn=70 mA. ¿Qué RA máxima teórica resulta?",
+    "a": [
+      "714,29 Ω",
+      "1071,43 Ω",
+      "357,14 Ω",
+      "1428,57 Ω"
+    ],
+    "c": 0,
+    "cat": 2,
+    "explanation": "RA≤UL/IΔn=50/(70/1000)=714,29 Ω. Deben cumplirse también los restantes requisitos de protección.",
+    "uid": "te-610bd6699db113b4",
+    "topic": "Sistema TT",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1009
+  },
+  {
+    "q": "Una señal de 6 mA atraviesa una resistencia de medida de 140 Ω. ¿Qué tensión produce?",
+    "a": [
+      "0,84 V",
+      "0,42 V",
+      "1,68 V",
+      "1,26 V"
+    ],
+    "c": 0,
+    "cat": 3,
+    "explanation": "U=I·R=6/1000·140=0,84 V.",
+    "uid": "te-ce4c855db0e990cc",
+    "topic": "Shunt",
+    "kind": "cálculo",
+    "source": "https://www.fluke.com/en-us/learn/blog/calibration/what-is-a-4-20-ma-current-loop",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1010
+  },
+  {
+    "q": "Un motor entrega 3 kW mecánicos a 950 r/min. Usando T≈9550·P/n, ¿qué par entrega?",
+    "a": [
+      "15,08 N·m",
+      "60,32 N·m",
+      "45,24 N·m",
+      "30,16 N·m"
+    ],
+    "c": 3,
+    "cat": 4,
+    "explanation": "T≈9550·3/950=30,16 N·m.",
+    "uid": "te-a69a31f909ee11bc",
+    "topic": "Par y potencia",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1011
+  },
+  {
+    "q": "Un devanado de resistencia 0,7 Ω conduce 6 A eficaces. ¿Qué pérdidas Joule produce?",
+    "a": [
+      "50,4 W",
+      "25,2 W",
+      "12,6 W",
+      "37,8 W"
+    ],
+    "c": 1,
+    "cat": 0,
+    "explanation": "Pcu=I²R=6²·0,7=25,2 W.",
+    "uid": "te-f8f2af2ebd17713e",
+    "topic": "Pérdidas en cobre",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1012
+  },
+  {
+    "q": "Una corriente de defecto equivale a 7 veces In de un interruptor de 10 A. ¿Qué corriente es?",
+    "a": [
+      "140 A",
+      "35 A",
+      "105 A",
+      "70 A"
+    ],
+    "c": 3,
+    "cat": 2,
+    "explanation": "I=7·10=70 A; el tiempo de disparo requiere la curva del aparato.",
+    "uid": "te-f4a5ca0689122506",
+    "topic": "Curvas de protección",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1013
+  },
+  {
+    "q": "Un patrón vale 70 V y un instrumento indica 75 V. ¿Cuál es el error absoluto con signo, lectura menos patrón?",
+    "a": [
+      "7,5 V",
+      "2,5 V",
+      "10 V",
+      "5 V"
+    ],
+    "c": 3,
+    "cat": 3,
+    "explanation": "Error=75−70=5 V.",
+    "uid": "te-912e67435d699228",
+    "topic": "Errores de medida",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1014
+  },
+  {
+    "q": "Un eje desarrolla 18 N·m a 1060 r/min. ¿Qué potencia mecánica entrega?",
+    "a": [
+      "2 kW",
+      "3 kW",
+      "1 kW",
+      "4 kW"
+    ],
+    "c": 0,
+    "cat": 4,
+    "explanation": "P=T·2πn/60=18·2π·1060/60=2 kW.",
+    "uid": "te-aa35e9b43c91a043",
+    "topic": "Potencia mecánica",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1015
+  },
+  {
+    "q": "Un alternador síncrono tiene 10 polos y gira a 840 r/min. ¿Qué frecuencia genera?",
+    "a": [
+      "140 Hz",
+      "35 Hz",
+      "70 Hz",
+      "105 Hz"
+    ],
+    "c": 2,
+    "cat": 0,
+    "explanation": "f=p·n/120=10·840/120=70 Hz.",
+    "uid": "te-7bd87a8858b95fd1",
+    "topic": "Alternadores",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1016
+  },
+  {
+    "q": "Con A=0, B=0, C=1, D=0, Y=(A AND B) OR (C AND D) y Z=NOT Y, ¿qué par (Y,Z) resulta?",
+    "a": [
+      "(1,0)",
+      "(0,0)",
+      "(1,1)",
+      "(0,1)"
+    ],
+    "c": 3,
+    "cat": 1,
+    "explanation": "La función (A AND B) OR (C AND D) da Y=0; al negar Y resulta Z=1.",
+    "uid": "te-00eacdc46e79d461",
+    "topic": "Lógica booleana",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1017
+  },
+  {
+    "q": "Un receptor monofásico puramente resistivo de 1400 W a 230 V requiere calcular Ib. ¿Qué corriente de diseño resulta?",
+    "a": [
+      "12,17 A",
+      "9,13 A",
+      "6,09 A",
+      "3,04 A"
+    ],
+    "c": 2,
+    "cat": 2,
+    "explanation": "Ib=P/U=1400/230=6,09 A. La selección de protección requiere otras comprobaciones.",
+    "uid": "te-bb06c766229196f5",
+    "topic": "Corriente de diseño",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1018
+  },
+  {
+    "q": "Un instrumento indica 146 Ω ante un patrón de 140 Ω. ¿Cuál es el error relativo porcentual con signo?",
+    "a": [
+      "8,57 %",
+      "2,14 %",
+      "4,29 %",
+      "6,43 %"
+    ],
+    "c": 2,
+    "cat": 3,
+    "explanation": "Error relativo=(lectura−patrón)/patrón·100=6/140·100=4,29 %.",
+    "uid": "te-3b7c1096ddb92c15",
+    "topic": "Errores de medida",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1019
+  },
+  {
+    "q": "Un motor trifásico equilibrado entrega 4 kW a 400 V, con η=82 % y cos φ=0,77. ¿Qué corriente de línea teórica absorbe?",
+    "a": [
+      "4,57 A",
+      "13,72 A",
+      "9,14 A",
+      "18,29 A"
+    ],
+    "c": 2,
+    "cat": 4,
+    "explanation": "I=Pútil/(√3·U·η·cos φ)=9,14 A, incluyendo rendimiento y factor de potencia.",
+    "uid": "te-ce41aa10ae26d63b",
+    "topic": "Corriente de motor",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1020
+  },
+  {
+    "q": "¿A qué velocidad debe girar un alternador de 10 polos para generar 38 Hz?",
+    "a": [
+      "684 r/min",
+      "228 r/min",
+      "912 r/min",
+      "456 r/min"
+    ],
+    "c": 3,
+    "cat": 0,
+    "explanation": "n=120f/p=120·38/10=456 r/min.",
+    "uid": "te-569887ac6e2bfe68",
+    "topic": "Velocidad síncrona",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1021
+  },
+  {
+    "q": "Un contador inicia en 6, recibe 9 impulsos de incremento y 5 de decremento, sin reset. ¿Qué valor final muestra?",
+    "a": [
+      "5 cuentas",
+      "15 cuentas",
+      "10 cuentas",
+      "20 cuentas"
+    ],
+    "c": 2,
+    "cat": 1,
+    "explanation": "Valor final=6+9−5=10.",
+    "uid": "te-5993e2396a8ff569",
+    "topic": "Contadores",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1022
+  },
+  {
+    "q": "En un modelo simplificado de bucle resistivo, U₀=230 V y Zs=0,3 Ω. ¿Qué corriente de defecto estima I=U₀/Zs?",
+    "a": [
+      "383,33 A",
+      "1150 A",
+      "766,67 A",
+      "1533,33 A"
+    ],
+    "c": 2,
+    "cat": 2,
+    "explanation": "I=230/0,3=766,67 A. Es un modelo simplificado, no una verificación reglamentaria completa.",
+    "uid": "te-fa9db70276f7277d",
+    "topic": "Bucle de defecto",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1023
+  },
+  {
+    "q": "Una señal ocupa 6 divisiones verticales en un osciloscopio ajustado a 0,9 V/div, con factor de sonda ya incluido. ¿Qué tensión representa?",
+    "a": [
+      "8,1 V",
+      "10,8 V",
+      "2,7 V",
+      "5,4 V"
+    ],
+    "c": 3,
+    "cat": 3,
+    "explanation": "U=divisiones·escala=6·0,9=5,4 V.",
+    "uid": "te-6f5106d8318868b4",
+    "topic": "Osciloscopios",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1024
+  },
+  {
+    "q": "Un motor asíncrono recibe 38 Hz y tiene deslizamiento 1,8 %. ¿Qué frecuencia eléctrica tienen las corrientes del rotor?",
+    "a": [
+      "1,03 Hz",
+      "1,37 Hz",
+      "0,68 Hz",
+      "0,34 Hz"
+    ],
+    "c": 2,
+    "cat": 4,
+    "explanation": "frotor=s·f=0,02·38=0,68 Hz.",
+    "uid": "te-02f875fe039ed43a",
+    "topic": "Frecuencia del rotor",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1025
+  },
+  {
+    "q": "Un TC ideal de 200/5 A da una lectura secundaria de 1,3 A. ¿Qué corriente primaria representa?",
+    "a": [
+      "78 A",
+      "26 A",
+      "104 A",
+      "52 A"
+    ],
+    "c": 3,
+    "cat": 0,
+    "explanation": "Iprim=Isec·relación=1,3·200/5=52 A.",
+    "uid": "te-0944ea11ac6a9f2c",
+    "topic": "Transformadores de medida",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1026
+  },
+  {
+    "q": "Un caudalímetro entrega 14 impulsos por litro. Se cuentan 180 impulsos. ¿Qué volumen se calcula?",
+    "a": [
+      "19,29 L",
+      "25,71 L",
+      "6,43 L",
+      "12,86 L"
+    ],
+    "c": 3,
+    "cat": 1,
+    "explanation": "Volumen=impulsos/(impulsos por litro)=180/14=12,86 L.",
+    "uid": "te-97e03ee9cf3b96f4",
+    "topic": "Contadores",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1027
+  },
+  {
+    "q": "Una corriente constante de cortocircuito de 200 A dura 0,06 s. ¿Qué integral Joule I²t produce en ese modelo?",
+    "a": [
+      "3600 A²·s",
+      "4800 A²·s",
+      "1200 A²·s",
+      "2400 A²·s"
+    ],
+    "c": 3,
+    "cat": 2,
+    "explanation": "I²t=200²·0,06=2400 A²·s.",
+    "uid": "te-a694cfa42f716839",
+    "topic": "Energía de defecto",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1028
+  },
+  {
+    "q": "El período medido de una señal periódica es 3,6 ms. ¿Qué frecuencia tiene?",
+    "a": [
+      "416,67 Hz",
+      "138,89 Hz",
+      "555,56 Hz",
+      "277,78 Hz"
+    ],
+    "c": 3,
+    "cat": 3,
+    "explanation": "f=1/T=1000/3,6=277,78 Hz.",
+    "uid": "te-96f357b12907dc55",
+    "topic": "Frecuencia",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1029
+  },
+  {
+    "q": "En el modelo de arranque estrella-triángulo a igual tensión de línea, la corriente de arranque directo en triángulo sería 20 A. ¿Qué corriente de línea aproximada corresponde en estrella?",
+    "a": [
+      "10 A",
+      "6,67 A",
+      "3,33 A",
+      "13,33 A"
+    ],
+    "c": 1,
+    "cat": 4,
+    "explanation": "Iestrella≈Itriángulo/3=20/3=6,67 A, para el mismo motor y tensión.",
+    "uid": "te-63058a9b6fa70c0b",
+    "topic": "Estrella-triángulo",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1030
+  },
+  {
+    "q": "Un transformador trifásico equilibrado de 14000 VA tiene tensión entre fases de 400 V. ¿Qué corriente de línea nominal resulta?",
+    "a": [
+      "40,41 A",
+      "10,1 A",
+      "20,21 A",
+      "30,31 A"
+    ],
+    "c": 2,
+    "cat": 0,
+    "explanation": "I=S/(√3·U)=14000/(√3·400)=20,21 A.",
+    "uid": "te-3a364d895bc5b40b",
+    "topic": "Transformador trifásico",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1031
+  },
+  {
+    "q": "Un TON ajustado a 4 s lleva 2 s con entrada activa continua. ¿Cuánto falta para activar la salida?",
+    "a": [
+      "4 s",
+      "3 s",
+      "1 s",
+      "2 s"
+    ],
+    "c": 3,
+    "cat": 1,
+    "explanation": "Tiempo restante=ajuste−transcurrido=4−2=2 s.",
+    "uid": "te-f8c678b5dfcbf627",
+    "topic": "Temporización",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1032
+  },
+  {
+    "q": "En un ejercicio adiabático, I=1400 A, t=0,09 s y k=115 A·√s/mm². ¿Qué sección mínima matemática da S=I√t/k?",
+    "a": [
+      "5,48 mm²",
+      "3,65 mm²",
+      "1,83 mm²",
+      "7,3 mm²"
+    ],
+    "c": 1,
+    "cat": 2,
+    "explanation": "S=1400·√0,09/115=3,65 mm²; se requiere una sección normalizada y verificar las demás condiciones.",
+    "uid": "te-a5d91de943144512",
+    "topic": "Criterio adiabático",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1033
+  },
+  {
+    "q": "Una senoide sin componente continua tiene un pico de 18 V. ¿Cuál es su valor eficaz?",
+    "a": [
+      "6,36 V",
+      "12,73 V",
+      "19,09 V",
+      "25,46 V"
+    ],
+    "c": 1,
+    "cat": 3,
+    "explanation": "Uef=Upico/√2=18/√2=12,73 V.",
+    "uid": "te-7d91e36ce1c27773",
+    "topic": "Valor eficaz",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1034
+  },
+  {
+    "q": "Una bomba centrífuga mantiene geometría y fluido. Según las leyes de afinidad, si su velocidad pasa de 1080 a 583,2 r/min y antes daba 14 m³/h, ¿qué caudal ideal se estima?",
+    "a": [
+      "15,12 m³/h",
+      "7,56 m³/h",
+      "11,34 m³/h",
+      "3,78 m³/h"
+    ],
+    "c": 1,
+    "cat": 4,
+    "explanation": "Q₂/Q₁=n₂/n₁=0,54; Q₂=14·0,54=7,56 m³/h.",
+    "uid": "te-db55f40407757edb",
+    "topic": "Bombas",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1035
+  },
+  {
+    "q": "Un transformador da 248 V en vacío y 241 V con una carga definida. Tomando como base la tensión con carga, ¿qué regulación porcentual resulta?",
+    "a": [
+      "1,45 %",
+      "4,36 %",
+      "2,9 %",
+      "5,81 %"
+    ],
+    "c": 2,
+    "cat": 0,
+    "explanation": "Regulación=(Uvacío−Ucarga)/Ucarga·100=2,9 %.",
+    "uid": "te-018fad0427746c7e",
+    "topic": "Regulación",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1036
+  },
+  {
+    "q": "Una entrada analógica se escala linealmente: 0 cuentas=0 bar y 1000 cuentas=44 bar. ¿Qué presión corresponde a 200 cuentas?",
+    "a": [
+      "8,8 bar",
+      "17,6 bar",
+      "13,2 bar",
+      "4,4 bar"
+    ],
+    "c": 0,
+    "cat": 1,
+    "explanation": "p=cuentas·rango/1000=200·44/1000=8,8 bar.",
+    "uid": "te-4408086612eb4936",
+    "topic": "Escalado",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1037
+  },
+  {
+    "q": "En un modelo resistivo de aislamiento, una tensión de ensayo de 500 V se aplica a 3 MΩ. ¿Qué corriente ideal en µA resulta?",
+    "a": [
+      "250 µA",
+      "83,33 µA",
+      "333,33 µA",
+      "166,67 µA"
+    ],
+    "c": 3,
+    "cat": 2,
+    "explanation": "I=U/R; V/MΩ equivale a µA: 500/3=166,67 µA.",
+    "uid": "te-2aa6d42bc4a85901",
+    "topic": "Aislamiento",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1038
+  },
+  {
+    "q": "Una senoide sin componente continua mide 32 V eficaces. ¿Qué valor pico a pico tiene?",
+    "a": [
+      "135,76 V",
+      "45,25 V",
+      "90,51 V",
+      "181,02 V"
+    ],
+    "c": 2,
+    "cat": 3,
+    "explanation": "Upp=2√2·Uef=2√2·32=90,51 V.",
+    "uid": "te-5ba4369eaa8954c9",
+    "topic": "Pico a pico",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1039
+  },
+  {
+    "q": "Una bomba centrífuga reduce la velocidad al 56 % de la inicial. Con altura inicial 24 m y leyes de afinidad ideales, ¿qué altura nueva se estima?",
+    "a": [
+      "11,29 m",
+      "3,76 m",
+      "15,05 m",
+      "7,53 m"
+    ],
+    "c": 3,
+    "cat": 4,
+    "explanation": "H₂=H₁·(n₂/n₁)²=24·0,56²=7,53 m.",
+    "uid": "te-3393dfbf48e694e1",
+    "topic": "Bombas",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1040
+  },
+  {
+    "q": "El grupo vectorial de un transformador tiene índice horario 5. ¿Qué desplazamiento angular representa ese índice?",
+    "a": [
+      "75 °",
+      "225 °",
+      "300 °",
+      "150 °"
+    ],
+    "c": 3,
+    "cat": 0,
+    "explanation": "Cada hora de la notación corresponde a 30°: 5·30=150°.",
+    "uid": "te-8f097fc6ec438f1e",
+    "topic": "Grupos vectoriales",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1041
+  },
+  {
+    "q": "Un ciclo de ejecución tarda 9 ms. Sin interrupciones ni sobrecarga, ¿cuántos ciclos completos por segundo representa?",
+    "a": [
+      "166,67 ciclos/s",
+      "222,22 ciclos/s",
+      "111,11 ciclos/s",
+      "55,56 ciclos/s"
+    ],
+    "c": 2,
+    "cat": 1,
+    "explanation": "f=1000/Tms=1000/9=111,11 ciclos/s.",
+    "uid": "te-a96df9b5c00772e5",
+    "topic": "Tiempo de ciclo",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1042
+  },
+  {
+    "q": "La capacidad de referencia de un cable es 38 A. Se aplican factores independientes 0,8 y 0,74. ¿Qué capacidad corregida resulta?",
+    "a": [
+      "44,99 A",
+      "33,74 A",
+      "22,5 A",
+      "11,25 A"
+    ],
+    "c": 2,
+    "cat": 2,
+    "explanation": "Iz=38·0,8·0,74=22,5 A.",
+    "uid": "te-176ad913cc2fb4f9",
+    "topic": "Factores térmicos",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1043
+  },
+  {
+    "q": "Un voltímetro tiene límite de error ±(0,9 % de lectura + 2 dígitos), resolución 0,1 V y lectura 140 V. ¿Qué límite absoluto se calcula?",
+    "a": [
+      "2,19 V",
+      "0,73 V",
+      "2,92 V",
+      "1,46 V"
+    ],
+    "c": 3,
+    "cat": 3,
+    "explanation": "Error límite=140·0,9/100+2·0,1=1,46 V.",
+    "uid": "te-3a3116437576360d",
+    "topic": "Especificaciones",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1044
+  },
+  {
+    "q": "Una bomba centrífuga consumía 7 kW. Si gira al 56 % de su velocidad inicial, ¿qué potencia predicen las leyes de afinidad ideales?",
+    "a": [
+      "1,84 kW",
+      "2,46 kW",
+      "0,61 kW",
+      "1,23 kW"
+    ],
+    "c": 3,
+    "cat": 4,
+    "explanation": "P₂=P₁·(n₂/n₁)³=7·0,56³=1,23 kW.",
+    "uid": "te-9acee8e54b03b73b",
+    "topic": "Bombas",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1045
+  },
+  {
+    "q": "Para flujo senoidal, un devanado tiene 300 espiras y flujo máximo 6 mWb a 50 Hz. ¿Qué tensión eficaz inducida predice E=4,44·f·N·Φ?",
+    "a": [
+      "799,2 V",
+      "399,6 V",
+      "599,4 V",
+      "199,8 V"
+    ],
+    "c": 1,
+    "cat": 0,
+    "explanation": "E=4,44·50·300·6/1000=399,6 V.",
+    "uid": "te-b0e2fb55b6579fd2",
+    "topic": "Inducción",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1046
+  },
+  {
+    "q": "Un grupo de 6 bombas disponibles alterna estrictamente en cada arranque, empezando por B1. ¿Qué bomba recibe el arranque número 13?",
+    "a": [
+      "1 (número de bomba)",
+      "2 (número de bomba)",
+      "0,5 (número de bomba)",
+      "1,5 (número de bomba)"
+    ],
+    "c": 0,
+    "cat": 1,
+    "explanation": "Posición=1+((13−1) módulo 6)=1.",
+    "uid": "te-27df90bdf6512806",
+    "topic": "Alternancia",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1047
+  },
+  {
+    "q": "La corriente de cortocircuito prevista es 5,2 kA. ¿Qué poder de corte de los propuestos es suficiente por comparación directa?",
+    "a": [
+      "4,7 kA",
+      "4,2 kA",
+      "5,1 kA",
+      "5,7 kA"
+    ],
+    "c": 3,
+    "cat": 2,
+    "explanation": "Se necesita un poder de corte no inferior a 5,2 kA; el único propuesto que lo supera es 5,7 kA.",
+    "uid": "te-4ba81289393ff323",
+    "topic": "Poder de corte",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1048
+  },
+  {
+    "q": "Un contador registra 120 kWh durante 6 h. ¿Qué potencia activa media representa?",
+    "a": [
+      "30 kW",
+      "40 kW",
+      "10 kW",
+      "20 kW"
+    ],
+    "c": 3,
+    "cat": 3,
+    "explanation": "Pmedia=E/t=120/6=20 kW.",
+    "uid": "te-aabcd3898b7f9827",
+    "topic": "Contadores de energía",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1049
+  },
+  {
+    "q": "Un motor gira a 1200 r/min y acciona un reductor ideal de relación de reducción 6:1. ¿Qué velocidad tiene la salida?",
+    "a": [
+      "300 r/min",
+      "200 r/min",
+      "400 r/min",
+      "100 r/min"
+    ],
+    "c": 1,
+    "cat": 4,
+    "explanation": "nsalida=nentrada/relación=1200/6=200 r/min.",
+    "uid": "te-4177f862c8351a63",
+    "topic": "Transmisiones",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1050
+  },
+  {
+    "q": "Una máquina absorbe 1400 W y tiene rendimiento 84 %. ¿Qué potencia útil entrega?",
+    "a": [
+      "588 W",
+      "1176 W",
+      "1764 W",
+      "2352 W"
+    ],
+    "c": 1,
+    "cat": 0,
+    "explanation": "Pútil=η·Pabsorbida=0,84·1400=1176 W.",
+    "uid": "te-f74708983dcfe525",
+    "topic": "Balance de potencia",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1051
+  },
+  {
+    "q": "Un TOF de 6 s tenía su salida activa y pierde la entrada en t=7 s. Si no se reactiva, ¿en qué instante se desactiva la salida?",
+    "a": [
+      "26 s",
+      "19,5 s",
+      "6,5 s",
+      "13 s"
+    ],
+    "c": 3,
+    "cat": 1,
+    "explanation": "Instante de desconexión=7+6=13 s.",
+    "uid": "te-59ddfbbe7e7c6cf5",
+    "topic": "Temporización",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1052
+  },
+  {
+    "q": "Para estudiar un defecto se modela un conductor de protección con 0,32 Ω y una corriente de 3,6 A. ¿Qué caída resistiva aparece?",
+    "a": [
+      "0,58 V",
+      "1,73 V",
+      "1,15 V",
+      "2,3 V"
+    ],
+    "c": 2,
+    "cat": 2,
+    "explanation": "ΔU=I·R=3,6·0,32=1,15 V.",
+    "uid": "te-28c5a21a34bc56d8",
+    "topic": "Conductores de protección",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1053
+  },
+  {
+    "q": "Una tensión medida es 224 V frente a un valor de referencia de 230 V. ¿Cuál es la desviación porcentual con signo?",
+    "a": [
+      "-5,22 %",
+      "-3,91 %",
+      "-1,3 %",
+      "-2,61 %"
+    ],
+    "c": 3,
+    "cat": 3,
+    "explanation": "Desviación=(U−Uref)/Uref·100=(224−230)/230·100=-2,61 %.",
+    "uid": "te-b4e65daab0653721",
+    "topic": "Tensión",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1054
+  },
+  {
+    "q": "Un reductor ideal sin pérdidas de relación 6:1 recibe 9 N·m. ¿Qué par de salida proporciona?",
+    "a": [
+      "27 N·m",
+      "54 N·m",
+      "81 N·m",
+      "108 N·m"
+    ],
+    "c": 1,
+    "cat": 4,
+    "explanation": "Tsalida=Tentrada·relación=9·6=54 N·m.",
+    "uid": "te-f86b0fe0ed1be77f",
+    "topic": "Transmisiones",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1055
+  },
+  {
+    "q": "Una carga conectada a un transformador absorbe 1400 VA con cos φ=0,68. ¿Qué potencia activa consume?",
+    "a": [
+      "952 W",
+      "1428 W",
+      "476 W",
+      "1904 W"
+    ],
+    "c": 0,
+    "cat": 0,
+    "explanation": "P=S·cos φ=1400·0,68=952 W.",
+    "uid": "te-fed97be2c3f936a9",
+    "topic": "Potencia aparente",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1056
+  },
+  {
+    "q": "Un contador debe acumular 140 pulsos de una señal constante de 9 Hz, desde cero. ¿Qué tiempo de acumulación ideal resulta?",
+    "a": [
+      "23,33 s",
+      "15,56 s",
+      "7,78 s",
+      "31,11 s"
+    ],
+    "c": 1,
+    "cat": 1,
+    "explanation": "t=N/f=140/9=15,56 s.",
+    "uid": "te-7861948797d862e2",
+    "topic": "Contadores",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1057
+  },
+  {
+    "q": "6 receptores tienen cada uno una fuga senoidal en fase de 4 mA. En ese supuesto, ¿qué fuga total se suma?",
+    "a": [
+      "24 mA",
+      "48 mA",
+      "12 mA",
+      "36 mA"
+    ],
+    "c": 0,
+    "cat": 2,
+    "explanation": "Con las corrientes en fase, la suma es 6·4=24 mA.",
+    "uid": "te-5187d99394276294",
+    "topic": "Corrientes residuales",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1058
+  },
+  {
+    "q": "Un analizador usa correctamente un TC de 200/5 A y recibe 1,4 A secundarios. ¿Qué corriente muestra en el primario?",
+    "a": [
+      "28 A",
+      "56 A",
+      "84 A",
+      "112 A"
+    ],
+    "c": 1,
+    "cat": 3,
+    "explanation": "Iprim=Isec·(200/5)=1,4·40=56 A.",
+    "uid": "te-5e24d0a2d42e025a",
+    "topic": "Escalado de TC",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1059
+  },
+  {
+    "q": "En un control V/f lineal ideal por debajo de frecuencia base, con base 400 V a 50 Hz y sin refuerzo de tensión, ¿qué tensión corresponde a 18 Hz?",
+    "a": [
+      "72 V",
+      "288 V",
+      "144 V",
+      "216 V"
+    ],
+    "c": 2,
+    "cat": 4,
+    "explanation": "U=Ubase·f/fbase=400·18/50=144 V.",
+    "uid": "te-cb38e42bf28d224d",
+    "topic": "Control V/f",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1060
+  },
+  {
+    "q": "En un transformador ideal, N₁=600 y N₂=70. ¿Cuál es la relación U₁/U₂?",
+    "a": [
+      "8,57 ",
+      "12,86 ",
+      "17,14 ",
+      "4,29 "
+    ],
+    "c": 0,
+    "cat": 0,
+    "explanation": "U₁/U₂=N₁/N₂=600/70=8,57.",
+    "uid": "te-bfa1caa8e50ac0f9",
+    "topic": "Relación de espiras",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1061
+  },
+  {
+    "q": "Un control con histéresis conecta al bajar hasta 12 bar y desconecta al subir a 14 bar. ¿Qué anchura tiene su banda?",
+    "a": [
+      "4 bar",
+      "3 bar",
+      "1 bar",
+      "2 bar"
+    ],
+    "c": 3,
+    "cat": 1,
+    "explanation": "Banda=umbral superior−inferior=14−12=2 bar.",
+    "uid": "te-d09127f07a549184",
+    "topic": "Histéresis",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1062
+  },
+  {
+    "q": "Para comparar una protección de In=14 A con una carga Ib=12 A, ¿qué cociente Ib/In se obtiene?",
+    "a": [
+      "0,43 ",
+      "0,86 ",
+      "1,71 ",
+      "1,29 "
+    ],
+    "c": 1,
+    "cat": 2,
+    "explanation": "Ib/In=12/14=0,86. Esto no determina por sí solo el tiempo de disparo.",
+    "uid": "te-49d89cc8d921976d",
+    "topic": "Sobrecargas",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1063
+  },
+  {
+    "q": "Un conversor ideal de 12 bits se escala de código 0=0 V a código 4095=10 V. ¿Qué tensión representa el código 1024?",
+    "a": [
+      "1,25 V",
+      "5 V",
+      "2,5 V",
+      "3,75 V"
+    ],
+    "c": 2,
+    "cat": 3,
+    "explanation": "U=código·10/4095=1024·10/4095=2,5 V.",
+    "uid": "te-adce3c869ebb8eca",
+    "topic": "Conversión analógica",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1064
+  },
+  {
+    "q": "Un variador hace una rampa lineal de 9 a 44 Hz en 9 s. ¿Cuál es su pendiente?",
+    "a": [
+      "7,78 Hz/s",
+      "1,94 Hz/s",
+      "5,83 Hz/s",
+      "3,89 Hz/s"
+    ],
+    "c": 3,
+    "cat": 4,
+    "explanation": "Pendiente=(ffinal−finicial)/t=(44−9)/9=3,89 Hz/s.",
+    "uid": "te-efe4b65310538b02",
+    "topic": "Rampas",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1065
+  },
+  {
+    "q": "Las pérdidas constantes en vacío de un transformador son 18 W. Si permanece energizado 7 h sin carga, ¿qué energía consume?",
+    "a": [
+      "0,25 kWh",
+      "0,13 kWh",
+      "0,19 kWh",
+      "0,06 kWh"
+    ],
+    "c": 1,
+    "cat": 0,
+    "explanation": "E=P·t/1000=18·7/1000=0,13 kWh.",
+    "uid": "te-ccfd19b395b8d766",
+    "topic": "Energía en vacío",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1066
+  },
+  {
+    "q": "Un temporizador usa una base de 14 ms por cuenta. ¿Cuántas cuentas representan 40 s?",
+    "a": [
+      "1428,57 cuentas",
+      "2857,14 cuentas",
+      "4285,71 cuentas",
+      "5714,29 cuentas"
+    ],
+    "c": 1,
+    "cat": 1,
+    "explanation": "N=t/base=40·1000/14=2857,14 cuentas.",
+    "uid": "te-b236d1409c5a837e",
+    "topic": "Base de tiempo",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1067
+  },
+  {
+    "q": "Un contacto deteriorado tiene 0,9 Ω y conduce 14 A. ¿Qué potencia térmica se calcula en ese contacto?",
+    "a": [
+      "264,6 W",
+      "176,4 W",
+      "88,2 W",
+      "352,8 W"
+    ],
+    "c": 1,
+    "cat": 2,
+    "explanation": "P=I²R=14²·0,9=176,4 W.",
+    "uid": "te-3c6b60819817ee3f",
+    "topic": "Calentamientos",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1068
+  },
+  {
+    "q": "Dos senoides de igual período 9 ms tienen una separación temporal de 2 ms. ¿Qué magnitud de desfase corresponde?",
+    "a": [
+      "120 °",
+      "160 °",
+      "40 °",
+      "80 °"
+    ],
+    "c": 3,
+    "cat": 3,
+    "explanation": "φ=360·Δt/T=360·2/9=80°.",
+    "uid": "te-f727161661a76200",
+    "topic": "Desfase",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1069
+  },
+  {
+    "q": "Un motor consume una potencia eléctrica constante de 3 kW durante 6 h. ¿Qué energía activa utiliza?",
+    "a": [
+      "27 kWh",
+      "9 kWh",
+      "18 kWh",
+      "36 kWh"
+    ],
+    "c": 2,
+    "cat": 4,
+    "explanation": "E=P·t=3·6=18 kWh.",
+    "uid": "te-eae57f0eb00a652d",
+    "topic": "Energía de motor",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1070
+  },
+  {
+    "q": "Transformador ideal: N₁=300 espiras, N₂=90 y U₁=230 V. ¿Cuál es U₂?",
+    "a": [
+      "34,5 V",
+      "69 V",
+      "138 V",
+      "103,5 V"
+    ],
+    "c": 1,
+    "cat": 0,
+    "explanation": "U₂=U₁·N₂/N₁=230·90/300=69 V.",
+    "uid": "te-761c5212d23e9287",
+    "topic": "Relación de transformación",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1071
+  },
+  {
+    "q": "En un ejercicio de coordinación se exige Ib ≤ In ≤ Iz. Si Ib=10 A e Iz=16 A, ¿qué calibre de los propuestos cumple esa desigualdad?",
+    "a": [
+      "11 A",
+      "21 A",
+      "17 A",
+      "9 A"
+    ],
+    "c": 0,
+    "cat": 2,
+    "explanation": "Debe estar entre 10 y 16 A, ambos incluidos; 11 A es el único propuesto que lo cumple. Faltan otras verificaciones para una instalación real.",
+    "uid": "te-421c349ac4bd30e9",
+    "topic": "Coordinación",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1072
+  },
+  {
+    "q": "Un transmisor lineal de 4–20 mA cubre 0–35 bar. ¿Qué presión representa una señal de 10 mA?",
+    "a": [
+      "19,69 bar",
+      "26,25 bar",
+      "6,56 bar",
+      "13,12 bar"
+    ],
+    "c": 3,
+    "cat": 3,
+    "explanation": "p=(I−4)·rango/16=(10−4)·35/16=13,12 bar.",
+    "uid": "te-7326730884577d3d",
+    "topic": "Escalado 4–20 mA",
+    "kind": "cálculo",
+    "source": "https://www.fluke.com/en-us/learn/blog/calibration/what-is-a-4-20-ma-current-loop",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1073
+  },
+  {
+    "q": "Un motor asíncrono de 12 polos se alimenta a 30 Hz. ¿Cuál es la velocidad síncrona de su campo?",
+    "a": [
+      "450 r/min",
+      "600 r/min",
+      "300 r/min",
+      "150 r/min"
+    ],
+    "c": 2,
+    "cat": 4,
+    "explanation": "ns=120f/p=120·30/12=300 r/min.",
+    "uid": "te-fb9a20087b2d4375",
+    "topic": "Velocidad síncrona",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1074
+  },
+  {
+    "q": "Un transformador ideal de 400/54 V suministra 7 A en el secundario. ¿Qué corriente absorbe el primario?",
+    "a": [
+      "1,42 A",
+      "0,94 A",
+      "0,47 A",
+      "1,89 A"
+    ],
+    "c": 1,
+    "cat": 0,
+    "explanation": "En el modelo ideal U₁I₁=U₂I₂; I₁=54·7/400=0,94 A.",
+    "uid": "te-e69c58f8d1a7a806",
+    "topic": "Corriente de transformador",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1075
+  },
+  {
+    "q": "Un conductor tiene capacidad de referencia 25 A y un único factor de corrección 0,65. ¿Cuál es su capacidad corregida?",
+    "a": [
+      "32,5 A",
+      "24,38 A",
+      "16,25 A",
+      "8,12 A"
+    ],
+    "c": 2,
+    "cat": 2,
+    "explanation": "Iz corregida=25·0,65=16,25 A.",
+    "uid": "te-1814bb42cdfc2e2f",
+    "topic": "Factores térmicos",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1076
+  },
+  {
+    "q": "Un transmisor lineal de 4–20 mA cubre -45 a 170 °C. ¿Qué temperatura representa 11 mA?",
+    "a": [
+      "73,59 °C",
+      "24,53 °C",
+      "49,06 °C",
+      "98,12 °C"
+    ],
+    "c": 2,
+    "cat": 3,
+    "explanation": "T=Tmin+(I−4)·(Tmax−Tmin)/16=-45+(11−4)·215/16=49,06 °C.",
+    "uid": "te-8a9239ac8726bc2d",
+    "topic": "Temperatura",
+    "kind": "cálculo",
+    "source": "https://www.fluke.com/en-us/learn/blog/calibration/what-is-a-4-20-ma-current-loop",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1077
+  },
+  {
+    "q": "El campo giratorio de un motor va a 1500 r/min y su rotor a 1325 r/min. ¿Qué deslizamiento porcentual tiene?",
+    "a": [
+      "5,83 %",
+      "11,67 %",
+      "17,5 %",
+      "23,33 %"
+    ],
+    "c": 1,
+    "cat": 4,
+    "explanation": "s=(ns−n)/ns·100=(1500−1325)/1500·100=11,67 %.",
+    "uid": "te-b482b47ce98fbfc0",
+    "topic": "Deslizamiento",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1078
+  },
+  {
+    "q": "Un transformador monofásico de 1000 VA tiene un secundario de 84 V. ¿Cuál es su corriente secundaria asignada teórica?",
+    "a": [
+      "23,81 A",
+      "5,95 A",
+      "17,86 A",
+      "11,9 A"
+    ],
+    "c": 3,
+    "cat": 0,
+    "explanation": "I=S/U=1000/84=11,9 A.",
+    "uid": "te-6bceacea4fef749f",
+    "topic": "Potencia de transformador",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1079
+  },
+  {
+    "q": "En un cálculo teórico TT, RA=45 Ω e IΔn=80 mA. ¿Qué producto RA·IΔn resulta?",
+    "a": [
+      "1,8 V",
+      "5,4 V",
+      "7,2 V",
+      "3,6 V"
+    ],
+    "c": 3,
+    "cat": 2,
+    "explanation": "Se convierten mA a A: RA·IΔn=45·80/1000=3,6 V. Esto no certifica por sí solo la protección.",
+    "uid": "te-1611b446501b110a",
+    "topic": "Sistema TT",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1080
+  },
+  {
+    "q": "Un transmisor lineal 4–20 mA de 0–200 L/min está al 35 % de su rango. ¿Qué corriente debe entregar?",
+    "a": [
+      "9,6 mA",
+      "14,4 mA",
+      "19,2 mA",
+      "4,8 mA"
+    ],
+    "c": 0,
+    "cat": 3,
+    "explanation": "I=4+16·porcentaje/100=4+16·35/100=9,6 mA.",
+    "uid": "te-533c61b861d867d5",
+    "topic": "Escalado 4–20 mA",
+    "kind": "cálculo",
+    "source": "https://www.fluke.com/en-us/learn/blog/calibration/what-is-a-4-20-ma-current-loop",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1081
+  },
+  {
+    "q": "Un motor tiene velocidad síncrona 3000 r/min y deslizamiento 2 %. ¿A qué velocidad gira el rotor?",
+    "a": [
+      "5880 r/min",
+      "1470 r/min",
+      "4410 r/min",
+      "2940 r/min"
+    ],
+    "c": 3,
+    "cat": 4,
+    "explanation": "n=ns·(1−s)=3000·(1−2/100)=2940 r/min.",
+    "uid": "te-0c77cdedf479cf2f",
+    "topic": "Velocidad del rotor",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1082
+  },
+  {
+    "q": "Una máquina entrega 875 W útiles y pierde 45 W. ¿Qué rendimiento tiene?",
+    "a": [
+      "95,11 %",
+      "190,22 %",
+      "142,66 %",
+      "47,55 %"
+    ],
+    "c": 0,
+    "cat": 0,
+    "explanation": "η=Pútil/(Pútil+Ppérdidas)·100=95,11 %.",
+    "uid": "te-5e481460cdd53bd5",
+    "topic": "Rendimiento",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1083
+  },
+  {
+    "q": "Para el ejercicio TT se fija UL=50 V y se aplica RA·IΔn ≤ UL con IΔn=80 mA. ¿Qué RA máxima teórica resulta?",
+    "a": [
+      "937,5 Ω",
+      "312,5 Ω",
+      "1250 Ω",
+      "625 Ω"
+    ],
+    "c": 3,
+    "cat": 2,
+    "explanation": "RA≤UL/IΔn=50/(80/1000)=625 Ω. Deben cumplirse también los restantes requisitos de protección.",
+    "uid": "te-ec9005c069a0ed0e",
+    "topic": "Sistema TT",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1084
+  },
+  {
+    "q": "Una señal de 6,5 mA atraviesa una resistencia de medida de 150 Ω. ¿Qué tensión produce?",
+    "a": [
+      "0,97 V",
+      "0,49 V",
+      "1,95 V",
+      "1,46 V"
+    ],
+    "c": 0,
+    "cat": 3,
+    "explanation": "U=I·R=6,5/1000·150=0,97 V.",
+    "uid": "te-c533ab466b0dae0f",
+    "topic": "Shunt",
+    "kind": "cálculo",
+    "source": "https://www.fluke.com/en-us/learn/blog/calibration/what-is-a-4-20-ma-current-loop",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1085
+  },
+  {
+    "q": "Un motor entrega 3,5 kW mecánicos a 1000 r/min. Usando T≈9550·P/n, ¿qué par entrega?",
+    "a": [
+      "66,85 N·m",
+      "33,42 N·m",
+      "50,14 N·m",
+      "16,71 N·m"
+    ],
+    "c": 1,
+    "cat": 4,
+    "explanation": "T≈9550·3,5/1000=33,42 N·m.",
+    "uid": "te-58ccd05d2d5730b3",
+    "topic": "Par y potencia",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1086
+  },
+  {
+    "q": "Un devanado de resistencia 0,8 Ω conduce 7 A eficaces. ¿Qué pérdidas Joule produce?",
+    "a": [
+      "58,8 W",
+      "19,6 W",
+      "39,2 W",
+      "78,4 W"
+    ],
+    "c": 2,
+    "cat": 0,
+    "explanation": "Pcu=I²R=7²·0,8=39,2 W.",
+    "uid": "te-60ffd65e5ec9e0f2",
+    "topic": "Pérdidas en cobre",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1087
+  },
+  {
+    "q": "Una corriente de defecto equivale a 8 veces In de un interruptor de 11 A. ¿Qué corriente es?",
+    "a": [
+      "132 A",
+      "88 A",
+      "176 A",
+      "44 A"
+    ],
+    "c": 1,
+    "cat": 2,
+    "explanation": "I=8·11=88 A; el tiempo de disparo requiere la curva del aparato.",
+    "uid": "te-ea06c11256f03f49",
+    "topic": "Curvas de protección",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1088
+  },
+  {
+    "q": "Un patrón vale 75 V y un instrumento indica 76 V. ¿Cuál es el error absoluto con signo, lectura menos patrón?",
+    "a": [
+      "0,5 V",
+      "2 V",
+      "1,5 V",
+      "1 V"
+    ],
+    "c": 3,
+    "cat": 3,
+    "explanation": "Error=76−75=1 V.",
+    "uid": "te-668f543cdf3b52d4",
+    "topic": "Errores de medida",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1089
+  },
+  {
+    "q": "Un eje desarrolla 20 N·m a 1100 r/min. ¿Qué potencia mecánica entrega?",
+    "a": [
+      "3,46 kW",
+      "1,15 kW",
+      "4,61 kW",
+      "2,3 kW"
+    ],
+    "c": 3,
+    "cat": 4,
+    "explanation": "P=T·2πn/60=20·2π·1100/60=2,3 kW.",
+    "uid": "te-d9796ef2eee84516",
+    "topic": "Potencia mecánica",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1090
+  },
+  {
+    "q": "Un alternador síncrono tiene 12 polos y gira a 900 r/min. ¿Qué frecuencia genera?",
+    "a": [
+      "135 Hz",
+      "90 Hz",
+      "180 Hz",
+      "45 Hz"
+    ],
+    "c": 1,
+    "cat": 0,
+    "explanation": "f=p·n/120=12·900/120=90 Hz.",
+    "uid": "te-9f105acd2e487aa4",
+    "topic": "Alternadores",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1091
+  },
+  {
+    "q": "Con A=1, B=0, C=1, D=0, Y=(A AND B) OR (C AND D) y Z=NOT Y, ¿qué par (Y,Z) resulta?",
+    "a": [
+      "(0,0)",
+      "(1,1)",
+      "(0,1)",
+      "(1,0)"
+    ],
+    "c": 2,
+    "cat": 1,
+    "explanation": "La función (A AND B) OR (C AND D) da Y=0; al negar Y resulta Z=1.",
+    "uid": "te-6bf7eda6b83d35d7",
+    "topic": "Lógica booleana",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1092
+  },
+  {
+    "q": "Un receptor monofásico puramente resistivo de 1500 W a 230 V requiere calcular Ib. ¿Qué corriente de diseño resulta?",
+    "a": [
+      "9,78 A",
+      "3,26 A",
+      "6,52 A",
+      "13,04 A"
+    ],
+    "c": 2,
+    "cat": 2,
+    "explanation": "Ib=P/U=1500/230=6,52 A. La selección de protección requiere otras comprobaciones.",
+    "uid": "te-2d5e42f98987215a",
+    "topic": "Corriente de diseño",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1093
+  },
+  {
+    "q": "Un instrumento indica 157 Ω ante un patrón de 150 Ω. ¿Cuál es el error relativo porcentual con signo?",
+    "a": [
+      "2,33 %",
+      "9,33 %",
+      "4,67 %",
+      "7 %"
+    ],
+    "c": 2,
+    "cat": 3,
+    "explanation": "Error relativo=(lectura−patrón)/patrón·100=7/150·100=4,67 %.",
+    "uid": "te-67728aaaffa749e5",
+    "topic": "Errores de medida",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1094
+  },
+  {
+    "q": "Un motor trifásico equilibrado entrega 4,5 kW a 400 V, con η=82,5 % y cos φ=0,78. ¿Qué corriente de línea teórica absorbe?",
+    "a": [
+      "5,08 A",
+      "20,32 A",
+      "10,16 A",
+      "15,24 A"
+    ],
+    "c": 2,
+    "cat": 4,
+    "explanation": "I=Pútil/(√3·U·η·cos φ)=10,16 A, incluyendo rendimiento y factor de potencia.",
+    "uid": "te-502ff267edfbc6a3",
+    "topic": "Corriente de motor",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1095
+  },
+  {
+    "q": "¿A qué velocidad debe girar un alternador de 12 polos para generar 40 Hz?",
+    "a": [
+      "400 r/min",
+      "800 r/min",
+      "600 r/min",
+      "200 r/min"
+    ],
+    "c": 0,
+    "cat": 0,
+    "explanation": "n=120f/p=120·40/12=400 r/min.",
+    "uid": "te-0bbe95c043282bf6",
+    "topic": "Velocidad síncrona",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1096
+  },
+  {
+    "q": "Un contador inicia en 7, recibe 10 impulsos de incremento y 1 de decremento, sin reset. ¿Qué valor final muestra?",
+    "a": [
+      "16 cuentas",
+      "8 cuentas",
+      "24 cuentas",
+      "32 cuentas"
+    ],
+    "c": 0,
+    "cat": 1,
+    "explanation": "Valor final=7+10−1=16.",
+    "uid": "te-3b2a87dea4e9faf3",
+    "topic": "Contadores",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1097
+  },
+  {
+    "q": "En un modelo simplificado de bucle resistivo, U₀=230 V y Zs=0,35 Ω. ¿Qué corriente de defecto estima I=U₀/Zs?",
+    "a": [
+      "1314,29 A",
+      "985,71 A",
+      "328,57 A",
+      "657,14 A"
+    ],
+    "c": 3,
+    "cat": 2,
+    "explanation": "I=230/0,35=657,14 A. Es un modelo simplificado, no una verificación reglamentaria completa.",
+    "uid": "te-7e0a5cde74923f8c",
+    "topic": "Bucle de defecto",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1098
+  },
+  {
+    "q": "Una señal ocupa 7 divisiones verticales en un osciloscopio ajustado a 1 V/div, con factor de sonda ya incluido. ¿Qué tensión representa?",
+    "a": [
+      "14 V",
+      "3,5 V",
+      "7 V",
+      "10,5 V"
+    ],
+    "c": 2,
+    "cat": 3,
+    "explanation": "U=divisiones·escala=7·1=7 V.",
+    "uid": "te-90f3a1f183b96e1b",
+    "topic": "Osciloscopios",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1099
+  },
+  {
+    "q": "Un motor asíncrono recibe 40 Hz y tiene deslizamiento 2 %. ¿Qué frecuencia eléctrica tienen las corrientes del rotor?",
+    "a": [
+      "0,8 Hz",
+      "1,2 Hz",
+      "0,4 Hz",
+      "1,6 Hz"
+    ],
+    "c": 0,
+    "cat": 4,
+    "explanation": "frotor=s·f=0,02·40=0,8 Hz.",
+    "uid": "te-e4f30c94309cbcc6",
+    "topic": "Frecuencia del rotor",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1100
+  },
+  {
+    "q": "Un TC ideal de 225/5 A da una lectura secundaria de 1,5 A. ¿Qué corriente primaria representa?",
+    "a": [
+      "135 A",
+      "33,75 A",
+      "101,25 A",
+      "67,5 A"
+    ],
+    "c": 3,
+    "cat": 0,
+    "explanation": "Iprim=Isec·relación=1,5·225/5=67,5 A.",
+    "uid": "te-b343fc81dfbd24ca",
+    "topic": "Transformadores de medida",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1101
+  },
+  {
+    "q": "Un caudalímetro entrega 15 impulsos por litro. Se cuentan 200 impulsos. ¿Qué volumen se calcula?",
+    "a": [
+      "20 L",
+      "6,67 L",
+      "13,33 L",
+      "26,67 L"
+    ],
+    "c": 2,
+    "cat": 1,
+    "explanation": "Volumen=impulsos/(impulsos por litro)=200/15=13,33 L.",
+    "uid": "te-b1929edffdab6fed",
+    "topic": "Contadores",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1102
+  },
+  {
+    "q": "Una corriente constante de cortocircuito de 225 A dura 0,07 s. ¿Qué integral Joule I²t produce en ese modelo?",
+    "a": [
+      "7087,5 A²·s",
+      "3543,75 A²·s",
+      "5315,63 A²·s",
+      "1771,88 A²·s"
+    ],
+    "c": 1,
+    "cat": 2,
+    "explanation": "I²t=225²·0,07=3543,75 A²·s.",
+    "uid": "te-1af8775bf83c1498",
+    "topic": "Energía de defecto",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1103
+  },
+  {
+    "q": "El período medido de una señal periódica es 4 ms. ¿Qué frecuencia tiene?",
+    "a": [
+      "250 Hz",
+      "125 Hz",
+      "375 Hz",
+      "500 Hz"
+    ],
+    "c": 0,
+    "cat": 3,
+    "explanation": "f=1/T=1000/4=250 Hz.",
+    "uid": "te-8b993ec8aade8e0d",
+    "topic": "Frecuencia",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1104
+  },
+  {
+    "q": "En el modelo de arranque estrella-triángulo a igual tensión de línea, la corriente de arranque directo en triángulo sería 22 A. ¿Qué corriente de línea aproximada corresponde en estrella?",
+    "a": [
+      "11 A",
+      "7,33 A",
+      "3,67 A",
+      "14,67 A"
+    ],
+    "c": 1,
+    "cat": 4,
+    "explanation": "Iestrella≈Itriángulo/3=22/3=7,33 A, para el mismo motor y tensión.",
+    "uid": "te-5de72a42a2cdc5d1",
+    "topic": "Estrella-triángulo",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1105
+  },
+  {
+    "q": "Un transformador trifásico equilibrado de 15000 VA tiene tensión entre fases de 400 V. ¿Qué corriente de línea nominal resulta?",
+    "a": [
+      "21,65 A",
+      "32,48 A",
+      "10,83 A",
+      "43,3 A"
+    ],
+    "c": 0,
+    "cat": 0,
+    "explanation": "I=S/(√3·U)=15000/(√3·400)=21,65 A.",
+    "uid": "te-e115e783f8ada400",
+    "topic": "Transformador trifásico",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1106
+  },
+  {
+    "q": "Un TON ajustado a 4,5 s lleva 2,25 s con entrada activa continua. ¿Cuánto falta para activar la salida?",
+    "a": [
+      "2,25 s",
+      "3,38 s",
+      "4,5 s",
+      "1,12 s"
+    ],
+    "c": 0,
+    "cat": 1,
+    "explanation": "Tiempo restante=ajuste−transcurrido=4,5−2,25=2,25 s.",
+    "uid": "te-3f3b83cd8cf358ed",
+    "topic": "Temporización",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1107
+  },
+  {
+    "q": "En un ejercicio adiabático, I=1500 A, t=0,1 s y k=115 A·√s/mm². ¿Qué sección mínima matemática da S=I√t/k?",
+    "a": [
+      "2,06 mm²",
+      "6,19 mm²",
+      "8,25 mm²",
+      "4,12 mm²"
+    ],
+    "c": 3,
+    "cat": 2,
+    "explanation": "S=1500·√0,1/115=4,12 mm²; se requiere una sección normalizada y verificar las demás condiciones.",
+    "uid": "te-9c2e975087676d47",
+    "topic": "Criterio adiabático",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1108
+  },
+  {
+    "q": "Una senoide sin componente continua tiene un pico de 20 V. ¿Cuál es su valor eficaz?",
+    "a": [
+      "7,07 V",
+      "21,21 V",
+      "14,14 V",
+      "28,28 V"
+    ],
+    "c": 2,
+    "cat": 3,
+    "explanation": "Uef=Upico/√2=20/√2=14,14 V.",
+    "uid": "te-2de0b8e1aa34839b",
+    "topic": "Valor eficaz",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1109
+  },
+  {
+    "q": "Una bomba centrífuga mantiene geometría y fluido. Según las leyes de afinidad, si su velocidad pasa de 1100 a 605 r/min y antes daba 15 m³/h, ¿qué caudal ideal se estima?",
+    "a": [
+      "8,25 m³/h",
+      "16,5 m³/h",
+      "4,12 m³/h",
+      "12,38 m³/h"
+    ],
+    "c": 0,
+    "cat": 4,
+    "explanation": "Q₂/Q₁=n₂/n₁=0,55; Q₂=15·0,55=8,25 m³/h.",
+    "uid": "te-c1368f682e404d60",
+    "topic": "Bombas",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1110
+  },
+  {
+    "q": "Un transformador da 250 V en vacío y 242 V con una carga definida. Tomando como base la tensión con carga, ¿qué regulación porcentual resulta?",
+    "a": [
+      "3,31 %",
+      "1,65 %",
+      "6,61 %",
+      "4,96 %"
+    ],
+    "c": 0,
+    "cat": 0,
+    "explanation": "Regulación=(Uvacío−Ucarga)/Ucarga·100=3,31 %.",
+    "uid": "te-1f655baf3deda4dd",
+    "topic": "Regulación",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1111
+  },
+  {
+    "q": "Una entrada analógica se escala linealmente: 0 cuentas=0 bar y 1000 cuentas=45 bar. ¿Qué presión corresponde a 225 cuentas?",
+    "a": [
+      "20,25 bar",
+      "15,19 bar",
+      "10,12 bar",
+      "5,06 bar"
+    ],
+    "c": 2,
+    "cat": 1,
+    "explanation": "p=cuentas·rango/1000=225·45/1000=10,12 bar.",
+    "uid": "te-3f3ffa23e20808cb",
+    "topic": "Escalado",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1112
+  },
+  {
+    "q": "En un modelo resistivo de aislamiento, una tensión de ensayo de 500 V se aplica a 3,5 MΩ. ¿Qué corriente ideal en µA resulta?",
+    "a": [
+      "214,29 µA",
+      "71,43 µA",
+      "285,71 µA",
+      "142,86 µA"
+    ],
+    "c": 3,
+    "cat": 2,
+    "explanation": "I=U/R; V/MΩ equivale a µA: 500/3,5=142,86 µA.",
+    "uid": "te-2fc12ef5e5112793",
+    "topic": "Aislamiento",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1113
+  },
+  {
+    "q": "Una senoide sin componente continua mide 35 V eficaces. ¿Qué valor pico a pico tiene?",
+    "a": [
+      "49,5 V",
+      "148,49 V",
+      "197,99 V",
+      "98,99 V"
+    ],
+    "c": 3,
+    "cat": 3,
+    "explanation": "Upp=2√2·Uef=2√2·35=98,99 V.",
+    "uid": "te-fcad31ecaafa7ba0",
+    "topic": "Pico a pico",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1114
+  },
+  {
+    "q": "Una bomba centrífuga reduce la velocidad al 57,5 % de la inicial. Con altura inicial 25 m y leyes de afinidad ideales, ¿qué altura nueva se estima?",
+    "a": [
+      "8,27 m",
+      "12,4 m",
+      "4,13 m",
+      "16,53 m"
+    ],
+    "c": 0,
+    "cat": 4,
+    "explanation": "H₂=H₁·(n₂/n₁)²=25·0,57²=8,27 m.",
+    "uid": "te-7a4282fba7f77129",
+    "topic": "Bombas",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1115
+  },
+  {
+    "q": "El grupo vectorial de un transformador tiene índice horario 6. ¿Qué desplazamiento angular representa ese índice?",
+    "a": [
+      "180 °",
+      "270 °",
+      "360 °",
+      "90 °"
+    ],
+    "c": 0,
+    "cat": 0,
+    "explanation": "Cada hora de la notación corresponde a 30°: 6·30=180°.",
+    "uid": "te-9ef0988618a017c0",
+    "topic": "Grupos vectoriales",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1116
+  },
+  {
+    "q": "Un ciclo de ejecución tarda 10 ms. Sin interrupciones ni sobrecarga, ¿cuántos ciclos completos por segundo representa?",
+    "a": [
+      "100 ciclos/s",
+      "50 ciclos/s",
+      "200 ciclos/s",
+      "150 ciclos/s"
+    ],
+    "c": 0,
+    "cat": 1,
+    "explanation": "f=1000/Tms=1000/10=100 ciclos/s.",
+    "uid": "te-de5a19c3f8398192",
+    "topic": "Tiempo de ciclo",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1117
+  },
+  {
+    "q": "La capacidad de referencia de un cable es 40 A. Se aplican factores independientes 0,8 y 0,75. ¿Qué capacidad corregida resulta?",
+    "a": [
+      "24 A",
+      "12 A",
+      "36 A",
+      "48 A"
+    ],
+    "c": 0,
+    "cat": 2,
+    "explanation": "Iz=40·0,8·0,75=24 A.",
+    "uid": "te-0b3f2a5204c04de5",
+    "topic": "Factores térmicos",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1118
+  },
+  {
+    "q": "Un voltímetro tiene límite de error ±(1 % de lectura + 2 dígitos), resolución 0,1 V y lectura 150 V. ¿Qué límite absoluto se calcula?",
+    "a": [
+      "0,85 V",
+      "3,4 V",
+      "1,7 V",
+      "2,55 V"
+    ],
+    "c": 2,
+    "cat": 3,
+    "explanation": "Error límite=150·1/100+2·0,1=1,7 V.",
+    "uid": "te-5b1e2bad4a6d171a",
+    "topic": "Especificaciones",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1119
+  },
+  {
+    "q": "Una bomba centrífuga consumía 7,5 kW. Si gira al 57,5 % de su velocidad inicial, ¿qué potencia predicen las leyes de afinidad ideales?",
+    "a": [
+      "2,85 kW",
+      "2,14 kW",
+      "0,71 kW",
+      "1,43 kW"
+    ],
+    "c": 3,
+    "cat": 4,
+    "explanation": "P₂=P₁·(n₂/n₁)³=7,5·0,57³=1,43 kW.",
+    "uid": "te-5f89b5185591cda2",
+    "topic": "Bombas",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1120
+  },
+  {
+    "q": "Para flujo senoidal, un devanado tiene 325 espiras y flujo máximo 7 mWb a 50 Hz. ¿Qué tensión eficaz inducida predice E=4,44·f·N·Φ?",
+    "a": [
+      "505,05 V",
+      "757,58 V",
+      "252,53 V",
+      "1010,1 V"
+    ],
+    "c": 0,
+    "cat": 0,
+    "explanation": "E=4,44·50·325·7/1000=505,05 V.",
+    "uid": "te-77a598675772fa95",
+    "topic": "Inducción",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1121
+  },
+  {
+    "q": "Un grupo de 7 bombas disponibles alterna estrictamente en cada arranque, empezando por B1. ¿Qué bomba recibe el arranque número 15?",
+    "a": [
+      "2 (número de bomba)",
+      "1,5 (número de bomba)",
+      "1 (número de bomba)",
+      "0,5 (número de bomba)"
+    ],
+    "c": 2,
+    "cat": 1,
+    "explanation": "Posición=1+((15−1) módulo 7)=1.",
+    "uid": "te-4a6030f99b25b703",
+    "topic": "Alternancia",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1122
+  },
+  {
+    "q": "La corriente de cortocircuito prevista es 5,5 kA. ¿Qué poder de corte de los propuestos es suficiente por comparación directa?",
+    "a": [
+      "6 kA",
+      "5,4 kA",
+      "4,5 kA",
+      "5 kA"
+    ],
+    "c": 0,
+    "cat": 2,
+    "explanation": "Se necesita un poder de corte no inferior a 5,5 kA; el único propuesto que lo supera es 6 kA.",
+    "uid": "te-5985d390d80700a8",
+    "topic": "Poder de corte",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1123
+  },
+  {
+    "q": "Un contador registra 125 kWh durante 7 h. ¿Qué potencia activa media representa?",
+    "a": [
+      "26,79 kW",
+      "8,93 kW",
+      "35,71 kW",
+      "17,86 kW"
+    ],
+    "c": 3,
+    "cat": 3,
+    "explanation": "Pmedia=E/t=125/7=17,86 kW.",
+    "uid": "te-8c5c1e314fa2a939",
+    "topic": "Contadores de energía",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1124
+  },
+  {
+    "q": "Un motor gira a 1250 r/min y acciona un reductor ideal de relación de reducción 7:1. ¿Qué velocidad tiene la salida?",
+    "a": [
+      "178,57 r/min",
+      "267,86 r/min",
+      "357,14 r/min",
+      "89,29 r/min"
+    ],
+    "c": 0,
+    "cat": 4,
+    "explanation": "nsalida=nentrada/relación=1250/7=178,57 r/min.",
+    "uid": "te-8f461530c4334e60",
+    "topic": "Transmisiones",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1125
+  },
+  {
+    "q": "Una máquina absorbe 1500 W y tiene rendimiento 85 %. ¿Qué potencia útil entrega?",
+    "a": [
+      "2550 W",
+      "637,5 W",
+      "1275 W",
+      "1912,5 W"
+    ],
+    "c": 2,
+    "cat": 0,
+    "explanation": "Pútil=η·Pabsorbida=0,85·1500=1275 W.",
+    "uid": "te-a79d862a4ffcd13f",
+    "topic": "Balance de potencia",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1126
+  },
+  {
+    "q": "Un TOF de 7 s tenía su salida activa y pierde la entrada en t=8 s. Si no se reactiva, ¿en qué instante se desactiva la salida?",
+    "a": [
+      "22,5 s",
+      "30 s",
+      "7,5 s",
+      "15 s"
+    ],
+    "c": 3,
+    "cat": 1,
+    "explanation": "Instante de desconexión=8+7=15 s.",
+    "uid": "te-15aef509622dc2e9",
+    "topic": "Temporización",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1127
+  },
+  {
+    "q": "Para estudiar un defecto se modela un conductor de protección con 0,35 Ω y una corriente de 4 A. ¿Qué caída resistiva aparece?",
+    "a": [
+      "2,1 V",
+      "2,8 V",
+      "1,4 V",
+      "0,7 V"
+    ],
+    "c": 2,
+    "cat": 2,
+    "explanation": "ΔU=I·R=4·0,35=1,4 V.",
+    "uid": "te-bfb7b0b4c79abf44",
+    "topic": "Conductores de protección",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1128
+  },
+  {
+    "q": "Una tensión medida es 225 V frente a un valor de referencia de 230 V. ¿Cuál es la desviación porcentual con signo?",
+    "a": [
+      "-1,09 %",
+      "-3,26 %",
+      "-2,17 %",
+      "-4,35 %"
+    ],
+    "c": 2,
+    "cat": 3,
+    "explanation": "Desviación=(U−Uref)/Uref·100=(225−230)/230·100=-2,17 %.",
+    "uid": "te-8471c20b336ebeff",
+    "topic": "Tensión",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1129
+  },
+  {
+    "q": "Un reductor ideal sin pérdidas de relación 7:1 recibe 10 N·m. ¿Qué par de salida proporciona?",
+    "a": [
+      "140 N·m",
+      "70 N·m",
+      "105 N·m",
+      "35 N·m"
+    ],
+    "c": 1,
+    "cat": 4,
+    "explanation": "Tsalida=Tentrada·relación=10·7=70 N·m.",
+    "uid": "te-7eedf6937e956b8c",
+    "topic": "Transmisiones",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1130
+  },
+  {
+    "q": "Una carga conectada a un transformador absorbe 1500 VA con cos φ=0,7. ¿Qué potencia activa consume?",
+    "a": [
+      "1575 W",
+      "525 W",
+      "1050 W",
+      "2100 W"
+    ],
+    "c": 2,
+    "cat": 0,
+    "explanation": "P=S·cos φ=1500·0,7=1050 W.",
+    "uid": "te-46cff7bdfe8dc916",
+    "topic": "Potencia aparente",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1131
+  },
+  {
+    "q": "Un contador debe acumular 150 pulsos de una señal constante de 10 Hz, desde cero. ¿Qué tiempo de acumulación ideal resulta?",
+    "a": [
+      "22,5 s",
+      "30 s",
+      "15 s",
+      "7,5 s"
+    ],
+    "c": 2,
+    "cat": 1,
+    "explanation": "t=N/f=150/10=15 s.",
+    "uid": "te-407c319668be694b",
+    "topic": "Contadores",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1132
+  },
+  {
+    "q": "7 receptores tienen cada uno una fuga senoidal en fase de 4,5 mA. En ese supuesto, ¿qué fuga total se suma?",
+    "a": [
+      "15,75 mA",
+      "47,25 mA",
+      "63 mA",
+      "31,5 mA"
+    ],
+    "c": 3,
+    "cat": 2,
+    "explanation": "Con las corrientes en fase, la suma es 7·4,5=31,5 mA.",
+    "uid": "te-6f322f9b94317924",
+    "topic": "Corrientes residuales",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1133
+  },
+  {
+    "q": "Un analizador usa correctamente un TC de 225/5 A y recibe 1,5 A secundarios. ¿Qué corriente muestra en el primario?",
+    "a": [
+      "33,75 A",
+      "67,5 A",
+      "135 A",
+      "101,25 A"
+    ],
+    "c": 1,
+    "cat": 3,
+    "explanation": "Iprim=Isec·(225/5)=1,5·45=67,5 A.",
+    "uid": "te-bd2984cc74c60db5",
+    "topic": "Escalado de TC",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1134
+  },
+  {
+    "q": "En un control V/f lineal ideal por debajo de frecuencia base, con base 400 V a 50 Hz y sin refuerzo de tensión, ¿qué tensión corresponde a 20 Hz?",
+    "a": [
+      "80 V",
+      "240 V",
+      "160 V",
+      "320 V"
+    ],
+    "c": 2,
+    "cat": 4,
+    "explanation": "U=Ubase·f/fbase=400·20/50=160 V.",
+    "uid": "te-7fbf6c779ec5b32b",
+    "topic": "Control V/f",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1135
+  },
+  {
+    "q": "En un transformador ideal, N₁=625 y N₂=75. ¿Cuál es la relación U₁/U₂?",
+    "a": [
+      "16,67 ",
+      "12,5 ",
+      "8,33 ",
+      "4,17 "
+    ],
+    "c": 2,
+    "cat": 0,
+    "explanation": "U₁/U₂=N₁/N₂=625/75=8,33.",
+    "uid": "te-93a5c303df879d32",
+    "topic": "Relación de espiras",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1136
+  },
+  {
+    "q": "Un control con histéresis conecta al bajar hasta 12 bar y desconecta al subir a 15 bar. ¿Qué anchura tiene su banda?",
+    "a": [
+      "6 bar",
+      "4,5 bar",
+      "3 bar",
+      "1,5 bar"
+    ],
+    "c": 2,
+    "cat": 1,
+    "explanation": "Banda=umbral superior−inferior=15−12=3 bar.",
+    "uid": "te-4fbce4fdbfa0d545",
+    "topic": "Histéresis",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1137
+  },
+  {
+    "q": "Para comparar una protección de In=15 A con una carga Ib=13 A, ¿qué cociente Ib/In se obtiene?",
+    "a": [
+      "1,3 ",
+      "0,87 ",
+      "0,43 ",
+      "1,73 "
+    ],
+    "c": 1,
+    "cat": 2,
+    "explanation": "Ib/In=13/15=0,87. Esto no determina por sí solo el tiempo de disparo.",
+    "uid": "te-e39371baeab638a6",
+    "topic": "Sobrecargas",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1138
+  },
+  {
+    "q": "Un conversor ideal de 12 bits se escala de código 0=0 V a código 4095=10 V. ¿Qué tensión representa el código 1152?",
+    "a": [
+      "2,81 V",
+      "4,22 V",
+      "1,41 V",
+      "5,63 V"
+    ],
+    "c": 0,
+    "cat": 3,
+    "explanation": "U=código·10/4095=1152·10/4095=2,81 V.",
+    "uid": "te-12a875a74feb6ee6",
+    "topic": "Conversión analógica",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1139
+  },
+  {
+    "q": "Un variador hace una rampa lineal de 10 a 45 Hz en 10 s. ¿Cuál es su pendiente?",
+    "a": [
+      "5,25 Hz/s",
+      "7 Hz/s",
+      "3,5 Hz/s",
+      "1,75 Hz/s"
+    ],
+    "c": 2,
+    "cat": 4,
+    "explanation": "Pendiente=(ffinal−finicial)/t=(45−10)/10=3,5 Hz/s.",
+    "uid": "te-94595287da90a803",
+    "topic": "Rampas",
+    "kind": "cálculo",
+    "source": "https://library.e.abb.com/public/df559f6df460420c8a0b14d07d109263/TechnicalGuideBook_EN_3AFE64514482_RevI.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1140
+  },
+  {
+    "q": "Las pérdidas constantes en vacío de un transformador son 20 W. Si permanece energizado 8 h sin carga, ¿qué energía consume?",
+    "a": [
+      "0,16 kWh",
+      "0,08 kWh",
+      "0,24 kWh",
+      "0,32 kWh"
+    ],
+    "c": 0,
+    "cat": 0,
+    "explanation": "E=P·t/1000=20·8/1000=0,16 kWh.",
+    "uid": "te-58afd99a2521e062",
+    "topic": "Energía en vacío",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1141
+  },
+  {
+    "q": "Un temporizador usa una base de 15 ms por cuenta. ¿Cuántas cuentas representan 45 s?",
+    "a": [
+      "1500 cuentas",
+      "6000 cuentas",
+      "3000 cuentas",
+      "4500 cuentas"
+    ],
+    "c": 2,
+    "cat": 1,
+    "explanation": "N=t/base=45·1000/15=3000 cuentas.",
+    "uid": "te-d043eca499e93900",
+    "topic": "Base de tiempo",
+    "kind": "cálculo",
+    "source": "https://cache.industry.siemens.com/dl/files/910/45164910/att_109533/v1/logo_system_manual_en-US_en-US.pdf",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1142
+  },
+  {
+    "q": "Un contacto deteriorado tiene 1 Ω y conduce 15 A. ¿Qué potencia térmica se calcula en ese contacto?",
+    "a": [
+      "337,5 W",
+      "112,5 W",
+      "450 W",
+      "225 W"
+    ],
+    "c": 3,
+    "cat": 2,
+    "explanation": "P=I²R=15²·1=225 W.",
+    "uid": "te-a4a26fa554b38b0d",
+    "topic": "Calentamientos",
+    "kind": "cálculo",
+    "source": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-18099",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1143
+  },
+  {
+    "q": "Dos senoides de igual período 10 ms tienen una separación temporal de 3 ms. ¿Qué magnitud de desfase corresponde?",
+    "a": [
+      "54 °",
+      "216 °",
+      "162 °",
+      "108 °"
+    ],
+    "c": 3,
+    "cat": 3,
+    "explanation": "φ=360·Δt/T=360·3/10=108°.",
+    "uid": "te-11bea436e477abb0",
+    "topic": "Desfase",
+    "kind": "cálculo",
+    "source": "Fundamentos y cálculo eléctrico",
+    "bankVersion": "2026-10-01-v2",
+    "id": 1144
+  },
+  {
     "q": "Un motor consume una potencia eléctrica constante de 3,25 kW durante 7 h. ¿Qué energía activa utiliza?",
     "a": [
       "34,12 kWh",
