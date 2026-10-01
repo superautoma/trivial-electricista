@@ -715,7 +715,7 @@ textarea{min-height:90px;resize:vertical}
 <div id="questionText" class="question"></div>
 <div id="answers" class="answers"></div>
 <div id="answerExplanation" class="answer-explanation" style="display:none"></div>
-<div class="actions"><button id="answerContinueBtn" class="primary">➡️ Continuar</button></div>
+<div class="actions"><button id="markReviewBtn" class="secondary" type="button" onclick="toggleCurrentQuestionReview()">⚠️ Marcar para revisar</button><button id="answerContinueBtn" class="primary">➡️ Continuar</button></div>
 </div></div>
 
 <div class="modal" id="editorModal"><div class="panel">
@@ -24563,6 +24563,7 @@ function askQuestion(pos){
  const q=pick.q;
  currentQuestionForExplanation=q;
  questionLocked=false;
+ if(typeof updateReviewButton==="function") updateReviewButton();
 
  document.getElementById("questionTitle").textContent=categoryName(q.cat);
 
@@ -25381,6 +25382,42 @@ fillCategorySelects();buildBoard();renderPlayers();aplicarSimbolosSinMover();mar
 </script>
 
 
+
+<script id="question-review-simple">
+(function(){
+  const KEY="trivial_questions_marked_for_review_v1";
+  function readMarks(){
+    try{const v=JSON.parse(localStorage.getItem(KEY)||"[]");return Array.isArray(v)?v:[]}catch(e){return []}
+  }
+  function writeMarks(v){localStorage.setItem(KEY,JSON.stringify(v))}
+  function currentIndex(){
+    return (typeof lastQuestion==="number" && lastQuestion>=0) ? lastQuestion : -1;
+  }
+  window.updateReviewButton=function(){
+    const btn=document.getElementById("markReviewBtn");
+    if(!btn)return;
+    const idx=currentIndex(), marks=readMarks();
+    const marked=marks.some(x=>x.index===idx);
+    btn.textContent=marked?"✓ Marcada para revisar":"⚠️ Marcar para revisar";
+    btn.classList.toggle("primary",marked);
+    btn.classList.toggle("secondary",!marked);
+  };
+  window.toggleCurrentQuestionReview=function(){
+    const idx=currentIndex();
+    if(idx<0 || typeof questions==="undefined" || !questions[idx])return;
+    let marks=readMarks();
+    const p=marks.findIndex(x=>x.index===idx);
+    if(p>=0){
+      marks.splice(p,1);
+    }else{
+      const q=questions[idx];
+      marks.push({index:idx,question:q.q||"",category:q.cat,markedAt:new Date().toISOString()});
+    }
+    writeMarks(marks);
+    updateReviewButton();
+  };
+})();
+</script>
 
 <script>window.askQuestion=askQuestion;</script>
 
