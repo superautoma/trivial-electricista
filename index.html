@@ -683,6 +683,21 @@ textarea{min-height:90px;resize:vertical}
   color:#17100a !important;
 }
 </style>
+<style id="mobile-editor-fix">
+@media (max-width:700px){
+ #editorModal{align-items:flex-start!important;padding:10px!important;overflow-y:auto!important}
+ #editorModal>.panel{width:calc(100vw - 20px)!important;max-width:none!important;max-height:none!important;margin:0 auto!important;overflow:visible!important}
+ #editorModal .editor-topbar{display:flex!important;gap:8px!important;flex-wrap:wrap!important}
+ #editorModal .editor-topbar button{flex:1 1 140px!important;white-space:normal!important}
+ #editorModal .grid{grid-template-columns:1fr!important}
+ #editorModal .actions{display:flex!important;flex-wrap:wrap!important;gap:8px!important}
+ #editorModal .actions>*{max-width:100%!important}
+ #editorModal #editorList{max-height:none!important;overflow:visible!important}
+ #editorModal .qrow{display:grid!important;grid-template-columns:auto minmax(0,1fr)!important;gap:8px!important;width:100%!important}
+ #editorModal .qmain{min-width:0!important}
+ #editorModal .rowactions{grid-column:1/-1!important;justify-content:flex-end!important;flex-wrap:wrap!important}
+}
+</style>
 </head>
 <body>
 <div class="app">
