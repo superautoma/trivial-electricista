@@ -389,7 +389,7 @@ textarea{min-height:90px;resize:vertical}
   function render(){
     let host=document.getElementById("dbPaginatedHost");
     if(!host){
-      const editor=document.getElementById("editorModal") || document.body;
+      const editor=document.getElementById("editorModal")?.querySelector(".panel") || document.body;
       host=document.createElement("div");
       host.id="dbPaginatedHost";
       host.style.cssText="margin:12px 0";
@@ -682,6 +682,10 @@ textarea{min-height:90px;resize:vertical}
   background:#ffd447 !important;
   color:#17100a !important;
 }
+</style>
+<style id="editor-pagination-placement">
+#editorModal>#dbPaginatedHost{display:none!important}
+#editorModal>.panel>#dbPaginatedHost{width:100%;max-width:100%;min-width:0}
 </style>
 <style id="mobile-editor-fix">
 @media (max-width:700px){
