@@ -1,8 +1,10 @@
-Trivial Electricista — Versión base aprobada
+Trivial Electricista — Versión base con ampliación
 Fecha: 2026-10-01
-Origen: prueba-marcar.html, revisión 8ae018d2507ed9fc06c9020470f9bf3d46d86c5f
-Editor paginado y preguntas marcadas para revisión.
-Cabecera de preguntas: símbolo, número y categoría.
-Fondos de categoría suaves con intensidad ajustada.
-Sin indicador de imagen delante del enunciado.
+Colección: 1800 enunciados distintos, 300 por categoría.
+Conservadas: 531 preguntas originales sin duplicados.
+Añadidas: 84 preguntas de conceptos y 1185 ejercicios de cálculo con variantes numéricas.
+Las variantes practican procedimientos compartidos; no son 1269 conceptos independientes.
+Cada incorporación contiene cuatro opciones, respuesta correcta y explicación.
+Migración aditiva de IndexedDB con identificadores y protección de las ediciones existentes.
+Se conserva el diseño del editor aprobado.
 Esta es la base para futuras modificaciones.
