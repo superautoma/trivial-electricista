@@ -5,7 +5,7 @@ package.domain = com.superautoma
 source.dir = .
 source.include_exts = py,png,jpg,kv,json,db
 version = 0.1.0
-requirements = python3,kivy,charset-normalizer==3.3.2
+requirements = python3==3.13.7,kivy==2.3.1,charset-normalizer==3.3.2
 orientation = portrait
 fullscreen = 0
 android.api = 35
