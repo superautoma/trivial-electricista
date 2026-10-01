@@ -735,6 +735,7 @@ textarea{min-height:90px;resize:vertical}
 </div>
 <div class="actions">
 <button class="secondary" onclick="clearQuestionSearch()">✖ Limpiar búsqueda</button>
+<button class="secondary" onclick="closeModal('editorModal');openMarkedQuestions()">⚠️ Preguntas marcadas</button>
 <select id="sortQuestions" onchange="renderEditor()" style="width:auto">
 <option value="number">Orden: número</option>
 <option value="az">Orden: A → Z</option>
@@ -806,8 +807,6 @@ textarea{min-height:90px;resize:vertical}
 <button class="menu-action" onclick="closeModal('settingsMenuModal');openPlayers()">👥<span><b>Jugadores</b><small>Número y nombres</small></span></button>
 <button class="menu-action" onclick="closeModal('settingsMenuModal');openTimeSettings()">⏱️<span><b>Tiempo</b><small>Tiempo por pregunta</small></span></button>
 <button class="menu-action" onclick="closeModal('settingsMenuModal');openQuestionManagement()">🗂️<span><b>Gestión de preguntas</b><small>Buscar, añadir y organizar</small></span></button>
-<button class="menu-action" onclick="closeModal('settingsMenuModal');openQuestionCorrection()">✏️<span><b>Corrección de preguntas</b><small>Revisar y modificar preguntas</small></span></button>
-<button class="menu-action" onclick="closeModal('settingsMenuModal');openMarkedQuestions()">⚠️<span><b>Preguntas marcadas</b><small>Revisar las pendientes de corrección</small></span></button>
 <button class="menu-action" onclick="closeModal('settingsMenuModal');openRemoteMenu()">🌐<span><b>Partida remota</b><small>Jugar con otra persona por Internet</small></span></button>
 </div>
 <div class="actions"><button class="secondary" onclick="closeModal('settingsMenuModal')">Cerrar</button></div>
