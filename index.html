@@ -69,7 +69,7 @@ textarea{min-height:90px;resize:vertical}
  .qrow{grid-template-columns:42px 1fr;gap:8px}
  .qrow .rowactions{grid-column:1/-1;display:flex!important;justify-content:flex-end}
 }
-.qrow .badge{width:42px;height:42px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#111;font-weight:bold}
+.qrow .badge{width:42px;height:42px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#111;font-weight:bold;font-size:26px;line-height:1;flex-shrink:0}
 .qtext{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 @media(max-width:600px){
  .board{width:96vw;height:96vw;border-width:9px}
@@ -603,7 +603,7 @@ textarea{min-height:90px;resize:vertical}
  #editorModal .actions>*{width:100%!important;min-width:0!important}
  #editorModal #editorList{width:100%!important;max-height:none!important;overflow:visible!important}
  #editorModal .qrow{display:block!important;width:100%!important;min-width:0!important;padding:12px!important}
- #editorModal .badge{display:inline-block!important;margin-bottom:6px!important}
+ #editorModal .badge{display:inline-flex!important;align-items:center!important;justify-content:center!important;margin-bottom:6px!important}
  #editorModal .qmain{width:100%!important;min-width:0!important;overflow-wrap:anywhere!important}
  #editorModal .qanswers{display:flex!important;flex-wrap:wrap!important}
  #editorModal .rowactions{display:flex!important;gap:8px!important;margin-top:10px!important;justify-content:flex-start!important;flex-wrap:wrap!important}
@@ -24812,7 +24812,7 @@ function renderEditor(){
  pageEntries.forEach(({q,i})=>{
    const row=document.createElement("div");row.className="qrow";row.title="Toca para editar esta pregunta";
    row.onclick=(e)=>{if(e.target.closest("button"))return;editQuestion(i)};
-   const badge=document.createElement("div");badge.className="badge "+catColors[(q.cat||0)%6];badge.textContent=i+1;
+   const badge=document.createElement("div");badge.className="badge "+catColors[(q.cat||0)%6];badge.textContent=CATEGORY_SYMBOLS_OVERLAY[categoryName(q.cat)]||"◆";badge.title=categoryName(q.cat);badge.setAttribute("aria-label",categoryName(q.cat));
    const main=document.createElement("div");main.className="qmain";
    const number=document.createElement("div");number.className="qnumber";number.textContent="Pregunta "+(i+1)+" · "+categoryName(q.cat);
    const title=document.createElement("b");title.textContent=(q.imageData||q.imageUrl?"🖼️ ":"")+q.q;
