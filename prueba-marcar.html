@@ -24821,7 +24821,7 @@ function renderEditor(){
    const badge=document.createElement("div");badge.className="badge "+catColors[(q.cat||0)%6];badge.textContent=CATEGORY_SYMBOLS_OVERLAY[categoryName(q.cat)]||"◆";badge.title=categoryName(q.cat);badge.setAttribute("aria-label",categoryName(q.cat));
    const main=document.createElement("div");main.className="qmain";
    const number=document.createElement("div");number.className="qnumber";number.textContent=(i+1)+" · "+categoryName(q.cat);
-   const title=document.createElement("b");title.textContent=(q.imageData||q.imageUrl?"🖼️ ":"")+q.q;
+   const title=document.createElement("b");title.textContent=q.q;
    const answers=document.createElement("div");answers.className="qanswers";
    q.a.forEach((answer,j)=>{const chip=document.createElement("span");chip.className="qanswer"+(j===q.c?" correct":"");chip.textContent=String.fromCharCode(65+j)+") "+answer;answers.appendChild(chip)});
    const heading=document.createElement("div");heading.className="qheader";heading.append(badge,number);
