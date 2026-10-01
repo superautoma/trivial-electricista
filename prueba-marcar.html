@@ -685,17 +685,24 @@ textarea{min-height:90px;resize:vertical}
 </style>
 <style id="mobile-editor-fix">
 @media (max-width:700px){
- #editorModal{align-items:flex-start!important;padding:10px!important;overflow-y:auto!important}
- #editorModal>.panel{width:calc(100vw - 20px)!important;max-width:none!important;max-height:none!important;margin:0 auto!important;overflow:visible!important}
- #editorModal .editor-topbar{display:flex!important;gap:8px!important;flex-wrap:wrap!important}
- #editorModal .editor-topbar button{flex:1 1 140px!important;white-space:normal!important}
- #editorModal .grid{grid-template-columns:1fr!important}
- #editorModal .actions{display:flex!important;flex-wrap:wrap!important;gap:8px!important}
- #editorModal .actions>*{max-width:100%!important}
- #editorModal #editorList{max-height:none!important;overflow:visible!important}
- #editorModal .qrow{display:grid!important;grid-template-columns:auto minmax(0,1fr)!important;gap:8px!important;width:100%!important}
- #editorModal .qmain{min-width:0!important}
- #editorModal .rowactions{grid-column:1/-1!important;justify-content:flex-end!important;flex-wrap:wrap!important}
+ #editorModal{padding:8px!important;align-items:flex-start!important;overflow-y:auto!important;overflow-x:hidden!important}
+ #editorModal>.panel{position:relative!important;left:auto!important;right:auto!important;top:auto!important;transform:none!important;width:100%!important;max-width:100%!important;min-width:0!important;margin:0!important;padding:14px!important;max-height:none!important;overflow:visible!important}
+ #editorModal .editor-topbar{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important}
+ #editorModal .editor-topbar button{width:100%!important;min-width:0!important;padding:10px 6px!important;font-size:14px!important}
+ #editorModal h2{font-size:24px!important;line-height:1.15!important;overflow-wrap:anywhere!important}
+ #editorModal p{font-size:15px!important;line-height:1.35!important}
+ #editorModal .grid{display:block!important}
+ #editorModal .grid>div{width:100%!important;margin-bottom:10px!important}
+ #editorModal input,#editorModal select{width:100%!important;min-width:0!important}
+ #editorModal .actions{display:grid!important;grid-template-columns:1fr!important;gap:8px!important}
+ #editorModal .actions>*{width:100%!important;min-width:0!important}
+ #editorModal #editorList{width:100%!important;max-height:none!important;overflow:visible!important}
+ #editorModal .qrow{display:block!important;width:100%!important;min-width:0!important;padding:12px!important}
+ #editorModal .badge{display:inline-block!important;margin-bottom:6px!important}
+ #editorModal .qmain{width:100%!important;min-width:0!important;overflow-wrap:anywhere!important}
+ #editorModal .qanswers{display:flex!important;flex-wrap:wrap!important}
+ #editorModal .rowactions{display:flex!important;gap:8px!important;margin-top:10px!important;justify-content:flex-start!important;flex-wrap:wrap!important}
+ #editorModal .rowactions button{width:auto!important}
 }
 </style>
 </head>
