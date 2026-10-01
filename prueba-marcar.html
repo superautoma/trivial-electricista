@@ -617,6 +617,15 @@ textarea{min-height:90px;resize:vertical}
 #editorModal #editorList .qnumber{color:#e7cf9f!important}
 #editorModal #editorList .qanswer{color:#eee!important}
 </style>
+<style id="marked-question-readable">
+#markedQuestionsModal .marked-question-text{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;display:block!important;line-height:1.35;font-size:17px;margin-top:5px;overflow-wrap:anywhere}
+#markedQuestionsModal .qrow{align-items:start}
+#markedQuestionsModal .qmain{min-width:0}
+@media(max-width:600px){
+ #markedQuestionsModal .qrow{display:block!important}
+ #markedQuestionsModal .rowactions{justify-content:flex-start!important;margin-top:12px}
+}
+</style>
 </head>
 <body>
 <div class="app">
@@ -25339,8 +25348,8 @@ fillCategorySelects();buildBoard();renderPlayers();aplicarSimbolosSinMover();mar
       const q=(typeof questions!=="undefined"&&questions[m.index])?questions[m.index]:null;
       const row=document.createElement("div");row.className="qrow";
       const main=document.createElement("div");main.className="qmain";
-      main.innerHTML='<div class="qnumber">Pregunta #'+(m.index+1)+'</div><div class="qtext"></div>';
-      main.querySelector(".qtext").textContent=q?.q||m.question||"Pregunta no disponible";
+      main.innerHTML='<div class="qnumber">Pregunta #'+(m.index+1)+'</div><div class="marked-question-text"></div>';
+      main.querySelector(".marked-question-text").textContent=q?.q||m.question||"Pregunta no disponible";
       const actions=document.createElement("div");actions.className="rowactions";
       const edit=document.createElement("button");edit.className="primary";edit.textContent="✏️ Corregir";
       edit.onclick=()=>{window.editReturnToMarked=true;closeModal("markedQuestionsModal");editQuestion(m.index)};
