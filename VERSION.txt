@@ -1,6 +1,8 @@
-Trivial Electricista — Revisión final
-Versión: preguntas limpias + explicaciones verificadas
-Preguntas revisadas: 1800
-Enunciados limpiados: 486
-Explicaciones comprobadas: 1800
-Explicaciones completadas/ajustadas: 0
+Trivial Electricista — Versión base aprobada
+Fecha: 2026-10-01
+Origen: prueba-marcar.html, revisión 8ae018d2507ed9fc06c9020470f9bf3d46d86c5f
+Editor paginado y preguntas marcadas para revisión.
+Cabecera de preguntas: símbolo, número y categoría.
+Fondos de categoría suaves con intensidad ajustada.
+Sin indicador de imagen delante del enunciado.
+Esta es la base para futuras modificaciones.
