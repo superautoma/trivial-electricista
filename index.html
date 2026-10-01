@@ -739,7 +739,7 @@ textarea{min-height:90px;resize:vertical}
 <div class="actions">
 <button class="primary" onclick="saveQuestion()">💾 Guardar cambios</button>
 <button class="danger" id="deleteBtn" onclick="deleteQuestion()">🗑️ Eliminar</button>
-<button class="secondary" onclick="closeModal('editModal')">Cancelar</button>
+<button class="secondary" onclick="cancelQuestionEdit()">Cancelar</button>
 </div>
 </div></div>
 
@@ -24888,6 +24888,14 @@ function editQuestion(i){
  openModal("editModal");
 }
 
+function cancelQuestionEdit(){
+ closeModal("editModal");
+ if(window.editReturnToMarked){
+   window.editReturnToMarked=false;
+   if(typeof renderMarkedQuestions==="function") renderMarkedQuestions();
+   openModal("markedQuestionsModal");
+ }
+}
 function updateCorrectOptions(selected){
  const select=document.getElementById("fCorrect");
  select.innerHTML="";
@@ -24958,8 +24966,14 @@ function saveQuestion(){
  const editedNumber=wasNew? questions.length : editingIndex+1;
 
  closeModal("editModal");
- renderEditor();
- if(document.getElementById("databaseModal")?.style.display!=="none") openDatabaseViewer();
+ if(window.editReturnToMarked){
+   window.editReturnToMarked=false;
+   if(typeof renderMarkedQuestions==="function") renderMarkedQuestions();
+   openModal("markedQuestionsModal");
+ }else{
+   renderEditor();
+   if(document.getElementById("databaseModal")?.classList.contains("show")) openDatabaseViewer();
+ }
 
  document.getElementById("status").textContent =
  wasNew? "✅ Pregunta añadida correctamente."
@@ -25329,7 +25343,7 @@ fillCategorySelects();buildBoard();renderPlayers();aplicarSimbolosSinMover();mar
       main.querySelector(".qtext").textContent=q?.q||m.question||"Pregunta no disponible";
       const actions=document.createElement("div");actions.className="rowactions";
       const edit=document.createElement("button");edit.className="primary";edit.textContent="✏️ Corregir";
-      edit.onclick=()=>{closeModal("markedQuestionsModal");editQuestion(m.index)};
+      edit.onclick=()=>{window.editReturnToMarked=true;closeModal("markedQuestionsModal");editQuestion(m.index)};
       const remove=document.createElement("button");remove.className="secondary";remove.textContent="✓ Quitar marca";
       remove.onclick=()=>{writeMarks(readMarks().filter(x=>x.index!==m.index));renderMarkedQuestions();updateReviewButton()};
       actions.append(edit,remove);row.append(main,actions);host.appendChild(row);
