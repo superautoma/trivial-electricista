@@ -659,25 +659,34 @@ textarea{min-height:90px;resize:vertical}
 <div class="grid">
 <div>
 <label>Buscar pregunta, respuesta o categoría</label>
-<input id="searchQ" oninput="renderEditor()" autocomplete="off"
+<input id="searchQ" oninput="editorPage=1;renderEditor()" autocomplete="off"
  placeholder="Ej.: motor trifásico, 400 v, protección...">
 </div>
 <div>
 <label>Categoría</label>
-<select id="filterCat" onchange="renderEditor()"><option value="-1">Todas</option></select>
+<select id="filterCat" onchange="editorPage=1;renderEditor()"><option value="-1">Todas</option></select>
 </div>
 </div>
 <div class="actions">
 <button class="secondary" onclick="clearQuestionSearch()">✖ Limpiar búsqueda</button>
 <button class="secondary" onclick="closeModal('editorModal');openMarkedQuestions()">⚠️ Preguntas marcadas</button>
-<select id="sortQuestions" onchange="renderEditor()" style="width:auto">
+<select id="sortQuestions" onchange="editorPage=1;renderEditor()" style="width:auto">
 <option value="number">Orden: número</option>
 <option value="az">Orden: A → Z</option>
 <option value="za">Orden: Z → A</option>
 <option value="category">Orden: categoría</option>
 </select>
 </div>
-<div id="editorCount" style="margin-top:12px;color:#e7cf9f"></div><div id="editorList" class="editor-list"></div>
+<div id="editorPagination" style="margin-top:12px">
+  <div class="db-page-size"><label for="editorPageSize">Preguntas por página:</label>
+    <select id="editorPageSize" onchange="editorPage=1;renderEditor()">
+      <option value="25">25</option><option value="50" selected>50</option><option value="100">100</option><option value="250">250</option>
+    </select>
+  </div>
+  <div id="editorCount" class="db-page-info"></div>
+  <div id="editorPager" class="db-pagination"></div>
+</div>
+<div id="editorList" class="editor-list"></div>
 <div class="actions">
 <button class="primary" onclick="newQuestion()">➕ Nueva pregunta</button>
 <button class="secondary" onclick="closeModal('editorModal')">Cerrar</button>
@@ -24766,103 +24775,62 @@ function searchMatches(q, search){
  );
 }
 
+let editorPage=1;
+
 function renderEditor(){
  const list=document.getElementById("editorList");
  const totalBadge=document.getElementById("totalQuestionsBadge");
  if(totalBadge) totalBadge.textContent=questions.length+" preguntas";
  const search=normalizeSearchText(document.getElementById("searchQ").value);
  const filter=parseInt(document.getElementById("filterCat").value,10);
-
- list.innerHTML="";
- let visible=0;
+ const size=Math.max(1,parseInt(document.getElementById("editorPageSize")?.value||"50",10));
 
  let entries=questions.map((q,i)=>({q,i}));
  const sort=document.getElementById("sortQuestions")?.value||"number";
  if(sort==="az") entries.sort((x,y)=>x.q.q.localeCompare(y.q.q,"es",{sensitivity:"base"}));
  if(sort==="za") entries.sort((x,y)=>y.q.q.localeCompare(x.q.q,"es",{sensitivity:"base"}));
- if(sort==="category") entries.sort((x,y)=>
- categoryName(x.q.cat).localeCompare(categoryName(y.q.cat),"es",{sensitivity:"base"}) ||
- x.i-y.i
- );
+ if(sort==="category") entries.sort((x,y)=>categoryName(x.q.cat).localeCompare(categoryName(y.q.cat),"es",{sensitivity:"base"})||x.i-y.i);
+ entries=entries.filter(({q})=>(filter<0||q.cat===filter)&&searchMatches(q,search));
 
- entries.forEach(({q,i})=>{
- if(filter>=0 && q.cat!==filter) return;
- if(!searchMatches(q,search)) return;
+ const total=entries.length;
+ const pages=Math.max(1,Math.ceil(total/size));
+ if(typeof editorPage!=="number") editorPage=1;
+ editorPage=Math.min(Math.max(1,editorPage),pages);
+ const from=(editorPage-1)*size;
+ const pageEntries=entries.slice(from,from+size);
 
- visible++;
-
- const row=document.createElement("div");
- row.className="qrow";
- row.title="Toca para editar esta pregunta";
- row.onclick=(e)=>{
- if(e.target.closest("button")) return;
- editQuestion(i);
- };
-
- const badge=document.createElement("div");
- badge.className="badge "+catColors[(q.cat||0)%6];
- badge.textContent=i+1;
-
- const main=document.createElement("div");
- main.className="qmain";
-
- const number=document.createElement("div");
- number.className="qnumber";
- number.textContent="Pregunta "+(i+1)+" · "+categoryName(q.cat);
-
- const title=document.createElement("b");
- title.textContent=(q.imageData||q.imageUrl?"🖼️ ":"")+q.q;
-
- const answers=document.createElement("div");
- answers.className="qanswers";
-
- q.a.forEach((answer,j)=>{
- const chip=document.createElement("span");
- chip.className="qanswer"+(j===q.c?" correct":"");
- chip.textContent=String.fromCharCode(65+j)+") "+answer;
- answers.appendChild(chip);
+ list.innerHTML="";
+ pageEntries.forEach(({q,i})=>{
+   const row=document.createElement("div");row.className="qrow";row.title="Toca para editar esta pregunta";
+   row.onclick=(e)=>{if(e.target.closest("button"))return;editQuestion(i)};
+   const badge=document.createElement("div");badge.className="badge "+catColors[(q.cat||0)%6];badge.textContent=i+1;
+   const main=document.createElement("div");main.className="qmain";
+   const number=document.createElement("div");number.className="qnumber";number.textContent="Pregunta "+(i+1)+" · "+categoryName(q.cat);
+   const title=document.createElement("b");title.textContent=(q.imageData||q.imageUrl?"🖼️ ":"")+q.q;
+   const answers=document.createElement("div");answers.className="qanswers";
+   q.a.forEach((answer,j)=>{const chip=document.createElement("span");chip.className="qanswer"+(j===q.c?" correct":"");chip.textContent=String.fromCharCode(65+j)+") "+answer;answers.appendChild(chip)});
+   main.append(number,title,answers);
+   const actions=document.createElement("div");actions.className="rowactions";actions.style.display="flex";actions.style.gap="6px";
+   const edit=document.createElement("button");edit.className="primary";edit.textContent="✏️ Editar";edit.onclick=()=>editQuestion(i);
+   const del=document.createElement("button");del.className="danger";del.textContent="🗑️";del.title="Eliminar pregunta";del.onclick=()=>deleteQuestionAt(i);
+   actions.append(edit,del);row.append(badge,main,actions);list.appendChild(row);
  });
 
- main.append(number,title,answers);
-
- const actions=document.createElement("div");
- actions.className="rowactions";
- actions.style.display="flex";
- actions.style.gap="6px";
-
- const edit=document.createElement("button");
- edit.className="primary";
- edit.textContent="✏️ Editar";
- edit.onclick=()=>editQuestion(i);
-
- const del=document.createElement("button");
- del.className="danger";
- del.textContent="🗑️";
- del.title="Eliminar pregunta";
- del.onclick=()=>deleteQuestionAt(i);
-
- actions.append(edit,del);
- row.append(badge,main,actions);
- list.appendChild(row);
- });
-
- const countBox=document.getElementById("editorCount");
- if(countBox){
- countBox.textContent=
- visible+" pregunta(s) encontrada(s) de "+questions.length;
- }
-
- if(!visible){
- const empty=document.createElement("div");
- empty.style.cssText="padding:25px;text-align:center;color:#e7cf9f";
- empty.innerHTML=
- "No se encontraron preguntas.<br><small>"+
- "Prueba con otra palabra o borra el filtro.</small>";
- list.appendChild(empty);
+ const count=document.getElementById("editorCount");
+ if(count) count.textContent=total?("Mostrando "+(from+1)+"–"+Math.min(from+size,total)+" de "+total+" preguntas"):"No se encontraron preguntas.";
+ const pager=document.getElementById("editorPager");
+ if(pager){
+   pager.innerHTML="";
+   const add=(txt,p,disabled,active)=>{const bt=document.createElement("button");bt.type="button";bt.textContent=txt;bt.disabled=disabled;if(active)bt.classList.add("active");bt.onclick=()=>{editorPage=p;renderEditor();document.getElementById("editorModal")?.scrollTo({top:0,behavior:"smooth"})};pager.appendChild(bt)};
+   add("«",1,editorPage===1,false);add("‹",Math.max(1,editorPage-1),editorPage===1,false);
+   let a=Math.max(1,editorPage-2), z=Math.min(pages,a+4);a=Math.max(1,z-4);
+   for(let p=a;p<=z;p++) add(String(p),p,false,p===editorPage);
+   add("›",Math.min(pages,editorPage+1),editorPage===pages,false);add("»",pages,editorPage===pages,false);
  }
 }
 
 function clearQuestionSearch(){
+ editorPage=1;
  document.getElementById("searchQ").value="";
  document.getElementById("filterCat").value="-1";
  renderEditor();
