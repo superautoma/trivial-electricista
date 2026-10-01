@@ -626,6 +626,12 @@ textarea{min-height:90px;resize:vertical}
  #markedQuestionsModal .rowactions{justify-content:flex-start!important;margin-top:12px}
 }
 </style>
+<style id="editor-category-header">
+#editorModal #editorList .qrow{grid-template-columns:minmax(0,1fr) auto}
+#editorModal .qheader{display:flex;align-items:center;gap:10px;margin-bottom:10px;min-width:0}
+#editorModal .qheader .badge{display:flex!important;margin:0!important}
+#editorModal .qheader .qnumber{font-size:14px;line-height:1.35;overflow-wrap:anywhere}
+</style>
 </head>
 <body>
 <div class="app">
@@ -24814,15 +24820,16 @@ function renderEditor(){
    row.onclick=(e)=>{if(e.target.closest("button"))return;editQuestion(i)};
    const badge=document.createElement("div");badge.className="badge "+catColors[(q.cat||0)%6];badge.textContent=CATEGORY_SYMBOLS_OVERLAY[categoryName(q.cat)]||"◆";badge.title=categoryName(q.cat);badge.setAttribute("aria-label",categoryName(q.cat));
    const main=document.createElement("div");main.className="qmain";
-   const number=document.createElement("div");number.className="qnumber";number.textContent="Pregunta "+(i+1)+" · "+categoryName(q.cat);
+   const number=document.createElement("div");number.className="qnumber";number.textContent=(i+1)+" · "+categoryName(q.cat);
    const title=document.createElement("b");title.textContent=(q.imageData||q.imageUrl?"🖼️ ":"")+q.q;
    const answers=document.createElement("div");answers.className="qanswers";
    q.a.forEach((answer,j)=>{const chip=document.createElement("span");chip.className="qanswer"+(j===q.c?" correct":"");chip.textContent=String.fromCharCode(65+j)+") "+answer;answers.appendChild(chip)});
-   main.append(number,title,answers);
+   const heading=document.createElement("div");heading.className="qheader";heading.append(badge,number);
+   main.append(heading,title,answers);
    const actions=document.createElement("div");actions.className="rowactions";actions.style.display="flex";actions.style.gap="6px";
    const edit=document.createElement("button");edit.className="primary";edit.textContent="✏️ Editar";edit.onclick=()=>editQuestion(i);
    const del=document.createElement("button");del.className="danger";del.textContent="🗑️";del.title="Eliminar pregunta";del.onclick=()=>deleteQuestionAt(i);
-   actions.append(edit,del);row.append(badge,main,actions);list.appendChild(row);
+   actions.append(edit,del);row.append(main,actions);list.appendChild(row);
  });
 
  const count=document.getElementById("editorCount");
